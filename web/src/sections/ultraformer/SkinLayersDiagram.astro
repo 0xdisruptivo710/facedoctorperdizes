@@ -1,0 +1,110 @@
+---
+/**
+ * Diagrama SVG das três camadas tratadas pelo Ultraformer MPT.
+ * Estilo médico vintage; cores brass/paper sobre ink.
+ * DESIGN.md §6.2 step 3.
+ */
+import Eyebrow from '../../components/Eyebrow.astro';
+---
+
+<section class="section section--dark section--divided layers bg-noise">
+  <div class="container container--wide layers__grid">
+    <div class="layers__copy reveal">
+      <Eyebrow tone="light">Três camadas, uma sessão</Eyebrow>
+      <h2 class="display layers__title">Anatomia<br />de um disparo.</h2>
+      <p class="body layers__body">
+        O equipamento usa transdutores diferentes para cada profundidade. A mesma sessão trabalha derme, camada subdérmica e SMAS, em pontos pré-marcados, controlados em milímetros.
+      </p>
+    </div>
+
+    <div class="layers__diagram reveal" style="--reveal-delay: 1">
+      <svg
+        viewBox="0 0 800 480"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="Diagrama das três profundidades de aplicação do Ultraformer MPT na pele"
+      >
+        <defs>
+          <pattern id="grain-ufp" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="1" r="0.3" fill="rgba(245,240,234,0.04)" />
+          </pattern>
+        </defs>
+
+        <line x1="60" y1="60" x2="740" y2="60" stroke="#F5F0EA" stroke-width="1" stroke-dasharray="3 3" opacity="0.5" />
+        <text x="60" y="48" font-family="JetBrains Mono" font-size="10" fill="#F5F0EA" opacity="0.6" letter-spacing="2">SUPERFÍCIE — 0.0 MM</text>
+
+        <!-- Layer 01: Derme -->
+        <rect x="60" y="80" width="680" height="90" fill="#A86469" opacity="0.12" />
+        <rect x="60" y="80" width="680" height="90" fill="url(#grain-ufp)" />
+        <line x1="60" y1="170" x2="740" y2="170" stroke="#B89968" stroke-width="1" opacity="0.4" />
+        <circle cx="180" cy="125" r="3" fill="#B89968" />
+        <circle cx="320" cy="125" r="3" fill="#B89968" />
+        <circle cx="460" cy="125" r="3" fill="#B89968" />
+        <circle cx="600" cy="125" r="3" fill="#B89968" />
+        <text x="60" y="115" font-family="Fraunces" font-weight="300" font-size="32" fill="#F5F0EA">01</text>
+        <text x="60" y="150" font-family="JetBrains Mono" font-size="10" fill="#F5F0EA" letter-spacing="2">DERME · 1.5 MM</text>
+        <text x="660" y="115" font-family="Inter" font-size="11" fill="#F5F0EA" opacity="0.7" text-anchor="end">qualidade dérmica</text>
+
+        <!-- Layer 02: Subdermal -->
+        <rect x="60" y="190" width="680" height="100" fill="#A86469" opacity="0.22" />
+        <rect x="60" y="190" width="680" height="100" fill="url(#grain-ufp)" />
+        <line x1="60" y1="290" x2="740" y2="290" stroke="#B89968" stroke-width="1" opacity="0.4" />
+        <circle cx="180" cy="240" r="4" fill="#B89968" />
+        <circle cx="320" cy="240" r="4" fill="#B89968" />
+        <circle cx="460" cy="240" r="4" fill="#B89968" />
+        <circle cx="600" cy="240" r="4" fill="#B89968" />
+        <text x="60" y="230" font-family="Fraunces" font-weight="300" font-size="32" fill="#F5F0EA">02</text>
+        <text x="60" y="270" font-family="JetBrains Mono" font-size="10" fill="#F5F0EA" letter-spacing="2">SUBDÉRMICO · 3.0 MM</text>
+        <text x="660" y="230" font-family="Inter" font-size="11" fill="#F5F0EA" opacity="0.7" text-anchor="end">colágeno novo</text>
+
+        <!-- Layer 03: SMAS -->
+        <rect x="60" y="310" width="680" height="140" fill="#A86469" opacity="0.38" />
+        <rect x="60" y="310" width="680" height="140" fill="url(#grain-ufp)" />
+        <circle cx="180" cy="385" r="5" fill="#B89968" />
+        <circle cx="320" cy="385" r="5" fill="#B89968" />
+        <circle cx="460" cy="385" r="5" fill="#B89968" />
+        <circle cx="600" cy="385" r="5" fill="#B89968" />
+        <text x="60" y="355" font-family="Fraunces" font-weight="300" font-size="32" fill="#F5F0EA">03</text>
+        <text x="60" y="385" font-family="JetBrains Mono" font-size="10" fill="#F5F0EA" letter-spacing="2">SMAS · 4.5 MM</text>
+        <text x="60" y="420" font-family="Inter" font-size="11" fill="#F5F0EA" opacity="0.7">camada de tração · vetores de lifting</text>
+        <text x="660" y="355" font-family="Inter" font-size="11" fill="#F5F0EA" opacity="0.7" text-anchor="end">a mesma camada manipulada em cirurgia</text>
+
+        <!-- Reference arrow -->
+        <line x1="40" y1="60" x2="40" y2="450" stroke="#B89968" stroke-width="1" opacity="0.6" />
+        <polygon points="40,455 36,447 44,447" fill="#B89968" opacity="0.6" />
+        <text x="22" y="260" font-family="JetBrains Mono" font-size="10" fill="#F5F0EA" opacity="0.5" letter-spacing="2" transform="rotate(-90 22 260)">PROFUNDIDADE</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .layers__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+  @media (min-width: 900px) {
+    .layers__grid {
+      grid-template-columns: 4fr 8fr;
+      gap: var(--space-9);
+    }
+  }
+  .layers__copy :global(.eyebrow) {
+    margin-block-end: var(--space-7);
+  }
+  .layers__title {
+    font-size: clamp(2rem, 3.5vw + 1rem, 3rem);
+    color: var(--paper);
+    margin-block-end: var(--space-6);
+  }
+  .layers__body {
+    color: rgba(245, 240, 234, 0.7);
+    max-width: 38ch;
+  }
+  .layers__diagram svg {
+    width: 100%;
+    height: auto;
+  }
+</style>

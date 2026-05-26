@@ -1,0 +1,121 @@
+---
+/**
+ * IndicationsList v3.1 — Lista de indicações em grid editorial.
+ */
+interface Indication {
+  title: string;
+  body: string;
+  tag?: string;
+}
+
+interface Props {
+  headline: string;
+  items: Indication[];
+}
+
+const { headline, items } = Astro.props;
+---
+
+<section class="indications-v3">
+  <div class="container container--wide indications-v3__inner">
+    <header class="indications-v3__head">
+      <span class="indications-v3__num outline-num" aria-hidden="true">P/Q</span>
+      <h2 class="indications-v3__title">{headline}</h2>
+    </header>
+
+    <div class="indications-v3__grid">
+      {items.map((item, i) => (
+        <article class="indications-v3__item reveal" style={`--reveal-delay: ${i}`}>
+          <span class="indications-v3__index">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="indications-v3__item-title">{item.title}</h3>
+          <p class="indications-v3__item-body">{item.body}</p>
+          {item.tag && <span class="indications-v3__tag">{item.tag}</span>}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .indications-v3 {
+    background-color: var(--brand-light);
+    color: var(--brand-dark);
+    padding-block: clamp(5rem, 10vh, 8rem);
+    border-block-start: 1px solid var(--border-faint);
+  }
+
+  .indications-v3__head {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-5);
+    margin-block-end: var(--space-9);
+    flex-wrap: wrap;
+  }
+
+  .indications-v3__num {
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 0.85;
+  }
+
+  .indications-v3__title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    letter-spacing: var(--track-tight);
+    line-height: 1;
+    color: var(--brand-dark);
+  }
+
+  .indications-v3__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+  @media (min-width: 700px) {
+    .indications-v3__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-9) var(--space-7);
+    }
+  }
+
+  .indications-v3__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    border-block-start: 1px solid var(--border-faint);
+    padding-block-start: var(--space-5);
+  }
+
+  .indications-v3__index {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-accent);
+  }
+
+  .indications-v3__item-title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    line-height: 1.15;
+    color: var(--brand-dark);
+  }
+
+  .indications-v3__item-body {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-base);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+  }
+
+  .indications-v3__tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-gold);
+    align-self: flex-start;
+  }
+</style>

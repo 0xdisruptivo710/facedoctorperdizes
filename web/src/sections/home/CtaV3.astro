@@ -1,0 +1,99 @@
+---
+/**
+ * CTA Final v3.1 — cream warm, headline serif gigante, botão dark pill.
+ */
+import { whatsappUrl, WA_MESSAGES } from '../../lib/clinic';
+
+interface Props {
+  headline?: string;
+  lead?: string;
+  ctaMessage?: string;
+}
+
+const {
+  headline = 'Pronta para revelar a sua nova versão?',
+  lead = 'Agende uma avaliação facial detalhada com nossa equipe em Perdizes.',
+  ctaMessage = WA_MESSAGES.general,
+} = Astro.props;
+
+const wa = whatsappUrl(ctaMessage);
+---
+
+<section id="agendar" class="cta-v3">
+  <div class="container container--default cta-v3__inner">
+    <h2 class="cta-v3__title reveal">{headline}</h2>
+    <p class="cta-v3__lead reveal" style="--reveal-delay: 1">{lead}</p>
+
+    <a href={wa} target="_blank" rel="noopener noreferrer" class="cta-v3__button reveal" style="--reveal-delay: 2">
+      Falar com Concierge via WhatsApp
+    </a>
+
+    <p class="cta-v3__meta reveal" style="--reveal-delay: 3">Resposta média em 5 minutos.</p>
+  </div>
+</section>
+
+<style>
+  .cta-v3 {
+    background-color: var(--brand-cream);
+    color: var(--brand-dark);
+    padding-block: clamp(5rem, 10vh, 8rem) clamp(4rem, 8vh, 6rem);
+  }
+
+  .cta-v3__inner {
+    text-align: center;
+    border-block-end: 1px solid rgba(168, 100, 105, 0.2);
+    padding-block-end: clamp(3rem, 6vh, 5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  .cta-v3__title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(2rem, 5vw, 4rem);
+    letter-spacing: var(--track-h2);
+    line-height: 1.1;
+    color: var(--brand-dark);
+    max-width: 28ch;
+  }
+
+  .cta-v3__lead {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+    max-width: 34rem;
+  }
+
+  .cta-v3__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--brand-dark);
+    color: var(--brand-light);
+    padding: 1.25rem 2.5rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--track-button);
+    box-shadow: 0 20px 40px -10px rgba(31, 27, 28, 0.25);
+    transition: background-color var(--dur-base) var(--ease-out),
+                transform var(--dur-fast) var(--ease-snap);
+    margin-block-start: var(--space-4);
+  }
+  .cta-v3__button:hover { background-color: var(--brand-primary); }
+  .cta-v3__button:active { transform: scale(0.98); }
+
+  .cta-v3__meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-accent);
+    margin-block-start: var(--space-3);
+  }
+</style>

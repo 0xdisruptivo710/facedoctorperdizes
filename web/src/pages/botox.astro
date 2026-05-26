@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsappFloat from '../components/WhatsappFloat.astro';
+
+import SubHero from '../sections/SubHero.astro';
+import Definition from '../sections/Definition.astro';
+import IndicationsList from '../sections/IndicationsList.astro';
+import ProtocolGrid from '../sections/ProtocolGrid.astro';
+import FaqEditorial from '../sections/FaqEditorial.astro';
+import CtaCine from '../sections/CtaCine.astro';
+import ResultsCarousel from '../sections/ResultsCarousel.astro';
+
+import { whatsappUrl, WA_MESSAGES } from '../lib/clinic';
+
+const title = 'Botox em Perdizes — Toxina Botulínica com Equipe Especializada | Face Doctor';
+const description =
+  'Aplicação de Botox (toxina botulínica) na Face Doctor Perdizes. Áreas tratadas, segurança e equipe especializada. Agende sua avaliação inicial.';
+
+const procedureSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalProcedure',
+  name: 'Toxina Botulínica',
+  procedureType: 'Minimally Invasive',
+  bodyLocation: 'Face',
+  description:
+    'Aplicação de toxina botulínica tipo A para suavizar linhas dinâmicas, bruxismo, lip flip, hiperidrose e outras indicações.',
+};
+
+const wa = whatsappUrl(WA_MESSAGES.botox);
+
+const indications = [
+  { title: 'Linhas de expressão dinâmicas', body: 'Testa, glabela ("11"), pés de galinha — onde o movimento marca a pele.', tag: 'terço superior' },
+  { title: 'Bruxismo e tensão mandibular',  body: 'Aplicação no masseter relaxa a musculatura, alivia dor, afina o contorno.', tag: 'masseter · contorno' },
+  { title: 'Lip flip & sorriso gengival',   body: 'Microdoses que reposicionam o lábio superior e suavizam o sorriso.',         tag: 'estética facial' },
+  { title: 'Hiperidrose axilar',            body: 'Redução significativa do suor por 4 a 6 meses, com aplicação ambulatorial.', tag: 'medicina · qualidade de vida' },
+];
+
+const protocol = [
+  { title: 'Análise dinâmica',     body: 'Pedimos para você fazer expressões e identificamos as áreas e doses ideais. Avaliação em movimento, não estática.' },
+  { title: 'Marcação',             body: 'Pontos de aplicação marcados na pele com precisão milimétrica. Cada ponto é uma decisão.' },
+  { title: 'Aplicação',            body: 'Microinjeções com agulha extrafina. Desconforto comparável a uma picada de mosquito. Sem necessidade de anestesia.' },
+  { title: 'Retorno em 15 dias',   body: 'Cuidados pós-aplicação simples. Reavaliação para ajustes finos quando necessário.' },
+];
+
+const results = [
+  {
+    src: '/results/botox-glabela.jpg',
+    alt: 'Antes e depois de Botox na glabela — rugas do "11" suavizadas',
+    procedure: 'Glabela · "11"',
+    caption: 'Suavização das linhas verticais entre as sobrancelhas mantendo expressão natural.',
+    layout: 'vertical' as const,
+  },
+  {
+    src: '/results/botox-pe-de-galinha.jpg',
+    alt: 'Antes e depois de Botox em pé de galinha — quatro projeções',
+    procedure: 'Pé de Galinha',
+    caption: 'Olhos mais descansados e abertos. Sem efeito congelado, sem perda de sorriso.',
+    layout: 'grid' as const,
+  },
+  {
+    src: '/results/botox-nefertiti.jpg',
+    alt: 'Antes e depois de aplicação Botox técnica Nefertiti — definição de mandíbula e pescoço',
+    procedure: 'Técnica Nefertiti',
+    caption: 'Definição da linha mandibular e relaxamento das bandas cervicais.',
+    layout: 'horizontal' as const,
+  },
+];
+
+const faq = [
+  { q: 'Vou ficar com cara de "congelada"?',                a: 'Não. Esse é o medo número um e o motivo de escolher uma clínica com aplicador experiente. Quando a dose é certa e a aplicação é precisa, você mantém todas as expressões. O objetivo é suavizar, não paralisar.' },
+  { q: 'Em quanto tempo aparece o efeito?',                  a: 'Os primeiros sinais aparecem entre o 3º e o 7º dia. O resultado final estabiliza por volta do 15º dia. Por isso fazemos o retorno após essa janela.' },
+  { q: 'Quanto tempo dura?',                                 a: 'Em média de 4 a 6 meses. Varia conforme metabolismo, musculatura tratada e dose. Com aplicações regulares, a musculatura se reeduca e a duração tende a aumentar.' },
+  { q: 'Dói?',                                                a: 'Muito pouco. Agulhas extrafinas, desconforto comparável a uma picada de mosquito. Não é necessária anestesia local.' },
+  { q: 'Posso combinar com Ultraformer ou bioestimulador?', a: 'Sim. Botox trata a parte dinâmica (musculatura); Ultraformer e bioestimuladores tratam estrutura (firmeza e colágeno). A combinação potencializa resultados.' },
+  { q: 'Tem risco de ficar viciada?',                        a: 'Mito. O Botox tem efeito temporário, quando para de aplicar, a musculatura volta ao funcionamento normal.' },
+  { q: 'Qual o custo na unidade Perdizes?',                  a: 'Depende do número de áreas e da marca da toxina (Botox Allergan, Dysport, Xeomin etc). Orçamento individualizado durante a avaliação inicial gratuita.' },
+];
+---
+
+<BaseLayout title={title} description={description} procedureSchema={procedureSchema}>
+  <SiteHeader slot="header" active="botox" />
+
+  <SubHero
+    crumbs={[{ label: 'Início', href: '/' }, { label: 'Toxina Botulínica' }]}
+    eyebrow="Toxina botulínica · Marcas premium"
+    headline="Sutil quando a gente quer.<br />Visível só quando você quer."
+    lead="Botox pausa o músculo, não congela a face. Quando a dose é certa e a aplicação é precisa, expressões continuam — linhas dinâmicas desaparecem."
+    primaryHref={wa}
+    secondaryHref="#indicacoes"
+    secondaryLabel="Para quem é"
+    image={{
+      src: '/modelos/modelo-botox.png',
+      alt: 'Aplicação editorial de toxina botulínica — Face Doctor Perdizes',
+      figLabel: 'Fig. 04 — Movimento natural',
+      figTag: '4–6 meses',
+    }}
+  />
+
+  <Definition
+    eyebrow="O que é"
+    lead="Toxina botulínica tipo A bloqueia temporariamente o sinal nervoso para o músculo aplicado. Sem o impulso de contração, a musculatura relaxa, e a pele acima dela deixa de se dobrar. É o que diferencia pausar de paralisar."
+    footnote="Trabalhamos com produtos originais de laboratórios líderes — Allergan, Galderma, Merz. A dose é individualizada por face, porque cada musculatura tem seu próprio mapa."
+  />
+
+  <div id="indicacoes">
+    <IndicationsList headline="Para quem é." items={indications} />
+  </div>
+
+  <ProtocolGrid headline="Quatro etapas." steps={protocol} />
+
+  <ResultsCarousel
+    headline="Resultados em pacientes reais."
+    eyebrow="Antes & Depois"
+    items={results}
+    variant="light"
+  />
+
+  <FaqEditorial headline="As perguntas<br />que mais ouvimos." items={faq} />
+
+  <CtaCine
+    headline="Sutil quando<br /><em>a gente quer.</em>"
+    lead="Agenda restrita para garantir tempo e detalhamento em cada plano de aplicação."
+    ctaHref={wa}
+  />
+
+  <SiteFooter slot="footer" />
+  <WhatsappFloat slot="floats" message={WA_MESSAGES.botox} />
+</BaseLayout>

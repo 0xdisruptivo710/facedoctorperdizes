@@ -1,0 +1,17 @@
+---
+/**
+ * Eyebrow — traço brass de 24px + label mono UPPERCASE.
+ * DESIGN.md §5.3
+ */
+interface Props {
+  tone?: 'dark' | 'light';
+  as?: 'span' | 'div' | 'p';
+  class?: string;
+}
+const { tone = 'dark', as: Tag = 'span', class: className = '' } = Astro.props;
+const classes = ['eyebrow', tone === 'light' ? 'eyebrow--on-dark' : '', className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<Tag class={classes}><slot /></Tag>

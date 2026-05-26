@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="antialiased scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Face Doctor Perdizes — Clínica de Estética Facial em São Paulo</title>
+    <meta name="description" content="Unidade autorizada Face Doctor em Perdizes/SP. Ultraformer MPT, bioestimuladores, toxina botulínica e cuidados faciais com equipe especializada. Agende sua avaliação.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Fraunces:opsz,wght@9..144,300;9..144,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paper: '#F5F0EA',
+                        paperhover: '#EAE1D6',
+                        ink: '#1A1614',
+                        brass: '#B89968',
+                        marsala: '#A86469',
+                        deepmarsala: '#7A3F44',
+                    },
+                    fontFamily: {
+                        serif: ['Fraunces', 'serif'],
+                        sans: ['DM Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    letterSpacing: {
+                        tightest: '-0.04em',
+                        widest: '0.18em',
+                    },
+                    lineHeight: {
+                        'editorial': '0.95',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root { --curve-editorial: cubic-bezier(0.16, 1, 0.3, 1); }
+        body { background-color: theme('colors.paper'); color: theme('colors.ink'); overflow-x: hidden; }
+        .text-clamp-hero { font-size: clamp(3.5rem, 8vw, 8rem); }
+        .text-clamp-h2 { font-size: clamp(2.5rem, 5vw, 5rem); }
+        .text-clamp-number { font-size: clamp(5rem, 12vw, 10rem); }
+        .editorial-display {
+            font-family: theme('fontFamily.serif');
+            font-weight: 300;
+            line-height: theme('lineHeight.editorial');
+            letter-spacing: theme('letterSpacing.tightest');
+        }
+        .editorial-body {
+            font-family: theme('fontFamily.sans');
+            font-weight: 400;
+            line-height: 1.55;
+            max-width: 62ch;
+        }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 1rem;
+            font-family: theme('fontFamily.mono');
+            font-size: 11px; letter-spacing: theme('letterSpacing.widest');
+            text-transform: uppercase; color: theme('colors.ink');
+        }
+        .eyebrow::before {
+            content: ""; display: inline-block; width: 24px; height: 2px;
+            background-color: theme('colors.brass');
+        }
+        .eyebrow-light { color: theme('colors.paper'); }
+        .eyebrow-light::before { background-color: theme('colors.brass'); }
+        .btn-pill {
+            display: inline-flex; align-items: center; justify-content: center;
+            background-color: theme('colors.ink'); color: theme('colors.paper');
+            border-radius: 999px; padding: 1.125rem 2.25rem;
+            font-family: theme('fontFamily.mono');
+            font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+            transition: transform 0.4s var(--curve-editorial), background-color 0.4s ease;
+            user-select: none; white-space: nowrap;
+        }
+        .btn-pill:hover { transform: translateY(-2px); background-color: theme('colors.deepmarsala'); }
+        .btn-pill:active { transform: scale(0.97); }
+        .link-editorial {
+            position: relative; display: inline-flex;
+            font-family: theme('fontFamily.mono');
+            font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+            padding-bottom: 4px;
+        }
+        .link-editorial::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 100%; height: 1px; background-color: currentColor;
+            transform-origin: right; transform: scaleX(1);
+            transition: transform 0.6s var(--curve-editorial);
+        }
+        .link-editorial:hover::after { transform-origin: left; transform: scaleX(0); }
+        .reveal-node {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 1.2s var(--curve-editorial), transform 1.2s var(--curve-editorial);
+            transition-delay: calc(var(--delay, 0) * 0.08s);
+        }
+        .reveal-node.is-visible { opacity: 1; transform: translateY(0); }
+        .img-wrap { overflow: hidden; }
+        .img-parallax {
+            height: 120%; width: 100%; object-fit: cover;
+            transform: translateY(-10%);
+            transition: transform 0.1s linear; will-change: transform;
+        }
+        .marquee-container { display: flex; width: 200vw; overflow: hidden; white-space: nowrap; }
+        .marquee-track { display: flex; animation: marquee 40s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .divider-ink { border-color: rgba(26, 22, 20, 0.1); }
+        .bg-noise { position: relative; }
+        .bg-noise::after {
+            content: ""; position: absolute; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 10;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: theme('colors.paper'); }
+        ::-webkit-scrollbar-thumb { background: theme('colors.ink'); border-radius: 4px; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-node { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .img-parallax { transform: none !important; }
+            .marquee-track { animation: none !important; }
+        }
+    </style>
+</head>
+<body class="selection:bg-brass selection:text-paper">
+
+    <a href="https://wa.me/5511940625771?text=Ol%C3%A1%2C+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+na+Face+Doctor+Perdizes." target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-ink rounded-full flex items-center justify-center text-paper hover:bg-brass transition-colors duration-500 transform hover:scale-105 active:scale-95" aria-label="Falar no WhatsApp">
+        <i class="ph ph-whatsapp-logo text-2xl"></i>
+    </a>
+
+    <nav class="fixed top-0 left-0 w-full z-40 px-4 md:px-8 py-6 mix-blend-difference text-paper pointer-events-none">
+        <div class="max-w-[1480px] mx-auto flex justify-between items-center pointer-events-auto">
+            <a href="index.html" class="font-serif text-xl tracking-tight leading-none">
+                Face Doctor<br><span class="font-sans text-xs tracking-widest uppercase opacity-70">Perdizes</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 font-mono text-xs uppercase tracking-widest">
+                <a href="#procedimentos" class="hover:opacity-60 transition-opacity">Protocolos</a>
+                <a href="#clinica" class="hover:opacity-60 transition-opacity">A Clínica</a>
+                <a href="#manifesto" class="hover:opacity-60 transition-opacity">Manifesto</a>
+            </div>
+            <a href="https://wa.me/5511940625771?text=Ol%C3%A1%2C+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+na+Face+Doctor+Perdizes." target="_blank" rel="noopener" class="link-editorial text-paper hidden sm:inline-flex">Agendar →</a>
+        </div>
+    </nav>
+
+    <section class="min-h-[100dvh] pt-32 pb-16 px-4 md:px-8 flex items-center bg-noise">
+        <div class="max-w-[1480px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end">
+            <div class="lg:col-span-8 order-2 lg:order-1 relative z-10 pb-8 lg:pb-0">
+                <h1 class="editorial-display text-clamp-hero text-ink reveal-node" style="--delay: 1">
+                    A pele certa para você —<br>é a que você já tem,<br>em outra década.
+                </h1>
+                <div class="mt-8 lg:mt-12 reveal-node" style="--delay: 3">
+                    <p class="editorial-body text-ink/70 mb-8 max-w-md hidden md:block">
+                        Uma abordagem editorial à medicina estética facial. Protocolos minimalistas, precisão técnica e resultados que respeitam a sua identidade estrutural.
+                    </p>
+                </div>
+            </div>
+            <div class="lg:col-span-4 order-1 lg:order-2 flex flex-col lg:items-end w-full reveal-node" style="--delay: 2">
+                <div class="w-full sm:w-[80%] lg:w-full aspect-[4/5] img-wrap bg-ink/5">
+                    <!-- TODO[asset]: substituir por foto editorial própria da unidade (§8.1 DESIGN.md) -->
+                    <img class="img-parallax" src="https://images.unsplash.com/photo-1544502062-f82887f03d1c?auto=format&fit=crop&q=80&w=1200" alt="Retrato editorial de mulher 40+ com pele natural e iluminação suave">
+                </div>
+                <div class="mt-6 w-full sm:w-[80%] lg:w-full flex justify-between items-center">
+                    <span class="font-mono text-[10px] uppercase text-ink/40 tracking-widest">Fig. 01 — Estrutura</span>
+                    <a href="https://wa.me/5511940625771?text=Ol%C3%A1%2C+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+na+Face+Doctor+Perdizes." target="_blank" rel="noopener" class="link-editorial text-ink">Avaliação inicial →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="manifesto" class="py-32 md:py-48 px-4 border-t divider-ink bg-paper">
+        <div class="max-w-[840px] mx-auto text-center">
+            <div class="eyebrow mb-12 reveal-node justify-center">Filosofia da clínica</div>
+            <div class="space-y-8 font-serif text-2xl md:text-[28px] leading-tight tracking-tight text-ink/90 reveal-node" style="--delay: 1">
+                <p>Não acreditamos em transformações que anulam quem você é. Acreditamos no acompanhamento longo do envelhecimento facial — em camadas, ano após ano.</p>
+                <p>Resultado em camadas, não em camadas de filtro. A precisão de um lifting cirúrgico, sem o lifting. Menos preenchimento, mais qualidade dérmica.</p>
+                <p>Pele que volta a produzir colágeno — não que ganha volume emprestado.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-8 bg-ink text-paper overflow-hidden border-y border-ink" aria-hidden="true">
+        <div class="marquee-container editorial-display text-clamp-h2 tracking-tight opacity-90">
+            <div class="marquee-track">
+                <span>ULTRAFORMER MPT <span class="text-brass px-4">·</span> BIOESTIMULADORES <span class="text-brass px-4">·</span> TOXINA BOTULÍNICA <span class="text-brass px-4">·</span> LAVIEEN <span class="text-brass px-4">·</span> FIOS DE PDO <span class="text-brass px-4">·</span></span>
+                <span>ULTRAFORMER MPT <span class="text-brass px-4">·</span> BIOESTIMULADORES <span class="text-brass px-4">·</span> TOXINA BOTULÍNICA <span class="text-brass px-4">·</span> LAVIEEN <span class="text-brass px-4">·</span> FIOS DE PDO <span class="text-brass px-4">·</span></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="procedimentos" class="py-24 md:py-48 bg-paper">
+        <article class="min-h-[80vh] flex items-center py-16 px-4 md:px-8 border-b divider-ink">
+            <div class="max-w-[1480px] mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                <div class="order-2 md:order-1 relative z-10 reveal-node">
+                    <span class="absolute -top-16 -left-8 md:-left-16 font-serif text-clamp-number text-brass opacity-20 leading-none select-none z-[-1]">01</span>
+                    <div class="eyebrow mb-8">Lifting sem cirurgia</div>
+                    <h2 class="editorial-display text-4xl md:text-6xl mb-6">Ultraformer MPT</h2>
+                    <p class="editorial-body text-ink/70 mb-10 text-lg">
+                        Ultrassom microfocado nas três camadas profundas da pele. Vetores de tração reais no SMAS, sem cortes, sem afastamento da rotina.
+                    </p>
+                    <a href="ultraformer-mpt.html" class="link-editorial text-ink">Conhecer protocolo →</a>
+                </div>
+                <div class="order-1 md:order-2 img-wrap aspect-[3/4] md:aspect-[4/5] bg-ink/5 w-full reveal-node" style="--delay: 1">
+                    <!-- TODO[asset]: foto editorial Ultraformer (§8.1) -->
+                    <img class="img-parallax" src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&q=80&w=1000" alt="Detalhe de equipamento Ultraformer em ambiente clínico">
+                </div>
+            </div>
+        </article>
+
+        <article class="min-h-[80vh] flex items-center py-16 px-4 md:px-8 border-b divider-ink">
+            <div class="max-w-[1480px] mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                <div class="order-1 md:order-1 img-wrap aspect-[3/4] md:aspect-[4/5] bg-ink/5 w-full reveal-node">
+                    <!-- TODO[asset]: foto editorial bioestimulador (§8.1) -->
+                    <img class="img-parallax" src="https://images.unsplash.com/photo-1555820598-c801452243d6?auto=format&fit=crop&q=80&w=1000" alt="Macro de textura dérmica e qualidade de pele">
+                </div>
+                <div class="order-2 md:order-2 relative z-10 reveal-node" style="--delay: 1">
+                    <span class="absolute -top-16 -left-8 md:-left-16 font-serif text-clamp-number text-brass opacity-20 leading-none select-none z-[-1]">02</span>
+                    <div class="eyebrow mb-8">Colágeno que volta a nascer</div>
+                    <h2 class="editorial-display text-4xl md:text-6xl mb-6">Bioestimuladores</h2>
+                    <p class="editorial-body text-ink/70 mb-10 text-lg">
+                        Sculptra, Radiesse e Ellansé como ferramentas para reativar a produção de colágeno. Suporte estrutural duradouro, sem volume emprestado.
+                    </p>
+                    <a href="bioestimulador.html" class="link-editorial text-ink">Conhecer protocolo →</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="min-h-[80vh] flex items-center py-16 px-4 md:px-8">
+            <div class="max-w-[1480px] mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                <div class="order-2 md:order-1 relative z-10 reveal-node">
+                    <span class="absolute -top-16 -left-8 md:-left-16 font-serif text-clamp-number text-brass opacity-20 leading-none select-none z-[-1]">03</span>
+                    <div class="eyebrow mb-8">Toxina botulínica</div>
+                    <h2 class="editorial-display text-4xl md:text-6xl mb-6">Botox</h2>
+                    <p class="editorial-body text-ink/70 mb-10 text-lg">
+                        Aplicação precisa que suaviza linhas dinâmicas sem congelar a expressão. Sutil quando a gente quer. Visível só quando você quer.
+                    </p>
+                    <a href="botox.html" class="link-editorial text-ink">Conhecer protocolo →</a>
+                </div>
+                <div class="order-1 md:order-2 img-wrap aspect-[3/4] md:aspect-[4/5] bg-ink/5 w-full reveal-node" style="--delay: 1">
+                    <!-- TODO[asset]: foto editorial Botox (§8.1) -->
+                    <img class="img-parallax" src="https://images.unsplash.com/photo-1629367499691-1cacc1ee4ce8?auto=format&fit=crop&q=80&w=1000" alt="Atmosfera clínica minimalista com instrumentos de aplicação">
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <section id="clinica" class="py-24 px-4 md:px-8 bg-ink border-t divider-ink select-none relative bg-noise">
+        <div class="max-w-[1480px] mx-auto">
+            <div class="flex justify-between items-end mb-16 reveal-node">
+                <h2 class="editorial-display text-4xl md:text-6xl text-paper">O espaço</h2>
+                <div class="eyebrow eyebrow-light hidden md:flex">Unidade Perdizes</div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-12 gap-2 md:gap-4 lg:gap-6 auto-rows-[200px] md:auto-rows-[300px]">
+                <!-- TODO[asset]: substituir por fotos reais da unidade (§8.1) -->
+                <figure class="col-span-2 md:col-span-8 row-span-1 md:row-span-2 relative group overflow-hidden reveal-node">
+                    <img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&q=80&w=1600" alt="Recepção da unidade Perdizes" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                    <figcaption class="absolute bottom-4 right-4 font-mono text-[10px] bg-ink/80 text-paper px-2 py-1 backdrop-blur-sm">01 / Recepção</figcaption>
+                </figure>
+                <figure class="col-span-1 md:col-span-4 row-span-1 relative group overflow-hidden reveal-node" style="--delay: 1">
+                    <img src="https://images.unsplash.com/photo-1628108990666-410a5611ea89?auto=format&fit=crop&q=80&w=600" alt="Detalhe de instrumentos e superfície" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                    <figcaption class="absolute bottom-4 right-4 font-mono text-[10px] bg-ink/80 text-paper px-2 py-1 backdrop-blur-sm">02 / Detalhe</figcaption>
+                </figure>
+                <figure class="col-span-1 md:col-span-4 row-span-1 relative group overflow-hidden reveal-node" style="--delay: 2">
+                    <img src="https://images.unsplash.com/photo-1599723226756-7ee61a6c117b?auto=format&fit=crop&q=80&w=600" alt="Mãos da equipe em aplicação" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                    <figcaption class="absolute bottom-4 right-4 font-mono text-[10px] bg-ink/80 text-paper px-2 py-1 backdrop-blur-sm">03 / Prática</figcaption>
+                </figure>
+                <figure class="col-span-2 md:col-span-12 row-span-1 relative group overflow-hidden reveal-node" style="--delay: 3">
+                    <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccf?auto=format&fit=crop&q=80&w=1600" alt="Sala de aplicação com luz natural" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                    <figcaption class="absolute bottom-4 right-4 font-mono text-[10px] bg-ink/80 text-paper px-2 py-1 backdrop-blur-sm">04 / Sala</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="h-[60vh] md:h-[90vh] w-full relative overflow-hidden flex items-center justify-center">
+        <!-- TODO[asset]: substituir poster por frame do vídeo institucional (§8.2) -->
+        <div class="absolute inset-0 w-full h-full">
+            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=2000" class="absolute inset-0 w-full h-full object-cover scale-105 grayscale opacity-60" alt="">
+        </div>
+        <div class="absolute inset-0 bg-ink/40"></div>
+        <div class="relative z-10 text-center reveal-node">
+            <button type="button" class="w-24 h-24 rounded-full border border-paper/30 backdrop-blur-md flex items-center justify-center text-paper hover:bg-paper hover:text-ink transition-all duration-500 mx-auto group" aria-label="Reproduzir vídeo institucional">
+                <i class="ph ph-play-fill text-2xl group-hover:scale-110 transition-transform"></i>
+            </button>
+            <span class="block mt-6 font-mono text-[11px] uppercase tracking-widest text-paper/80">Conheça a unidade em vídeo</span>
+        </div>
+    </section>
+
+    <section id="lista" class="py-24 md:py-40 px-4 md:px-8 bg-paper">
+        <div class="max-w-[1240px] mx-auto">
+            <div class="eyebrow mb-16 reveal-node">Menu de tratamentos</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 lg:gap-x-24">
+                <ul class="border-t divider-ink reveal-node">
+                    <li class="border-b divider-ink group transition-colors duration-300 hover:bg-paperhover">
+                        <a href="ultraformer-mpt.html" class="py-6 px-2 flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <span class="editorial-display text-2xl lg:text-3xl">Ultraformer MPT</span>
+                            <span class="font-sans text-sm text-ink/60">Lifting facial por ultrassom microfocado.</span>
+                        </a>
+                    </li>
+                    <li class="border-b divider-ink group transition-colors duration-300 hover:bg-paperhover">
+                        <a href="bioestimulador.html" class="py-6 px-2 flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <span class="editorial-display text-2xl lg:text-3xl">Bioestimuladores</span>
+                            <span class="font-sans text-sm text-ink/60">Sculptra, Radiesse e Ellansé.</span>
+                        </a>
+                    </li>
+                    <li class="border-b divider-ink group transition-colors duration-300 hover:bg-paperhover">
+                        <a href="botox.html" class="py-6 px-2 flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <span class="editorial-display text-2xl lg:text-3xl">Toxina botulínica</span>
+                            <span class="font-sans text-sm text-ink/60">Suavização de linhas dinâmicas.</span>
+                        </a>
+                    </li>
+                    <li class="border-b divider-ink group transition-colors duration-300 hover:bg-paperhover">
+                        <a href="#agendar" class="py-6 px-2 flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <span class="editorial-display text-2xl lg:text-3xl">Preenchimento (MD Codes)</span>
+                            <span class="font-sans text-sm text-ink/60">Elevação de pontos de ligamento.</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="border-t divider-ink reveal-node" style="--delay: 2">
+                    <li class="border-b divider-ink group transition-colors duration-300 hover:bg-paperhover">
+                        <a href="#agendar" class="py-6 px-2 flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <span class="editorial-display text-2xl lg:text-3xl">Fios de PDO</span>
+                            <span class="font-sans text-sm text-ink/60">Tração e indução de colágeno.</span>
+                        </a>
+                    </li>
+                    <li class="border-b divider-ink group transition-colors duration-300 hover:bg-paperhover">
+                        <a href="#agendar" class="py-6 px-2 flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <span class="editorial-display text-2xl lg:text-3xl">Lavieen Laser</span>
+                            <span class="font-sans text-sm text-ink/60">Clareamento e refinamento de poros.</span>
+                        </a>
+                    </li>
+                    <li class="border-b divider-ink group transition-colors duration-300 hover:bg-paperhover">
+                        <a href="#agendar" class="py-6 px-2 flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <span class="editorial-display text-2xl lg:text-3xl">Skinbooster</span>
+                            <span class="font-sans text-sm text-ink/60">Hidratação dérmica profunda.</span>
+                        </a>
+                    </li>
+                    <li class="border-b divider-ink group transition-colors duration-300 hover:bg-paperhover">
+                        <a href="#agendar" class="py-6 px-2 flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <span class="editorial-display text-2xl lg:text-3xl">Peeling químico</span>
+                            <span class="font-sans text-sm text-ink/60">Renovação celular controlada.</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- TODO[copy]: substituir por depoimentos reais e autorizados de pacientes da unidade -->
+    <section class="py-32 px-4 md:px-8 border-t divider-ink bg-paper overflow-hidden">
+        <div class="max-w-[1480px] mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divider-ink">
+                <div class="relative py-12 lg:py-0 lg:pr-16 lg:pl-4 reveal-node">
+                    <span class="absolute -top-6 -left-2 text-[140px] text-brass opacity-15 font-serif leading-none select-none z-0">&ldquo;</span>
+                    <p class="relative z-10 editorial-display text-3xl md:text-5xl leading-tight mb-8">
+                        Continuo a mesma pessoa. Só com a pele que eu tinha há dez anos.
+                    </p>
+                    <div class="border-t border-ink/20 w-12 mb-4"></div>
+                    <div class="font-mono text-xs text-ink/60 tracking-wider">PACIENTE A. <br> ULTRAFORMER MPT + BIOESTIMULADOR</div>
+                </div>
+                <div class="relative py-12 lg:py-0 lg:px-12 reveal-node" style="--delay: 1">
+                    <span class="absolute -top-6 lg:left-8 -left-2 text-[140px] text-brass opacity-15 font-serif leading-none select-none z-0">&ldquo;</span>
+                    <p class="relative z-10 editorial-display text-3xl md:text-5xl leading-tight mb-8">
+                        Elas dizem &lsquo;não&rsquo; para o que você não precisa. Isso, pra mim, é o luxo.
+                    </p>
+                    <div class="border-t border-ink/20 w-12 mb-4"></div>
+                    <div class="font-mono text-xs text-ink/60 tracking-wider">PACIENTE M. <br> ACOMPANHAMENTO ANUAL</div>
+                </div>
+                <div class="relative py-12 lg:py-0 lg:pl-16 reveal-node" style="--delay: 2">
+                    <span class="absolute -top-6 lg:left-12 -left-2 text-[140px] text-brass opacity-15 font-serif leading-none select-none z-0">&ldquo;</span>
+                    <p class="relative z-10 editorial-display text-3xl md:text-5xl leading-tight mb-8">
+                        Minha queixa era cansaço. Saí sem volume falso — só firmeza.
+                    </p>
+                    <div class="border-t border-ink/20 w-12 mb-4"></div>
+                    <div class="font-mono text-xs text-ink/60 tracking-wider">PACIENTE E. <br> PROTOCOLO INTEGRADO</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="relative w-full min-h-[80vh] flex items-center bg-ink">
+        <!-- TODO[map]: substituir por Mapbox dark-styled (§9.1 DESIGN.md) -->
+        <div class="absolute inset-0 w-full h-full z-0">
+            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover grayscale opacity-30 mix-blend-luminosity" alt="">
+            <div class="absolute inset-0 bg-ink/70"></div>
+        </div>
+
+        <div class="relative z-10 max-w-[1480px] mx-auto w-full px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12">
+            <div class="lg:col-start-8 lg:col-span-5 bg-ink p-10 md:p-16 border border-paper/10 text-paper reveal-node">
+                <div class="eyebrow eyebrow-light mb-8">Localização</div>
+                <h3 class="editorial-display text-4xl mb-4">R. Piracuama, 138</h3>
+                <p class="font-sans text-paper/70 mb-8 max-w-sm">
+                    Perdizes · São Paulo — SP<br>05017-040
+                </p>
+
+                <div class="space-y-6 mb-12">
+                    <div class="flex flex-col border-b border-paper/10 pb-4">
+                        <span class="font-mono text-[10px] text-paper/50 tracking-widest uppercase mb-1">Horário</span>
+                        <span class="font-sans">Segunda a sábado — fecha às 20:00</span>
+                    </div>
+                    <div class="flex flex-col border-b border-paper/10 pb-4">
+                        <span class="font-mono text-[10px] text-paper/50 tracking-widest uppercase mb-1">Telefone / WhatsApp</span>
+                        <span class="font-sans">(11) 94062-5771</span>
+                    </div>
+                    <div class="flex flex-col border-b border-paper/10 pb-4">
+                        <span class="font-mono text-[10px] text-paper/50 tracking-widest uppercase mb-1">Atendimento</span>
+                        <span class="font-sans">Avaliação inicial gratuita · agendamento por WhatsApp</span>
+                    </div>
+                </div>
+
+                <a href="https://www.google.com/maps?q=R.+Piracuama,+138+-+Perdizes,+S%C3%A3o+Paulo+-+SP,+05017-040" target="_blank" rel="noopener" class="btn-pill w-full bg-paper text-ink hover:bg-brass hover:text-ink">Como chegar</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="agendar" class="bg-ink text-paper py-32 md:py-64 px-4 text-center border-t border-paper/10 bg-noise">
+        <div class="max-w-[1000px] mx-auto flex flex-col items-center">
+            <h2 class="editorial-display text-[clamp(3rem,8vw,6rem)] leading-[0.9] mb-12 reveal-node">
+                Sua avaliação inicial<br>é gratuita.
+            </h2>
+            <p class="font-sans text-lg text-paper/60 mb-12 max-w-md reveal-node" style="--delay: 1">
+                Agenda restrita para garantir tempo e detalhamento em cada plano de tratamento.
+            </p>
+            <div class="reveal-node" style="--delay: 2">
+                <a href="https://wa.me/5511940625771?text=Ol%C3%A1%2C+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+na+Face+Doctor+Perdizes." target="_blank" rel="noopener" class="btn-pill bg-paper text-ink hover:bg-brass hover:text-ink min-w-[240px]">Agendar avaliação</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-ink text-paper border-t border-paper/10 pt-24 pb-8 px-4 md:px-8">
+        <div class="max-w-[1480px] mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 font-mono text-xs uppercase tracking-widest mb-32 text-paper/50">
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Unidade</span>
+                    <a href="#contato" class="hover:text-paper transition-colors">Perdizes · SP</a>
+                    <a href="https://www.google.com/maps?q=R.+Piracuama,+138+-+Perdizes,+S%C3%A3o+Paulo+-+SP,+05017-040" target="_blank" rel="noopener" class="hover:text-paper transition-colors">Como chegar</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Tratamentos</span>
+                    <a href="ultraformer-mpt.html" class="hover:text-paper transition-colors">Ultraformer MPT</a>
+                    <a href="bioestimulador.html" class="hover:text-paper transition-colors">Bioestimuladores</a>
+                    <a href="botox.html" class="hover:text-paper transition-colors">Botox</a>
+                    <a href="#lista" class="hover:text-paper transition-colors">Menu completo</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Contato</span>
+                    <a href="https://wa.me/5511940625771" target="_blank" rel="noopener" class="hover:text-paper transition-colors">WhatsApp</a>
+                    <a href="https://www.instagram.com/facedoctor.perdizes" target="_blank" rel="noopener" class="hover:text-paper transition-colors">Instagram</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Institucional</span>
+                    <a href="https://facedoctor.com.br" target="_blank" rel="noopener" class="hover:text-paper transition-colors">Rede Face Doctor</a>
+                </div>
+            </div>
+
+            <div class="w-full text-center overflow-hidden border-b border-paper/10 pb-8 mb-8">
+                <h2 class="editorial-display text-[15vw] leading-[0.75] tracking-[-0.05em] text-paper opacity-90 select-none whitespace-nowrap">
+                    FACE DOCTOR
+                </h2>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center font-mono text-[10px] text-paper/40 tracking-widest gap-2">
+                <span>© 2026 Face Doctor Perdizes · Todos os direitos reservados</span>
+                <span>Unidade autorizada da rede Face Doctor</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+
+            document.querySelectorAll('.reveal-node').forEach(node => revealObserver.observe(node));
+
+            if (!prefersReducedMotion) {
+                const parallaxImages = document.querySelectorAll('.img-parallax');
+                const updateParallax = () => {
+                    const windowHeight = window.innerHeight;
+                    parallaxImages.forEach(img => {
+                        const rect = img.parentElement.getBoundingClientRect();
+                        if (rect.top < windowHeight && rect.bottom > 0) {
+                            const elementCenter = rect.top + rect.height / 2;
+                            const screenCenter = windowHeight / 2;
+                            const distance = (elementCenter - screenCenter) * 0.1;
+                            img.style.transform = `translateY(calc(-10% + ${distance}px)) scale(1.05)`;
+                        }
+                    });
+                    requestAnimationFrame(updateParallax);
+                };
+                updateParallax();
+            }
+        });
+    </script>
+</body>
+</html>

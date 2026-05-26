@@ -1,0 +1,46 @@
+---
+/**
+ * Manifesto centrado — coluna estreita, 3 parágrafos em serif.
+ * DESIGN.md §6.1 step 2.
+ */
+import Eyebrow from '../../components/Eyebrow.astro';
+---
+
+<section id="manifesto" class="section section--divided manifesto">
+  <div class="container container--narrow">
+    <Eyebrow class="reveal">Filosofia da clínica</Eyebrow>
+    <div class="manifesto__copy reveal" style="--reveal-delay: 1">
+      <p>Não acreditamos em transformações que anulam quem você é. Acreditamos no acompanhamento longo do envelhecimento facial, em camadas, ano após ano.</p>
+      <p>Resultado em camadas, não em camadas de filtro. A precisão de um lifting cirúrgico, sem o lifting. Menos preenchimento, mais qualidade dérmica.</p>
+      <p>Pele que volta a produzir colágeno, não que ganha volume emprestado.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .manifesto {
+    text-align: center;
+  }
+  .manifesto :global(.eyebrow) {
+    justify-content: center;
+    margin-block-end: var(--space-7);
+  }
+  .manifesto__copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.5rem, 1.8vw + 0.5rem, 1.75rem);
+    line-height: 1.2;
+    letter-spacing: var(--track-h2);
+    color: var(--ink);
+  }
+  .manifesto__copy p {
+    margin-inline: auto;
+    max-width: 22ch;
+  }
+  @media (min-width: 768px) {
+    .manifesto__copy p { max-width: 30ch; }
+  }
+</style>

@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Build / cache
+dist/
+*/dist/
+.astro/
+*/.astro/
+.vite/
+*/.vite/
+.cache/
+
+# AIDesigner local runs (binários grandes, previews, screenshots locais)
+.aidesigner/runs/
+.aidesigner/screenshot-*.png
+.aidesigner/screenshot-pages.cjs
+.aidesigner/mcp-latest.html
+.aidesigner/.gitkeep
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+.mcp.json
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Repo-local meta
+.agents/
+.claude/
+
+# Memory (claude code)
+memory/

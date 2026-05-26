@@ -1,0 +1,328 @@
+---
+/**
+ * Diagrama anatômico SVG interativo — 12 áreas tratadas com Botox.
+ * Clique no hotspot OU na lista → painel lateral detalha.
+ * Acessível por teclado (Enter/Espaço/Setas).
+ * DESIGN.md §6.4.
+ */
+import Eyebrow from '../../components/Eyebrow.astro';
+
+interface Area {
+  id: string;
+  num: string;
+  name: string;
+  desc: string;
+  cx: number;
+  cy: number;
+  label?: string; // text label inline (para hiperidrose, etc.)
+}
+
+const AREAS: Area[] = [
+  { id: 'testa',       num: '01', name: 'Testa',                 desc: 'Aplicação nas linhas horizontais que aparecem ao levantar as sobrancelhas. Doses pequenas e bem distribuídas para suavizar marcas sem perder mobilidade da testa.', cx: 400, cy: 205 },
+  { id: 'glabela',     num: '02', name: 'Glabela',               desc: 'A "ruga entre as sobrancelhas", clássica linha vertical de tensão. Tratamos os músculos corrugador e prócero para um olhar mais descansado.',                       cx: 400, cy: 275 },
+  { id: 'sobrancelha', num: '03', name: 'Lifting de sobrancelha', desc: 'Aplicação no músculo orbicular do olho para promover a elevação sutil da cauda da sobrancelha. Olhar mais aberto, sem cirurgia.',                                    cx: 500, cy: 285 },
+  { id: 'pes-galinha', num: '04', name: 'Pés de galinha',         desc: 'Linhas finas que aparecem no canto externo dos olhos ao sorrir. Doses leves preservam a expressão natural.',                                                         cx: 570, cy: 340 },
+  { id: 'coelho',      num: '05', name: 'Linhas do coelho',       desc: 'Pequenas rugas na lateral superior do nariz, formadas ao franzir. Aplicação no músculo nasal, área frequentemente esquecida em aplicações genéricas.',                cx: 370, cy: 390 },
+  { id: 'lip-flip',    num: '06', name: 'Lip flip',               desc: 'Microdose no lábio superior para fazer o vermelhão rolar levemente para fora. Efeito de lábio mais cheio sem preenchimento.',                                         cx: 400, cy: 495 },
+  { id: 'gengival',    num: '07', name: 'Sorriso gengival',       desc: 'Para quem mostra muita gengiva ao sorrir. Relaxamento do músculo elevador do lábio cria um sorriso mais equilibrado.',                                                cx: 345, cy: 475 },
+  { id: 'peribucais',  num: '08', name: 'Linhas peribucais',      desc: 'Linhas verticais ao redor da boca, conhecidas como "código de barras". Microdoses suavizam sem alterar a articulação da fala.',                                       cx: 455, cy: 540 },
+  { id: 'mento',       num: '09', name: 'Mento',                  desc: 'Queixo enrugado em "casca de laranja". Aplicação no músculo mentual relaxa o aperto e devolve a superfície lisa ao queixo.',                                          cx: 400, cy: 595 },
+  { id: 'masseter',    num: '10', name: 'Bruxismo · Masseter',    desc: 'Aplicação no masseter para relaxar o aperto da mandíbula. Trata bruxismo noturno e, como efeito estético, afina o terço inferior do rosto.',                          cx: 260, cy: 520 },
+  { id: 'platismais',  num: '11', name: 'Bandas platismais',      desc: 'Bandas verticais no pescoço que aparecem com a idade. Aplicação no músculo platisma suaviza o aspecto e melhora o ângulo cervical.',                                  cx: 460, cy: 710 },
+  { id: 'hiperidrose', num: '12', name: 'Hiperidrose axilar',     desc: 'Tratamento de suor excessivo em axilas (também aplicável em mãos e pés). Bloqueio temporário das glândulas sudoríparas, efeito de 6 a 9 meses.',                       cx: 680, cy: 800, label: 'AXILAS' },
+];
+---
+
+<section id="mapa" class="section section--dark section--divided anatomy bg-noise">
+  <div class="container container--wide">
+    <header class="anatomy__head reveal">
+      <div>
+        <Eyebrow tone="light">Mapa de áreas</Eyebrow>
+        <h2 class="display anatomy__title">Onde o Botox<br />faz diferença.</h2>
+      </div>
+      <p class="body anatomy__lead">
+        Cada região é avaliada individualmente. Toque ou clique nos pontos para conhecer cada aplicação.
+      </p>
+    </header>
+
+    <div class="anatomy__grid">
+      <div class="anatomy__diagram reveal" style="--reveal-delay: 1">
+        <svg
+          class="anatomy__svg"
+          viewBox="0 0 800 900"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-label="Diagrama anatômico de áreas tratadas com Botox"
+        >
+          <line x1="400" y1="60" x2="400" y2="840" stroke="#B89968" stroke-width="0.5" opacity="0.15" stroke-dasharray="3 5" />
+
+          <!-- Face outline -->
+          <g class="anatomy__face-lines">
+            <ellipse cx="400" cy="380" rx="210" ry="270" />
+            <path d="M310 620 Q310 700 310 760 L490 760 Q490 700 490 620" />
+            <path d="M180 820 Q260 770 310 760 M620 820 Q540 770 490 760" />
+          </g>
+
+          <g class="anatomy__face-features">
+            <path d="M280 200 Q400 195 520 200" />
+            <path d="M285 220 Q400 215 515 220" />
+            <path d="M260 295 Q310 280 360 295" />
+            <path d="M440 295 Q490 280 540 295" />
+            <ellipse cx="310" cy="335" rx="35" ry="9" />
+            <ellipse cx="490" cy="335" rx="35" ry="9" />
+            <path d="M400 350 Q395 410 380 460 Q400 470 420 460 Q405 410 400 350" />
+            <path d="M340 510 Q400 520 460 510" />
+            <path d="M340 510 Q400 540 460 510" />
+            <path d="M360 600 Q400 615 440 600" />
+            <path d="M230 470 Q250 540 310 615" />
+            <path d="M570 470 Q550 540 490 615" />
+          </g>
+
+          <g class="anatomy__hotspots">
+            {AREAS.map((area) => (
+              <g
+                class="anatomy__hot"
+                data-id={area.id}
+                tabindex="0"
+                role="button"
+                aria-label={area.name}
+              >
+                <circle class="anatomy__hot-hit" cx={area.cx} cy={area.cy} r="28" />
+                <circle class="anatomy__hot-pulse" cx={area.cx} cy={area.cy} r="6" />
+                <circle class="anatomy__hot-ring" cx={area.cx} cy={area.cy} r="14" />
+                <circle class="anatomy__hot-dot" cx={area.cx} cy={area.cy} r="5" />
+                {area.label && (
+                  <text x={area.cx + 20} y={area.cy + 5} class="anatomy__hot-label">{area.label}</text>
+                )}
+              </g>
+            ))}
+          </g>
+        </svg>
+        <p class="mono anatomy__disclaimer">Esquema ilustrativo · Não é um diagnóstico</p>
+      </div>
+
+      <div class="anatomy__side">
+        <div class="anatomy__detail reveal" style="--reveal-delay: 2" aria-live="polite">
+          <div class="mono anatomy__detail-num">— Área</div>
+          <h3 class="display anatomy__detail-name">Selecione um ponto</h3>
+          <p class="body anatomy__detail-desc">
+            Toque em um ponto no diagrama para conhecer onde e como a toxina botulínica é aplicada nessa região.
+          </p>
+        </div>
+
+        <ul class="anatomy__list reveal" style="--reveal-delay: 3" role="list">
+          {AREAS.map((area) => (
+            <li class="anatomy__item" data-id={area.id} role="listitem">
+              <button class="anatomy__item-btn" type="button">
+                <span class="mono anatomy__item-num">{area.num}</span>
+                <span class="body anatomy__item-name">{area.name}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ AREAS }}>
+  const detailNum  = document.querySelector('.anatomy__detail-num');
+  const detailName = document.querySelector('.anatomy__detail-name');
+  const detailDesc = document.querySelector('.anatomy__detail-desc');
+  const hots  = document.querySelectorAll('.anatomy__hot');
+  const items = document.querySelectorAll('.anatomy__item');
+
+  const select = (id) => {
+    const area = AREAS.find((a) => a.id === id);
+    if (!area || !detailNum || !detailName || !detailDesc) return;
+    hots.forEach((h) => h.classList.toggle('is-active', h.dataset.id === id));
+    items.forEach((i) => i.classList.toggle('is-active', i.dataset.id === id));
+    detailNum.textContent  = `— Área ${area.num}`;
+    detailName.textContent = area.name;
+    detailDesc.textContent = area.desc;
+  };
+
+  hots.forEach((h) => {
+    h.addEventListener('click', () => select(h.dataset.id));
+    h.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        select(h.dataset.id);
+      }
+    });
+  });
+  items.forEach((i) => {
+    const btn = i.querySelector('.anatomy__item-btn');
+    btn?.addEventListener('click', () => select(i.dataset.id));
+  });
+</script>
+
+<style>
+  .anatomy__head {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+    align-items: end;
+    margin-block-end: var(--space-10);
+  }
+  @media (min-width: 768px) {
+    .anatomy__head {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .anatomy__head :global(.eyebrow) { margin-block-end: var(--space-5); }
+  .anatomy__title {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    color: var(--paper);
+  }
+  .anatomy__lead {
+    color: rgba(245, 240, 234, 0.6);
+    max-width: 36ch;
+    justify-self: end;
+    text-align: end;
+  }
+  @media (max-width: 767px) {
+    .anatomy__lead { justify-self: start; text-align: start; }
+  }
+
+  .anatomy__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-9);
+    align-items: start;
+  }
+  @media (min-width: 900px) {
+    .anatomy__grid {
+      grid-template-columns: 7fr 5fr;
+      gap: var(--space-10);
+    }
+  }
+
+  .anatomy__svg {
+    max-height: 80vh;
+    width: 100%;
+    height: auto;
+  }
+  .anatomy__face-lines path,
+  .anatomy__face-lines ellipse {
+    fill: none;
+    stroke: rgba(245, 240, 234, 0.18);
+    stroke-width: 1.2;
+  }
+  .anatomy__face-features path,
+  .anatomy__face-features ellipse {
+    fill: none;
+    stroke: rgba(245, 240, 234, 0.12);
+    stroke-width: 0.8;
+  }
+
+  .anatomy__hot {
+    cursor: pointer;
+    outline: none;
+  }
+  .anatomy__hot-hit  { fill: transparent; }
+  .anatomy__hot-dot  {
+    fill: #B89968;
+    transition: r 0.4s var(--ease-out), fill 0.4s ease;
+  }
+  .anatomy__hot-ring {
+    fill: none;
+    stroke: transparent;
+  }
+  .anatomy__hot-pulse {
+    fill: none;
+    stroke: #B89968;
+    stroke-width: 1;
+    opacity: 0.35;
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: hot-pulse 2.4s ease-out infinite;
+  }
+  .anatomy__hot:hover .anatomy__hot-dot,
+  .anatomy__hot:focus-visible .anatomy__hot-dot,
+  .anatomy__hot.is-active .anatomy__hot-dot {
+    fill: #F5F0EA;
+    r: 8;
+  }
+  .anatomy__hot.is-active .anatomy__hot-pulse { animation: none; opacity: 0; }
+  .anatomy__hot.is-active .anatomy__hot-ring  {
+    stroke: #F5F0EA;
+    stroke-width: 1;
+    opacity: 1;
+  }
+  .anatomy__hot-label {
+    fill: rgba(245, 240, 234, 0.5);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+  @keyframes hot-pulse {
+    0%   { transform: scale(1);   opacity: 0.45; }
+    70%  { transform: scale(2.5); opacity: 0;    }
+    100% { transform: scale(2.5); opacity: 0;    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .anatomy__hot-pulse { animation: none; }
+  }
+
+  .anatomy__disclaimer {
+    color: rgba(245, 240, 234, 0.4);
+    text-align: center;
+    margin-block-start: var(--space-7);
+  }
+
+  .anatomy__side {
+    position: sticky;
+    inset-block-start: var(--space-10);
+  }
+  .anatomy__detail {
+    border-inline-start: 2px solid var(--brass);
+    padding: var(--space-4) var(--space-6);
+    margin-block-end: var(--space-9);
+    min-height: 160px;
+  }
+  .anatomy__detail-num {
+    color: var(--brass);
+    margin-block-end: var(--space-3);
+  }
+  .anatomy__detail-name {
+    font-size: clamp(1.75rem, 2.5vw + 0.5rem, 2.25rem);
+    color: var(--paper);
+    margin-block-end: var(--space-4);
+  }
+  .anatomy__detail-desc {
+    color: rgba(245, 240, 234, 0.7);
+    line-height: 1.55;
+  }
+
+  .anatomy__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-4);
+  }
+  .anatomy__item {
+    border-block-end: 1px solid var(--border-paper);
+    transition: background-color var(--dur-slow) var(--ease-out);
+  }
+  .anatomy__item:hover,
+  .anatomy__item.is-active {
+    background-color: rgba(184, 153, 104, 0.08);
+  }
+  .anatomy__item-btn {
+    width: 100%;
+    text-align: start;
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-2);
+    color: rgba(245, 240, 234, 0.7);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .anatomy__item.is-active .anatomy__item-num,
+  .anatomy__item.is-active .anatomy__item-name {
+    color: var(--paper);
+  }
+  .anatomy__item-num {
+    color: rgba(245, 240, 234, 0.4);
+  }
+</style>

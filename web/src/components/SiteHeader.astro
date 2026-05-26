@@ -1,0 +1,316 @@
+---
+/**
+ * Site Header v3.1
+ * Transparente sobre hero (white), vira brand-light + blur após 60px de scroll.
+ */
+import { whatsappUrl, WA_MESSAGES } from '../lib/clinic';
+
+interface Props {
+  active?: 'home' | 'ultraformer' | 'bioestimulador' | 'botox';
+}
+
+const { active = 'home' } = Astro.props;
+
+const navItems = [
+  { id: 'ultraformer',    label: 'Ultraformer',    href: '/ultraformer-mpt' },
+  { id: 'bioestimulador', label: 'Bioestimulador', href: '/bioestimulador' },
+  { id: 'botox',          label: 'Botox',          href: '/botox' },
+] as const;
+---
+
+<header class="site-header" data-state="top">
+  <div class="site-header__inner container container--wide">
+    <a href="/" class="site-header__brand" aria-label="Face Doctor Perdizes — início">
+      <img
+        src="/brand/logo.svg"
+        alt="Face Doctor"
+        class="site-header__logo"
+        width="180"
+        height="33"
+      />
+      <span class="site-header__brand-mono">Perdizes</span>
+    </a>
+
+    <nav class="site-header__nav" aria-label="Navegação principal">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={`site-header__link${active === item.id ? ' is-active' : ''}`}
+          aria-current={active === item.id ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <a
+      href={whatsappUrl(WA_MESSAGES.general)}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="site-header__cta"
+    >
+      Reserva de Horário
+    </a>
+
+    <button
+      class="site-header__menu-toggle"
+      aria-label="Abrir menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span></span><span></span>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="site-header__mobile" hidden>
+    <nav aria-label="Navegação principal mobile">
+      <a href="/" class="site-header__mobile-link">Início</a>
+      {navItems.map((item) => (
+        <a href={item.href} class="site-header__mobile-link">{item.label}</a>
+      ))}
+      <a
+        href={whatsappUrl(WA_MESSAGES.general)}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="site-header__mobile-link site-header__mobile-link--accent"
+      >
+        Agendar
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline: 0;
+    z-index: var(--z-nav);
+    color: #fff;
+    transition: background-color var(--dur-base) var(--ease-out),
+                color var(--dur-base) var(--ease-out),
+                backdrop-filter var(--dur-base) var(--ease-out),
+                padding var(--dur-base) var(--ease-out);
+  }
+
+  .site-header[data-state="top"] {
+    background-color: transparent;
+  }
+
+  .site-header[data-state="scrolled"] {
+    background-color: rgba(250, 248, 247, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: var(--brand-dark);
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding-block: var(--space-5);
+  }
+
+  .site-header[data-state="scrolled"] .site-header__inner {
+    padding-block: var(--space-4);
+  }
+
+  /* Brand */
+  .site-header__brand {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    line-height: 1;
+  }
+  .site-header__logo {
+    height: 18px;
+    width: auto;
+    display: block;
+    transition: filter var(--dur-base) var(--ease-out);
+  }
+  .site-header[data-state="top"] .site-header__logo {
+    filter: brightness(0) invert(1);
+  }
+  .site-header[data-state="scrolled"] .site-header__logo {
+    filter: none;
+  }
+  .site-header__brand-mono {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.8rem;
+    color: var(--brand-gold);
+    opacity: 0.95;
+    border-inline-start: 1px solid currentColor;
+    padding-inline-start: var(--space-3);
+    line-height: 1;
+  }
+  .site-header[data-state="top"] .site-header__brand-mono {
+    color: var(--brand-gold);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+  .site-header[data-state="scrolled"] .site-header__brand-mono {
+    border-color: var(--border-faint);
+  }
+
+  /* Nav (desktop) */
+  .site-header__nav {
+    display: none;
+    gap: var(--space-7);
+  }
+  @media (min-width: 768px) {
+    .site-header__nav { display: flex; }
+  }
+
+  .site-header__link {
+    position: relative;
+    color: currentColor;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .site-header__link:hover { color: var(--brand-primary); }
+  .site-header__link.is-active::after {
+    content: '';
+    position: absolute;
+    inset-block-end: -6px;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--brand-gold);
+  }
+
+  /* CTA */
+  .site-header__cta {
+    display: none;
+    color: currentColor;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid currentColor;
+    border-radius: var(--radius-pill);
+    transition: background-color var(--dur-base) var(--ease-out),
+                color var(--dur-base) var(--ease-out);
+  }
+  @media (min-width: 768px) {
+    .site-header__cta { display: inline-flex; align-items: center; }
+  }
+  .site-header[data-state="top"] .site-header__cta {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  .site-header[data-state="top"] .site-header__cta:hover {
+    background-color: #fff;
+    color: var(--brand-dark);
+  }
+  .site-header[data-state="scrolled"] .site-header__cta {
+    border-color: var(--brand-dark);
+  }
+  .site-header[data-state="scrolled"] .site-header__cta:hover {
+    background-color: var(--brand-dark);
+    color: var(--brand-light);
+  }
+
+  /* Menu toggle (mobile) */
+  .site-header__menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--space-3);
+    margin-inline-end: calc(var(--space-3) * -1);
+  }
+  @media (min-width: 768px) {
+    .site-header__menu-toggle { display: none; }
+  }
+  .site-header__menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background-color: currentColor;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+  .site-header__menu-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(3px) rotate(45deg);
+  }
+  .site-header__menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    transform: translateY(-3px) rotate(-45deg);
+  }
+
+  /* Mobile fullscreen menu */
+  .site-header__mobile {
+    position: fixed;
+    inset: 0;
+    background-color: var(--brand-dark);
+    color: var(--brand-light);
+    z-index: var(--z-nav);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: circle(0% at calc(100% - 40px) 40px);
+    transition: clip-path 800ms var(--ease-out);
+    pointer-events: none;
+  }
+  .site-header__mobile[aria-hidden="false"] {
+    clip-path: circle(150% at calc(100% - 40px) 40px);
+    pointer-events: auto;
+  }
+  .site-header__mobile nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    text-align: center;
+  }
+  .site-header__mobile-link {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: var(--weight-regular);
+    color: var(--brand-light);
+    letter-spacing: var(--track-tight);
+  }
+  .site-header__mobile-link--accent { color: var(--brand-gold); font-style: italic; }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('.site-header');
+  if (header) {
+    const onScroll = () => {
+      header.dataset.state = window.scrollY > 60 ? 'scrolled' : 'top';
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  const toggle = document.querySelector<HTMLButtonElement>('.site-header__menu-toggle');
+  const mobile = document.querySelector<HTMLElement>('.site-header__mobile');
+  if (toggle && mobile) {
+    mobile.hidden = false;
+    mobile.setAttribute('aria-hidden', 'true');
+
+    const closeMenu = () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      mobile.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      if (isOpen) {
+        closeMenu();
+      } else {
+        toggle.setAttribute('aria-expanded', 'true');
+        mobile.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+
+    mobile.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  }
+</script>

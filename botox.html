@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="antialiased scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Botox em Perdizes — Toxina Botulínica com Equipe Especializada | Face Doctor</title>
+    <meta name="description" content="Aplicação de Botox (toxina botulínica) na Face Doctor Perdizes. Áreas tratadas, duração, segurança e equipe especializada. Agende sua avaliação gratuita.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Fraunces:opsz,wght@9..144,300;9..144,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paper: '#F5F0EA', paperhover: '#EAE1D6',
+                        ink: '#1A1614', brass: '#B89968',
+                        marsala: '#A86469', deepmarsala: '#7A3F44',
+                    },
+                    fontFamily: {
+                        serif: ['Fraunces', 'serif'],
+                        sans: ['DM Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    letterSpacing: { tightest: '-0.04em', widest: '0.18em' },
+                    lineHeight: { 'editorial': '0.95' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root { --curve-editorial: cubic-bezier(0.16, 1, 0.3, 1); }
+        body { background-color: theme('colors.paper'); color: theme('colors.ink'); overflow-x: hidden; }
+        .text-clamp-hero { font-size: clamp(3rem, 7vw, 7rem); }
+        .editorial-display {
+            font-family: theme('fontFamily.serif'); font-weight: 300;
+            line-height: theme('lineHeight.editorial'); letter-spacing: theme('letterSpacing.tightest');
+        }
+        .editorial-body {
+            font-family: theme('fontFamily.sans'); font-weight: 400;
+            line-height: 1.55; max-width: 62ch;
+        }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 1rem;
+            font-family: theme('fontFamily.mono');
+            font-size: 11px; letter-spacing: theme('letterSpacing.widest');
+            text-transform: uppercase; color: theme('colors.ink');
+        }
+        .eyebrow::before {
+            content: ""; display: inline-block; width: 24px; height: 2px; background-color: theme('colors.brass');
+        }
+        .eyebrow-light { color: theme('colors.paper'); }
+        .eyebrow-light::before { background-color: theme('colors.brass'); }
+        .btn-pill {
+            display: inline-flex; align-items: center; justify-content: center;
+            background-color: theme('colors.ink'); color: theme('colors.paper');
+            border-radius: 999px; padding: 1.125rem 2.25rem;
+            font-family: theme('fontFamily.mono');
+            font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+            transition: transform 0.4s var(--curve-editorial), background-color 0.4s ease;
+            user-select: none; white-space: nowrap;
+        }
+        .btn-pill:hover { transform: translateY(-2px); background-color: theme('colors.deepmarsala'); }
+        .btn-pill:active { transform: scale(0.97); }
+        .link-editorial {
+            position: relative; display: inline-flex;
+            font-family: theme('fontFamily.mono');
+            font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; padding-bottom: 4px;
+        }
+        .link-editorial::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 100%; height: 1px; background-color: currentColor;
+            transform-origin: right; transform: scaleX(1);
+            transition: transform 0.6s var(--curve-editorial);
+        }
+        .link-editorial:hover::after { transform-origin: left; transform: scaleX(0); }
+        .reveal-node {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 1.2s var(--curve-editorial), transform 1.2s var(--curve-editorial);
+            transition-delay: calc(var(--delay, 0) * 0.08s);
+        }
+        .reveal-node.is-visible { opacity: 1; transform: translateY(0); }
+        .img-wrap { overflow: hidden; }
+        .img-parallax {
+            height: 120%; width: 100%; object-fit: cover;
+            transform: translateY(-10%);
+            transition: transform 0.1s linear; will-change: transform;
+        }
+        .divider-ink { border-color: rgba(26, 22, 20, 0.1); }
+        .bg-noise { position: relative; }
+        .bg-noise::after {
+            content: ""; position: absolute; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 10;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: theme('colors.paper'); }
+        ::-webkit-scrollbar-thumb { background: theme('colors.ink'); border-radius: 4px; }
+
+        /* Interactive face diagram */
+        .face-svg { max-height: 80vh; width: 100%; }
+        .face-outline { fill: none; stroke: rgba(245, 240, 234, 0.18); stroke-width: 1.2; }
+        .face-feature { fill: none; stroke: rgba(245, 240, 234, 0.12); stroke-width: 0.8; }
+        .hotspot { cursor: pointer; outline: none; }
+        .hotspot .hot-target { fill: transparent; }
+        .hotspot .hot-dot {
+            fill: #B89968;
+            transition: r 0.4s var(--curve-editorial), fill 0.4s ease;
+        }
+        .hotspot .hot-pulse {
+            fill: none; stroke: #B89968; stroke-width: 1;
+            opacity: 0.35;
+            transform-origin: center; transform-box: fill-box;
+            animation: hot-pulse 2.4s ease-out infinite;
+        }
+        .hotspot:hover .hot-dot,
+        .hotspot:focus .hot-dot,
+        .hotspot.is-active .hot-dot {
+            fill: #F5F0EA; r: 8;
+        }
+        .hotspot.is-active .hot-pulse { animation: none; opacity: 0; }
+        .hotspot.is-active .hot-ring {
+            stroke: #F5F0EA; stroke-width: 1; fill: none; opacity: 1;
+        }
+        .hot-ring { fill: none; stroke: transparent; }
+        @keyframes hot-pulse {
+            0%   { transform: scale(1); opacity: 0.45; }
+            70%  { transform: scale(2.5); opacity: 0; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        .area-item { cursor: pointer; transition: background-color 0.5s var(--curve-editorial); }
+        .area-item:hover, .area-item.is-active { background-color: rgba(184, 153, 104, 0.08); }
+        .area-item.is-active .area-num { color: #F5F0EA; }
+        .area-item.is-active .area-name { color: #F5F0EA; }
+
+        /* Editorial faq accordion */
+        .faq-item { border-top: 1px solid rgba(26, 22, 20, 0.1); }
+        .faq-item:last-child { border-bottom: 1px solid rgba(26, 22, 20, 0.1); }
+        .faq-item summary {
+            list-style: none; cursor: pointer; padding: 2rem 0;
+            display: flex; justify-content: space-between; align-items: center; gap: 2rem;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item .faq-q {
+            font-family: theme('fontFamily.serif'); font-weight: 400;
+            font-size: clamp(1.25rem, 1.5vw, 1.5rem); letter-spacing: -0.01em;
+        }
+        .faq-item .faq-sign {
+            font-family: theme('fontFamily.serif'); font-weight: 300;
+            color: theme('colors.brass'); font-size: 2rem; line-height: 1;
+            transition: transform 0.6s var(--curve-editorial); flex-shrink: 0;
+        }
+        .faq-item[open] .faq-sign { transform: rotate(45deg); }
+        .faq-item .faq-a {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.6s var(--curve-editorial);
+        }
+        .faq-item[open] .faq-a { max-height: 600px; }
+        .faq-item .faq-a-inner {
+            padding-bottom: 2rem; max-width: 56ch;
+            font-family: theme('fontFamily.sans'); font-size: 1rem;
+            line-height: 1.65; color: rgba(26, 22, 20, 0.7);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-node { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .img-parallax { transform: none !important; }
+            .hot-pulse { animation: none !important; }
+        }
+    </style>
+</head>
+<body class="selection:bg-brass selection:text-paper">
+
+    <a href="https://wa.me/5511940625771?text=Ol%C3%A1%21+Quero+saber+sobre+Botox+na+unidade+Perdizes." target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-ink rounded-full flex items-center justify-center text-paper hover:bg-brass transition-colors duration-500 transform hover:scale-105 active:scale-95" aria-label="Falar no WhatsApp">
+        <i class="ph ph-whatsapp-logo text-2xl"></i>
+    </a>
+
+    <nav class="fixed top-0 left-0 w-full z-40 px-4 md:px-8 py-6 mix-blend-difference text-paper pointer-events-none">
+        <div class="max-w-[1480px] mx-auto flex justify-between items-center pointer-events-auto">
+            <a href="index.html" class="font-serif text-xl tracking-tight leading-none">
+                Face Doctor<br><span class="font-sans text-xs tracking-widest uppercase opacity-70">Perdizes</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 font-mono text-xs uppercase tracking-widest">
+                <a href="ultraformer-mpt.html" class="hover:opacity-60 transition-opacity">Ultraformer</a>
+                <a href="bioestimulador.html" class="hover:opacity-60 transition-opacity">Bioestimulador</a>
+                <a href="botox.html" class="opacity-100">Botox</a>
+            </div>
+            <a href="https://wa.me/5511940625771?text=Ol%C3%A1%21+Quero+agendar+aplica%C3%A7%C3%A3o+de+Botox." target="_blank" rel="noopener" class="link-editorial text-paper hidden sm:inline-flex">Agendar →</a>
+        </div>
+    </nav>
+
+    <!-- 1. Sub-hero -->
+    <section class="min-h-[100dvh] pt-32 pb-16 px-4 md:px-8 flex items-center bg-noise">
+        <div class="max-w-[1480px] mx-auto w-full">
+            <nav aria-label="Breadcrumb" class="font-mono text-[10px] uppercase tracking-widest text-ink/40 mb-12 reveal-node">
+                <a href="index.html" class="hover:text-ink transition-colors">Início</a>
+                <span class="mx-2">·</span>
+                <span>Botox</span>
+            </nav>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end">
+                <div class="lg:col-span-7 relative z-10">
+                    <div class="eyebrow mb-8 reveal-node">Toxina botulínica · Marcas premium</div>
+                    <h1 class="editorial-display text-clamp-hero text-ink reveal-node" style="--delay: 1">
+                        Sutil quando a gente quer.<br>Visível só quando você quer.
+                    </h1>
+                    <p class="editorial-body text-ink/70 text-lg mt-10 reveal-node" style="--delay: 3">
+                        Botox pausa o músculo — não congela a face. Quando a dose é certa e a aplicação é precisa, expressões continuam. Linhas dinâmicas desaparecem.
+                    </p>
+                    <div class="mt-10 flex flex-wrap items-center gap-6 reveal-node" style="--delay: 4">
+                        <a href="https://wa.me/5511940625771?text=Ol%C3%A1%21+Quero+agendar+aplica%C3%A7%C3%A3o+de+Botox." target="_blank" rel="noopener" class="btn-pill">Agendar avaliação</a>
+                        <a href="#mapa" class="link-editorial text-ink">Mapa de áreas →</a>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 reveal-node" style="--delay: 2">
+                    <div class="w-full aspect-[4/5] img-wrap bg-ink/5">
+                        <!-- TODO[asset]: foto editorial Botox (§8.1) -->
+                        <img class="img-parallax" src="https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?auto=format&fit=crop&q=80&w=1200" alt="Detalhe de aplicação precisa de toxina botulínica" />
+                    </div>
+                    <div class="mt-6 flex justify-between font-mono text-[10px] uppercase text-ink/40 tracking-widest">
+                        <span>Fig. 04 — Microinjeção</span>
+                        <span>4-6 meses</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Definição editorial -->
+    <section class="py-32 md:py-48 px-4 border-t divider-ink bg-paper">
+        <div class="max-w-[840px] mx-auto text-center">
+            <div class="eyebrow mb-12 reveal-node justify-center">O que é</div>
+            <p class="editorial-display text-3xl md:text-[40px] leading-[1.1] tracking-tight text-ink reveal-node" style="--delay: 1">
+                Toxina botulínica tipo A bloqueia temporariamente o sinal nervoso para o músculo aplicado. Sem o impulso de contração, a musculatura relaxa — e a pele acima dela deixa de se dobrar. É o que diferencia "pausar" de "paralisar".
+            </p>
+            <p class="font-sans text-base text-ink/60 mt-12 max-w-xl mx-auto reveal-node" style="--delay: 2">
+                Trabalhamos com produtos originais de laboratórios líderes: Allergan, Galderma, Merz. A dose é individualizada por face — porque cada musculatura tem seu próprio mapa.
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. Diagrama anatômico interativo — destaque da página -->
+    <section id="mapa" class="py-24 md:py-40 px-4 md:px-8 bg-ink text-paper relative bg-noise overflow-hidden">
+        <div class="max-w-[1480px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end mb-16 md:mb-24 reveal-node">
+                <div>
+                    <div class="eyebrow eyebrow-light mb-6">Mapa de áreas</div>
+                    <h2 class="editorial-display text-5xl md:text-7xl text-paper">Onde o Botox<br>faz diferença.</h2>
+                </div>
+                <p class="font-sans text-paper/60 max-w-md md:justify-self-end md:text-right">
+                    Cada região é avaliada individualmente. Toque ou clique nos pontos para conhecer cada aplicação.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start">
+                <!-- Diagram -->
+                <div class="md:col-span-7 reveal-node" style="--delay: 1">
+                    <svg class="face-svg" viewBox="0 0 800 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama anatômico de áreas tratadas com Botox">
+                        <!-- Vertical reference -->
+                        <line x1="400" y1="60" x2="400" y2="840" stroke="#B89968" stroke-width="0.5" opacity="0.15" stroke-dasharray="3 5"/>
+
+                        <!-- Face outline -->
+                        <ellipse class="face-outline" cx="400" cy="380" rx="210" ry="270" />
+                        <!-- Neck -->
+                        <path class="face-outline" d="M310 620 Q310 700 310 760 L490 760 Q490 700 490 620" />
+                        <!-- Shoulders hint -->
+                        <path class="face-outline" d="M180 820 Q260 770 310 760 M620 820 Q540 770 490 760" />
+
+                        <!-- Internal features (subtle) -->
+                        <!-- Forehead lines -->
+                        <path class="face-feature" d="M280 200 Q400 195 520 200" />
+                        <path class="face-feature" d="M285 220 Q400 215 515 220" />
+                        <!-- Brows -->
+                        <path class="face-feature" d="M260 295 Q310 280 360 295" />
+                        <path class="face-feature" d="M440 295 Q490 280 540 295" />
+                        <!-- Eyes -->
+                        <ellipse class="face-feature" cx="310" cy="335" rx="35" ry="9" />
+                        <ellipse class="face-feature" cx="490" cy="335" rx="35" ry="9" />
+                        <!-- Nose -->
+                        <path class="face-feature" d="M400 350 Q395 410 380 460 Q400 470 420 460 Q405 410 400 350" />
+                        <!-- Mouth -->
+                        <path class="face-feature" d="M340 510 Q400 520 460 510" />
+                        <path class="face-feature" d="M340 510 Q400 540 460 510" />
+                        <!-- Chin -->
+                        <path class="face-feature" d="M360 600 Q400 615 440 600" />
+                        <!-- Jaw line hint -->
+                        <path class="face-feature" d="M230 470 Q250 540 310 615" />
+                        <path class="face-feature" d="M570 470 Q550 540 490 615" />
+
+                        <!-- Hotspots (each is a group: hitbox + pulse + dot + ring) -->
+                        <g class="hotspots" id="hotspots">
+                            <!-- 01 Testa -->
+                            <g class="hotspot" data-id="testa" tabindex="0" role="button" aria-label="Testa">
+                                <circle class="hot-target" cx="400" cy="205" r="28" />
+                                <circle class="hot-pulse" cx="400" cy="205" r="6" />
+                                <circle class="hot-ring" cx="400" cy="205" r="14" />
+                                <circle class="hot-dot" cx="400" cy="205" r="5" />
+                            </g>
+                            <!-- 02 Glabela -->
+                            <g class="hotspot" data-id="glabela" tabindex="0" role="button" aria-label="Glabela">
+                                <circle class="hot-target" cx="400" cy="275" r="24" />
+                                <circle class="hot-pulse" cx="400" cy="275" r="6" />
+                                <circle class="hot-ring" cx="400" cy="275" r="14" />
+                                <circle class="hot-dot" cx="400" cy="275" r="5" />
+                            </g>
+                            <!-- 03 Sobrancelha lifting -->
+                            <g class="hotspot" data-id="sobrancelha" tabindex="0" role="button" aria-label="Lifting de sobrancelha">
+                                <circle class="hot-target" cx="500" cy="285" r="22" />
+                                <circle class="hot-pulse" cx="500" cy="285" r="6" />
+                                <circle class="hot-ring" cx="500" cy="285" r="14" />
+                                <circle class="hot-dot" cx="500" cy="285" r="5" />
+                            </g>
+                            <!-- 04 Pés de galinha -->
+                            <g class="hotspot" data-id="pes-galinha" tabindex="0" role="button" aria-label="Pés de galinha">
+                                <circle class="hot-target" cx="570" cy="340" r="22" />
+                                <circle class="hot-pulse" cx="570" cy="340" r="6" />
+                                <circle class="hot-ring" cx="570" cy="340" r="14" />
+                                <circle class="hot-dot" cx="570" cy="340" r="5" />
+                            </g>
+                            <!-- 05 Linhas do coelho (nariz) -->
+                            <g class="hotspot" data-id="coelho" tabindex="0" role="button" aria-label="Linhas do coelho">
+                                <circle class="hot-target" cx="370" cy="390" r="20" />
+                                <circle class="hot-pulse" cx="370" cy="390" r="6" />
+                                <circle class="hot-ring" cx="370" cy="390" r="14" />
+                                <circle class="hot-dot" cx="370" cy="390" r="5" />
+                            </g>
+                            <!-- 06 Lábio superior (lip flip) -->
+                            <g class="hotspot" data-id="lip-flip" tabindex="0" role="button" aria-label="Lip flip">
+                                <circle class="hot-target" cx="400" cy="495" r="22" />
+                                <circle class="hot-pulse" cx="400" cy="495" r="6" />
+                                <circle class="hot-ring" cx="400" cy="495" r="14" />
+                                <circle class="hot-dot" cx="400" cy="495" r="5" />
+                            </g>
+                            <!-- 07 Sorriso gengival -->
+                            <g class="hotspot" data-id="gengival" tabindex="0" role="button" aria-label="Sorriso gengival">
+                                <circle class="hot-target" cx="345" cy="475" r="20" />
+                                <circle class="hot-pulse" cx="345" cy="475" r="6" />
+                                <circle class="hot-ring" cx="345" cy="475" r="14" />
+                                <circle class="hot-dot" cx="345" cy="475" r="5" />
+                            </g>
+                            <!-- 08 Linhas peribucais -->
+                            <g class="hotspot" data-id="peribucais" tabindex="0" role="button" aria-label="Linhas peribucais">
+                                <circle class="hot-target" cx="455" cy="540" r="20" />
+                                <circle class="hot-pulse" cx="455" cy="540" r="6" />
+                                <circle class="hot-ring" cx="455" cy="540" r="14" />
+                                <circle class="hot-dot" cx="455" cy="540" r="5" />
+                            </g>
+                            <!-- 09 Mento -->
+                            <g class="hotspot" data-id="mento" tabindex="0" role="button" aria-label="Mento">
+                                <circle class="hot-target" cx="400" cy="595" r="22" />
+                                <circle class="hot-pulse" cx="400" cy="595" r="6" />
+                                <circle class="hot-ring" cx="400" cy="595" r="14" />
+                                <circle class="hot-dot" cx="400" cy="595" r="5" />
+                            </g>
+                            <!-- 10 Bruxismo (masseter) -->
+                            <g class="hotspot" data-id="masseter" tabindex="0" role="button" aria-label="Bruxismo">
+                                <circle class="hot-target" cx="260" cy="520" r="24" />
+                                <circle class="hot-pulse" cx="260" cy="520" r="6" />
+                                <circle class="hot-ring" cx="260" cy="520" r="14" />
+                                <circle class="hot-dot" cx="260" cy="520" r="5" />
+                            </g>
+                            <!-- 11 Bandas platismais (pescoço) -->
+                            <g class="hotspot" data-id="platismais" tabindex="0" role="button" aria-label="Bandas platismais">
+                                <circle class="hot-target" cx="460" cy="710" r="24" />
+                                <circle class="hot-pulse" cx="460" cy="710" r="6" />
+                                <circle class="hot-ring" cx="460" cy="710" r="14" />
+                                <circle class="hot-dot" cx="460" cy="710" r="5" />
+                            </g>
+                            <!-- 12 Hiperidrose (axilas — off body, top-right marker) -->
+                            <g class="hotspot" data-id="hiperidrose" tabindex="0" role="button" aria-label="Hiperidrose axilar">
+                                <circle class="hot-target" cx="680" cy="800" r="28" />
+                                <circle class="hot-pulse" cx="680" cy="800" r="6" />
+                                <circle class="hot-ring" cx="680" cy="800" r="14" />
+                                <circle class="hot-dot" cx="680" cy="800" r="5" />
+                                <text x="700" y="805" font-family="JetBrains Mono" font-size="10" fill="rgba(245,240,234,0.5)" letter-spacing="2">AXILAS</text>
+                            </g>
+                        </g>
+                    </svg>
+                    <p class="font-mono text-[10px] uppercase tracking-widest text-paper/40 mt-8 text-center">Esquema ilustrativo · Não é um diagnóstico</p>
+                </div>
+
+                <!-- Area list + details -->
+                <div class="md:col-span-5">
+                    <div class="md:sticky md:top-32">
+                        <!-- Detail panel -->
+                        <div id="area-detail" class="border-l-2 border-brass pl-6 py-4 mb-10 min-h-[160px] reveal-node" style="--delay: 2" aria-live="polite">
+                            <div class="font-mono text-[10px] uppercase tracking-widest text-brass mb-3" id="area-detail-num">— ÁREA</div>
+                            <h3 class="editorial-display text-3xl md:text-4xl text-paper mb-4" id="area-detail-name">Selecione um ponto</h3>
+                            <p class="font-sans text-paper/70 leading-relaxed" id="area-detail-desc">
+                                Toque em um ponto no diagrama para conhecer onde e como a toxina botulínica é aplicada nessa região.
+                            </p>
+                        </div>
+
+                        <!-- Area list -->
+                        <ul class="grid grid-cols-2 gap-x-4 reveal-node" id="area-list" style="--delay: 3">
+                            <li class="area-item flex items-baseline gap-3 py-3 px-2 border-b border-paper/10" data-id="testa">
+                                <span class="area-num font-mono text-[10px] text-paper/40 tracking-widest">01</span>
+                                <span class="area-name font-sans text-sm text-paper/70">Testa</span>
+                            </li>
+                            <li class="area-item flex items-baseline gap-3 py-3 px-2 border-b border-paper/10" data-id="glabela">
+                                <span class="area-num font-mono text-[10px] text-paper/40 tracking-widest">02</span>
+                                <span class="area-name font-sans text-sm text-paper/70">Glabela</span>
+                            </li>
+                            <li class="area-item flex items-baseline gap-3 py-3 px-2 border-b border-paper/10" data-id="sobrancelha">
+                                <span class="area-num font-mono text-[10px] text-paper/40 tracking-widest">03</span>
+                                <span class="area-name font-sans text-sm text-paper/70">Lifting de sobrancelha</span>
+                            </li>
+                            <li class="area-item flex items-baseline gap-3 py-3 px-2 border-b border-paper/10" data-id="pes-galinha">
+                                <span class="area-num font-mono text-[10px] text-paper/40 tracking-widest">04</span>
+                                <span class="area-name font-sans text-sm text-paper/70">Pés de galinha</span>
+                            </li>
+                            <li class="area-item flex items-baseline gap-3 py-3 px-2 border-b border-paper/10" data-id="coelho">
+                                <span class="area-num font-mono text-[10px] text-paper/40 tracking-widest">05</span>
+                                <span class="area-name font-sans text-sm text-paper/70">Linhas do coelho</span>
+                            </li>
+                            <li class="area-item flex items-baseline gap-3 py-3 px-2 border-b border-paper/10" data-id="lip-flip">
+                                <span class="area-num font-mono text-[10px] text-paper/40 tracking-widest">06</span>
+                                <span class="area-name font-sans text-sm text-paper/70">Lip flip</span>
+                            </li>
+                            <li class="area-item flex items-baseline gap-3 py-3 px-2 border-b border-paper/10" data-id="gengival">
+                                <span class="area-num font-mono text-[10px] text-paper/40 tracking-widest">07</span>
+                                <span class="area-name font-sans text-sm text-paper/70">Sorriso gengival</span>
+                            </li>
+                            <li class="area-item flex items-baseline gap-3 py-3 px-2 border-b border-paper/10" data-id="peribucais">
+                                <span class="area-num font-mono text-[10px] text-paper/40 tracking-widest">08</span>
+                                <span class="area-name font-sans text-sm text-paper/70">Linhas peribucais</span>
+                            </li>
+                            <li class="area-item flex items-baseline gap-3 py-3 px-2 border-b border-paper/10" data-id="mento">
+                                <span class="area-num font-mono text-[10px] text-paper/40 tracking-widest">09</span>
+                                <span class="area-name font-sans text-sm text-paper/70">Mento</span>
+                            </li>
+                            <li class="area-item flex items-baseline gap-3 py-3 px-2 border-b border-paper/10" data-id="masseter">
+                                <span class="area-num font-mono text-[10px] text-paper/40 tracking-widest">10</span>
+                                <span class="area-name font-sans text-sm text-paper/70">Bruxismo</span>
+                            </li>
+                            <li class="area-item flex items-baseline gap-3 py-3 px-2 border-b border-paper/10" data-id="platismais">
+                                <span class="area-num font-mono text-[10px] text-paper/40 tracking-widest">11</span>
+                                <span class="area-name font-sans text-sm text-paper/70">Bandas platismais</span>
+                            </li>
+                            <li class="area-item flex items-baseline gap-3 py-3 px-2 border-b border-paper/10" data-id="hiperidrose">
+                                <span class="area-num font-mono text-[10px] text-paper/40 tracking-widest">12</span>
+                                <span class="area-name font-sans text-sm text-paper/70">Hiperidrose</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Protocolo -->
+    <section class="py-24 md:py-40 px-4 md:px-8 bg-paper border-t divider-ink">
+        <div class="max-w-[1240px] mx-auto">
+            <div class="mb-16 reveal-node">
+                <div class="eyebrow mb-6">Protocolo Face Doctor</div>
+                <h2 class="editorial-display text-5xl md:text-7xl">Quatro etapas.</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+                <article class="reveal-node">
+                    <span class="font-mono text-xs text-brass tracking-widest">Etapa 01</span>
+                    <h3 class="editorial-display text-3xl md:text-4xl mt-4 mb-4">Análise dinâmica</h3>
+                    <p class="editorial-body text-ink/60">Pedimos para você fazer expressões e identificamos as áreas e doses ideais. Avaliação em movimento, não estática.</p>
+                </article>
+                <article class="reveal-node" style="--delay: 1">
+                    <span class="font-mono text-xs text-brass tracking-widest">Etapa 02</span>
+                    <h3 class="editorial-display text-3xl md:text-4xl mt-4 mb-4">Marcação</h3>
+                    <p class="editorial-body text-ink/60">Pontos de aplicação marcados na pele com precisão milimétrica. Cada ponto é uma decisão.</p>
+                </article>
+                <article class="reveal-node" style="--delay: 2">
+                    <span class="font-mono text-xs text-brass tracking-widest">Etapa 03</span>
+                    <h3 class="editorial-display text-3xl md:text-4xl mt-4 mb-4">Aplicação</h3>
+                    <p class="editorial-body text-ink/60">Microinjeções com agulha extrafina. Desconforto comparável a uma picada de mosquito. Sem necessidade de anestesia.</p>
+                </article>
+                <article class="reveal-node" style="--delay: 3">
+                    <span class="font-mono text-xs text-brass tracking-widest">Etapa 04</span>
+                    <h3 class="editorial-display text-3xl md:text-4xl mt-4 mb-4">Retorno em 15 dias</h3>
+                    <p class="editorial-body text-ink/60">Cuidados pós-aplicação simples (não deitar por 4h, não massagear). Reavaliação para ajustes finos quando necessário.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. FAQ -->
+    <section class="py-24 md:py-40 px-4 md:px-8 bg-paper border-t divider-ink">
+        <div class="max-w-[840px] mx-auto">
+            <div class="mb-16 reveal-node">
+                <div class="eyebrow mb-6">Dúvidas frequentes</div>
+                <h2 class="editorial-display text-4xl md:text-6xl">As perguntas<br>que mais ouvimos.</h2>
+            </div>
+            <div class="reveal-node" style="--delay: 1">
+                <details class="faq-item">
+                    <summary><span class="faq-q">Vou ficar com cara de "congelada"?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Não. Esse é o medo número um — e o motivo de escolher uma clínica com aplicador experiente. Quando a dose é certa e a aplicação é precisa, você mantém todas as expressões. O objetivo é suavizar, não paralisar.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Em quanto tempo aparece o efeito?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Os primeiros sinais aparecem entre o 3º e o 7º dia. O resultado final estabiliza por volta do 15º dia. Por isso fazemos o retorno após essa janela.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Quanto tempo dura?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Em média de 4 a 6 meses. Varia conforme metabolismo, musculatura tratada e dose. Com aplicações regulares, a musculatura se reeduca e a duração tende a aumentar.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Dói?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Muito pouco. Agulhas extrafinas, desconforto comparável a uma picada de mosquito. Não é necessária anestesia local.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Posso combinar com Ultraformer ou bioestimulador?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Sim. Botox trata a parte dinâmica (musculatura); Ultraformer e bioestimuladores tratam estrutura (firmeza e colágeno). A combinação potencializa resultados.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Tem risco de ficar viciada?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Mito. O Botox tem efeito temporário — quando para de aplicar, a musculatura volta ao funcionamento normal. O que pode acontecer é a paciente preferir a aparência com o tratamento e querer manter a frequência.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Qual o custo na unidade Perdizes?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Depende do número de áreas e da marca da toxina (Botox Allergan, Dysport, Xeomin etc). Orçamento individualizado durante a avaliação inicial gratuita.</div></div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CTA dark -->
+    <section class="bg-ink text-paper py-32 md:py-64 px-4 text-center border-t border-paper/10 bg-noise">
+        <div class="max-w-[1000px] mx-auto flex flex-col items-center">
+            <div class="eyebrow eyebrow-light mb-12 justify-center reveal-node">Avaliação gratuita</div>
+            <h2 class="editorial-display text-[clamp(3rem,8vw,6rem)] leading-[0.9] mb-12 reveal-node" style="--delay: 1">
+                Sutil quando<br>a gente quer.
+            </h2>
+            <p class="font-sans text-lg text-paper/60 mb-12 max-w-md reveal-node" style="--delay: 2">
+                Agenda restrita para garantir tempo e detalhamento em cada plano de aplicação.
+            </p>
+            <div class="reveal-node" style="--delay: 3">
+                <a href="https://wa.me/5511940625771?text=Ol%C3%A1%21+Quero+agendar+aplica%C3%A7%C3%A3o+de+Botox." target="_blank" rel="noopener" class="btn-pill bg-paper text-ink hover:bg-brass hover:text-ink min-w-[240px]">Agendar avaliação</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-ink text-paper border-t border-paper/10 pt-24 pb-8 px-4 md:px-8">
+        <div class="max-w-[1480px] mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 font-mono text-xs uppercase tracking-widest mb-32 text-paper/50">
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Unidade</span>
+                    <a href="index.html#contato" class="hover:text-paper transition-colors">Perdizes · SP</a>
+                    <a href="https://www.google.com/maps?q=R.+Piracuama,+138+-+Perdizes,+S%C3%A3o+Paulo+-+SP,+05017-040" target="_blank" rel="noopener" class="hover:text-paper transition-colors">Como chegar</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Tratamentos</span>
+                    <a href="ultraformer-mpt.html" class="hover:text-paper transition-colors">Ultraformer MPT</a>
+                    <a href="bioestimulador.html" class="hover:text-paper transition-colors">Bioestimuladores</a>
+                    <a href="botox.html" class="hover:text-paper transition-colors">Botox</a>
+                    <a href="index.html#lista" class="hover:text-paper transition-colors">Menu completo</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Contato</span>
+                    <a href="https://wa.me/5511940625771" target="_blank" rel="noopener" class="hover:text-paper transition-colors">WhatsApp</a>
+                    <a href="https://www.instagram.com/facedoctor.perdizes" target="_blank" rel="noopener" class="hover:text-paper transition-colors">Instagram</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Institucional</span>
+                    <a href="https://facedoctor.com.br" target="_blank" rel="noopener" class="hover:text-paper transition-colors">Rede Face Doctor</a>
+                </div>
+            </div>
+            <div class="w-full text-center overflow-hidden border-b border-paper/10 pb-8 mb-8">
+                <h2 class="editorial-display text-[15vw] leading-[0.75] tracking-[-0.05em] text-paper opacity-90 select-none whitespace-nowrap">FACE DOCTOR</h2>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center font-mono text-[10px] text-paper/40 tracking-widest gap-2">
+                <span>© 2026 Face Doctor Perdizes · Todos os direitos reservados</span>
+                <span>Unidade autorizada da rede Face Doctor</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Area data
+        const AREAS = {
+            'testa':       { num: '01', name: 'Testa', desc: 'Aplicação nas linhas horizontais que aparecem ao levantar as sobrancelhas. Doses pequenas e bem distribuídas para suavizar marcas sem perder mobilidade da testa.' },
+            'glabela':     { num: '02', name: 'Glabela', desc: 'A "ruga entre as sobrancelhas" — clássica linha vertical de tensão. Tratamos os músculos corrugador e prócero para um olhar mais descansado.' },
+            'sobrancelha': { num: '03', name: 'Lifting de sobrancelha', desc: 'Aplicação no músculo orbicular do olho para promover a elevação sutil da cauda da sobrancelha. Olhar mais aberto, sem cirurgia.' },
+            'pes-galinha': { num: '04', name: 'Pés de galinha', desc: 'Linhas finas que aparecem no canto externo dos olhos ao sorrir. Doses leves preservam a expressão natural ao sorrir.' },
+            'coelho':      { num: '05', name: 'Linhas do coelho', desc: 'Pequenas rugas na lateral superior do nariz, formadas ao franzir. Aplicação no músculo nasal — área frequentemente esquecida em aplicações genéricas.' },
+            'lip-flip':    { num: '06', name: 'Lip flip', desc: 'Microdose no lábio superior para fazer o vermelhão "rolar" levemente para fora — efeito de lábio mais cheio sem preenchimento.' },
+            'gengival':    { num: '07', name: 'Sorriso gengival', desc: 'Para quem mostra muita gengiva ao sorrir. Relaxamento do músculo elevador do lábio cria um sorriso mais equilibrado.' },
+            'peribucais':  { num: '08', name: 'Linhas peribucais', desc: 'Linhas verticais ao redor da boca, conhecidas como "código de barras". Aplicação técnica em microdoses para suavizar sem alterar a articulação da fala.' },
+            'mento':       { num: '09', name: 'Mento', desc: 'Queixo enrugado em "casca de laranja". Aplicação no músculo mentual relaxa o aperto e devolve a superfície lisa ao queixo.' },
+            'masseter':    { num: '10', name: 'Bruxismo · Masseter', desc: 'Aplicação no masseter para relaxar o aperto da mandíbula. Trata bruxismo noturno e, como efeito estético, afina o terço inferior do rosto.' },
+            'platismais':  { num: '11', name: 'Bandas platismais', desc: 'Bandas verticais no pescoço que aparecem com a idade. Aplicação no músculo platisma suaviza o aspecto e melhora o ângulo cervical.' },
+            'hiperidrose': { num: '12', name: 'Hiperidrose axilar', desc: 'Tratamento de suor excessivo em axilas (também aplicável em mãos e pés). Bloqueio temporário das glândulas sudoríparas — efeito de 6 a 9 meses.' },
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+            document.querySelectorAll('.reveal-node').forEach(node => revealObserver.observe(node));
+
+            if (!prefersReducedMotion) {
+                const parallaxImages = document.querySelectorAll('.img-parallax');
+                const updateParallax = () => {
+                    const windowHeight = window.innerHeight;
+                    parallaxImages.forEach(img => {
+                        const rect = img.parentElement.getBoundingClientRect();
+                        if (rect.top < windowHeight && rect.bottom > 0) {
+                            const elementCenter = rect.top + rect.height / 2;
+                            const screenCenter = windowHeight / 2;
+                            const distance = (elementCenter - screenCenter) * 0.1;
+                            img.style.transform = `translateY(calc(-10% + ${distance}px)) scale(1.05)`;
+                        }
+                    });
+                    requestAnimationFrame(updateParallax);
+                };
+                updateParallax();
+            }
+
+            // Interactive face diagram
+            const hotspots = document.querySelectorAll('.hotspot');
+            const areaItems = document.querySelectorAll('.area-item');
+            const detailNum = document.getElementById('area-detail-num');
+            const detailName = document.getElementById('area-detail-name');
+            const detailDesc = document.getElementById('area-detail-desc');
+
+            const selectArea = (id) => {
+                const data = AREAS[id];
+                if (!data) return;
+                hotspots.forEach(h => h.classList.toggle('is-active', h.dataset.id === id));
+                areaItems.forEach(i => i.classList.toggle('is-active', i.dataset.id === id));
+                detailNum.textContent = `— ÁREA ${data.num}`;
+                detailName.textContent = data.name;
+                detailDesc.textContent = data.desc;
+            };
+
+            hotspots.forEach(h => {
+                h.addEventListener('click', () => selectArea(h.dataset.id));
+                h.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        selectArea(h.dataset.id);
+                    }
+                });
+            });
+            areaItems.forEach(i => {
+                i.addEventListener('click', () => selectArea(i.dataset.id));
+            });
+        });
+    </script>
+</body>
+</html>

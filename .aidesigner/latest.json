@@ -1,0 +1,19 @@
+{
+  "id": "2026-05-25T22-55-49-130Z-face-doctor-perdizes-home-v3-1-refin",
+  "createdAt": "2026-05-25T22:56:47.570Z",
+  "prompt": "Face Doctor Perdizes HOME v3.1 — refine de v3 com fix de imagens (hero portrait), copy, nav scroll-state, links de tratamentos, ano 2026",
+  "mode": null,
+  "url": null,
+  "viewport": "desktop",
+  "repoRoot": "C:\\Users\\Usuario\\face-doctor-perdizes",
+  "cwd": "C:\\Users\\Usuario\\face-doctor-perdizes",
+  "requestPath": "C:\\Users\\Usuario\\face-doctor-perdizes\\.aidesigner\\runs\\2026-05-25T22-55-49-130Z-face-doctor-perdizes-home-v3-1-refin\\request.json",
+  "repoContextPath": "C:\\Users\\Usuario\\face-doctor-perdizes\\.aidesigner\\runs\\2026-05-25T22-55-49-130Z-face-doctor-perdizes-home-v3-1-refin\\repo-context.json",
+  "designHtmlPath": "C:\\Users\\Usuario\\face-doctor-perdizes\\.aidesigner\\runs\\2026-05-25T22-55-49-130Z-face-doctor-perdizes-home-v3-1-refin\\design.html",
+  "previewPath": "C:\\Users\\Usuario\\face-doctor-perdizes\\.aidesigner\\runs\\2026-05-25T22-55-49-130Z-face-doctor-perdizes-home-v3-1-refin\\preview.png",
+  "previewError": null,
+  "parentRunId": null,
+  "usage": null,
+  "transport": "mcp",
+  "remoteRunId": "608f3446-eb8c-415b-a018-8104bc041ec0"
+}

@@ -1,0 +1,127 @@
+---
+/**
+ * Protocolo horizontal scroll-jacked — 4 etapas em snap-x.
+ * DESIGN.md §6.2 step 5.
+ */
+import Eyebrow from '../../components/Eyebrow.astro';
+
+interface Step { title: string; body: string; }
+
+const steps: Step[] = [
+  {
+    title: 'Avaliação clínica',
+    body: 'Análise facial individualizada com a equipe para mapear áreas de flacidez e definir o plano de aplicação. Cada milímetro é decidido aqui.',
+  },
+  {
+    title: 'Preparo',
+    body: 'Higienização da pele, aplicação de anestésico tópico e marcação dos pontos de tratamento. A marcação é o que separa precisão de aproximação.',
+  },
+  {
+    title: 'Aplicação',
+    body: 'Cerca de 60 minutos. Pulsos microfocados distribuídos nas três camadas planejadas, conferidos um a um. Você sente calor pontual, não dor.',
+  },
+  {
+    title: 'Acompanhamento',
+    body: 'Retorno em 30 e 90 dias para avaliar resposta e potencializar o resultado. A neocolagênese segue por até 6 meses.',
+  },
+];
+---
+
+<section class="section section--divided proto-scroll">
+  <div class="container container--wide proto-scroll__head reveal">
+    <div>
+      <Eyebrow>Protocolo Face Doctor</Eyebrow>
+      <h2 class="display proto-scroll__title">Quatro etapas.<br />Uma sessão.</h2>
+    </div>
+    <div class="mono proto-scroll__hint">
+      <span>arraste lateralmente</span>
+      <span class="proto-scroll__arrow">→</span>
+    </div>
+  </div>
+
+  <div class="proto-scroll__track" role="list">
+    {steps.map((step, i) => (
+      <article class={`proto-scroll__card${i % 2 ? ' proto-scroll__card--alt' : ''}`} role="listitem">
+        <span class="display proto-scroll__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+        <Eyebrow>Etapa {String(i + 1).padStart(2, '0')}</Eyebrow>
+        <h3 class="display proto-scroll__name">{step.title}</h3>
+        <p class="body proto-scroll__body">{step.body}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .proto-scroll {
+    overflow: hidden;
+  }
+  .proto-scroll__head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+    margin-block-end: var(--space-7);
+  }
+  .proto-scroll__head :global(.eyebrow) { margin-block-end: var(--space-5); }
+  .proto-scroll__title {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+  }
+  .proto-scroll__hint {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--ink-soft);
+    opacity: 0.5;
+  }
+  .proto-scroll__arrow { color: var(--brass); }
+
+  .proto-scroll__track {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .proto-scroll__track::-webkit-scrollbar { display: none; }
+
+  .proto-scroll__card {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+    width: 88vw;
+    padding: var(--space-9) var(--gutter-x);
+    border-inline-end: 1px solid var(--border);
+  }
+  @media (min-width: 768px) {
+    .proto-scroll__card {
+      width: 80vw;
+      padding: var(--space-10) var(--space-9);
+    }
+  }
+  .proto-scroll__card--alt {
+    background-color: var(--paper-warm);
+  }
+  .proto-scroll__card:last-child {
+    border-inline-end: none;
+  }
+  .proto-scroll__card :global(.eyebrow) {
+    margin-block: 0 var(--space-5);
+  }
+  .proto-scroll__num {
+    display: block;
+    color: var(--brass);
+    opacity: 0.3;
+    font-size: clamp(6rem, 16vw, 12rem);
+    line-height: 1;
+    margin-block-end: var(--space-7);
+  }
+  .proto-scroll__name {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-block-end: var(--space-5);
+  }
+  .proto-scroll__body {
+    color: var(--ink-soft);
+    max-width: 42ch;
+    line-height: 1.5;
+  }
+</style>

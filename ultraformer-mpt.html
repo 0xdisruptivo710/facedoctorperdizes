@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="antialiased scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Ultraformer MPT em Perdizes — Lifting Facial sem Cirurgia | Face Doctor</title>
+    <meta name="description" content="Ultraformer MPT na Face Doctor Perdizes: lifting facial com ultrassom microfocado, estímulo profundo de colágeno e contorno definido. Agende avaliação.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Fraunces:opsz,wght@9..144,300;9..144,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paper: '#F5F0EA', paperhover: '#EAE1D6',
+                        ink: '#1A1614', brass: '#B89968',
+                        marsala: '#A86469', deepmarsala: '#7A3F44',
+                    },
+                    fontFamily: {
+                        serif: ['Fraunces', 'serif'],
+                        sans: ['DM Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    letterSpacing: { tightest: '-0.04em', widest: '0.18em' },
+                    lineHeight: { 'editorial': '0.95' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root { --curve-editorial: cubic-bezier(0.16, 1, 0.3, 1); }
+        body { background-color: theme('colors.paper'); color: theme('colors.ink'); overflow-x: hidden; }
+        .text-clamp-hero { font-size: clamp(3rem, 7vw, 7rem); }
+        .text-clamp-h2 { font-size: clamp(2.5rem, 5vw, 5rem); }
+        .text-clamp-number { font-size: clamp(5rem, 12vw, 10rem); }
+        .editorial-display {
+            font-family: theme('fontFamily.serif'); font-weight: 300;
+            line-height: theme('lineHeight.editorial'); letter-spacing: theme('letterSpacing.tightest');
+        }
+        .editorial-body {
+            font-family: theme('fontFamily.sans'); font-weight: 400;
+            line-height: 1.55; max-width: 62ch;
+        }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 1rem;
+            font-family: theme('fontFamily.mono');
+            font-size: 11px; letter-spacing: theme('letterSpacing.widest');
+            text-transform: uppercase; color: theme('colors.ink');
+        }
+        .eyebrow::before {
+            content: ""; display: inline-block; width: 24px; height: 2px; background-color: theme('colors.brass');
+        }
+        .eyebrow-light { color: theme('colors.paper'); }
+        .eyebrow-light::before { background-color: theme('colors.brass'); }
+        .btn-pill {
+            display: inline-flex; align-items: center; justify-content: center;
+            background-color: theme('colors.ink'); color: theme('colors.paper');
+            border-radius: 999px; padding: 1.125rem 2.25rem;
+            font-family: theme('fontFamily.mono');
+            font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+            transition: transform 0.4s var(--curve-editorial), background-color 0.4s ease;
+            user-select: none; white-space: nowrap;
+        }
+        .btn-pill:hover { transform: translateY(-2px); background-color: theme('colors.deepmarsala'); }
+        .btn-pill:active { transform: scale(0.97); }
+        .link-editorial {
+            position: relative; display: inline-flex;
+            font-family: theme('fontFamily.mono');
+            font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+            padding-bottom: 4px;
+        }
+        .link-editorial::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 100%; height: 1px; background-color: currentColor;
+            transform-origin: right; transform: scaleX(1);
+            transition: transform 0.6s var(--curve-editorial);
+        }
+        .link-editorial:hover::after { transform-origin: left; transform: scaleX(0); }
+        .reveal-node {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 1.2s var(--curve-editorial), transform 1.2s var(--curve-editorial);
+            transition-delay: calc(var(--delay, 0) * 0.08s);
+        }
+        .reveal-node.is-visible { opacity: 1; transform: translateY(0); }
+        .img-wrap { overflow: hidden; }
+        .img-parallax {
+            height: 120%; width: 100%; object-fit: cover;
+            transform: translateY(-10%);
+            transition: transform 0.1s linear; will-change: transform;
+        }
+        .divider-ink { border-color: rgba(26, 22, 20, 0.1); }
+        .bg-noise { position: relative; }
+        .bg-noise::after {
+            content: ""; position: absolute; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 10;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: theme('colors.paper'); }
+        ::-webkit-scrollbar-thumb { background: theme('colors.ink'); border-radius: 4px; }
+
+        /* Editorial faq accordion */
+        .faq-item { border-top: 1px solid rgba(26, 22, 20, 0.1); }
+        .faq-item:last-child { border-bottom: 1px solid rgba(26, 22, 20, 0.1); }
+        .faq-item summary {
+            list-style: none; cursor: pointer; padding: 2rem 0;
+            display: flex; justify-content: space-between; align-items: center; gap: 2rem;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item .faq-q {
+            font-family: theme('fontFamily.serif'); font-weight: 400;
+            font-size: clamp(1.25rem, 1.5vw, 1.5rem); letter-spacing: -0.01em;
+        }
+        .faq-item .faq-sign {
+            font-family: theme('fontFamily.serif'); font-weight: 300;
+            color: theme('colors.brass'); font-size: 2rem; line-height: 1;
+            transition: transform 0.6s var(--curve-editorial); flex-shrink: 0;
+        }
+        .faq-item[open] .faq-sign { transform: rotate(45deg); }
+        .faq-item .faq-a {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.6s var(--curve-editorial);
+        }
+        .faq-item[open] .faq-a { max-height: 600px; }
+        .faq-item .faq-a-inner {
+            padding-bottom: 2rem; max-width: 56ch;
+            font-family: theme('fontFamily.sans'); font-size: 1rem;
+            line-height: 1.65; color: rgba(26, 22, 20, 0.7);
+        }
+
+        /* Scroll-jacked horizontal protocol */
+        .protocol-scroll { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .protocol-scroll::-webkit-scrollbar { display: none; }
+        .protocol-card { scroll-snap-align: start; }
+
+        /* Before/after slider */
+        .ba-slider {
+            position: relative; user-select: none; touch-action: none;
+            cursor: ew-resize; aspect-ratio: 4/3;
+            background: theme('colors.ink');
+        }
+        .ba-slider img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .ba-after { clip-path: inset(0 0 0 50%); transition: clip-path 0.1s linear; }
+        .ba-handle {
+            position: absolute; top: 0; bottom: 0; left: 50%; width: 2px;
+            background: theme('colors.paper'); transform: translateX(-50%);
+            pointer-events: none; z-index: 3;
+        }
+        .ba-handle::before {
+            content: ""; position: absolute; top: 50%; left: 50%;
+            width: 48px; height: 48px; border: 1px solid theme('colors.paper');
+            background: theme('colors.ink'); border-radius: 999px;
+            transform: translate(-50%, -50%);
+        }
+        .ba-handle::after {
+            content: "‹  ›"; position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); color: theme('colors.paper');
+            font-family: theme('fontFamily.mono'); font-size: 14px; letter-spacing: 0.1em;
+        }
+        .ba-label {
+            position: absolute; top: 1rem; padding: 0.5rem 0.75rem;
+            font-family: theme('fontFamily.mono'); font-size: 10px;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            background: rgba(26, 22, 20, 0.8); color: theme('colors.paper');
+            z-index: 2; backdrop-filter: blur(4px);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-node { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .img-parallax { transform: none !important; }
+        }
+    </style>
+</head>
+<body class="selection:bg-brass selection:text-paper">
+
+    <a href="https://wa.me/5511940625771?text=Ol%C3%A1%21+Quero+saber+sobre+o+Ultraformer+MPT+na+unidade+Perdizes." target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-ink rounded-full flex items-center justify-center text-paper hover:bg-brass transition-colors duration-500 transform hover:scale-105 active:scale-95" aria-label="Falar no WhatsApp">
+        <i class="ph ph-whatsapp-logo text-2xl"></i>
+    </a>
+
+    <nav class="fixed top-0 left-0 w-full z-40 px-4 md:px-8 py-6 mix-blend-difference text-paper pointer-events-none">
+        <div class="max-w-[1480px] mx-auto flex justify-between items-center pointer-events-auto">
+            <a href="index.html" class="font-serif text-xl tracking-tight leading-none">
+                Face Doctor<br><span class="font-sans text-xs tracking-widest uppercase opacity-70">Perdizes</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 font-mono text-xs uppercase tracking-widest">
+                <a href="ultraformer-mpt.html" class="opacity-100">Ultraformer</a>
+                <a href="bioestimulador.html" class="hover:opacity-60 transition-opacity">Bioestimulador</a>
+                <a href="botox.html" class="hover:opacity-60 transition-opacity">Botox</a>
+            </div>
+            <a href="https://wa.me/5511940625771?text=Ol%C3%A1%21+Quero+agendar+uma+avalia%C3%A7%C3%A3o+de+Ultraformer+MPT." target="_blank" rel="noopener" class="link-editorial text-paper hidden sm:inline-flex">Agendar →</a>
+        </div>
+    </nav>
+
+    <!-- 1. Sub-hero asymmetric -->
+    <section class="min-h-[100dvh] pt-32 pb-16 px-4 md:px-8 flex items-center bg-noise">
+        <div class="max-w-[1480px] mx-auto w-full">
+            <nav aria-label="Breadcrumb" class="font-mono text-[10px] uppercase tracking-widest text-ink/40 mb-12 reveal-node">
+                <a href="index.html" class="hover:text-ink transition-colors">Início</a>
+                <span class="mx-2">·</span>
+                <span>Ultraformer MPT</span>
+            </nav>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end">
+                <div class="lg:col-span-7 relative z-10">
+                    <div class="eyebrow mb-8 reveal-node">Tecnologia HIFU · Camadas profundas</div>
+                    <h1 class="editorial-display text-clamp-hero text-ink reveal-node" style="--delay: 1">
+                        Lifting acontece sob a pele.<br>Nós tratamos exatamente lá.
+                    </h1>
+                    <p class="editorial-body text-ink/70 text-lg mt-10 reveal-node" style="--delay: 3">
+                        Ultraformer MPT é ultrassom microfocado de alta intensidade. Atinge três níveis precisos da pele — incluindo o SMAS, a mesma camada que um cirurgião manipula em um lifting.
+                    </p>
+                    <div class="mt-10 flex flex-wrap items-center gap-6 reveal-node" style="--delay: 4">
+                        <a href="https://wa.me/5511940625771?text=Ol%C3%A1%21+Quero+agendar+uma+avalia%C3%A7%C3%A3o+de+Ultraformer+MPT." target="_blank" rel="noopener" class="btn-pill">Agendar avaliação</a>
+                        <a href="#tecnologia" class="link-editorial text-ink">Como funciona →</a>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 reveal-node" style="--delay: 2">
+                    <div class="w-full aspect-[4/5] img-wrap bg-ink/5">
+                        <!-- TODO[asset]: foto editorial Ultraformer (§8.1 DESIGN.md) -->
+                        <img class="img-parallax" src="https://images.unsplash.com/photo-1614108942625-9c41cea1e69d?auto=format&fit=crop&q=80&w=1200" alt="Detalhe de aplicação Ultraformer MPT em ambiente clínico" />
+                    </div>
+                    <div class="mt-6 flex justify-between font-mono text-[10px] uppercase text-ink/40 tracking-widest">
+                        <span>Fig. 02 — SMAS profundo</span>
+                        <span>4.5mm</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Definição editorial -->
+    <section id="tecnologia" class="py-32 md:py-48 px-4 border-t divider-ink bg-paper">
+        <div class="max-w-[840px] mx-auto text-center">
+            <div class="eyebrow mb-12 reveal-node justify-center">O que é</div>
+            <p class="editorial-display text-3xl md:text-[40px] leading-[1.1] tracking-tight text-ink reveal-node" style="--delay: 1">
+                Pulsos de ultrassom microfocado criam milhares de pontos de coagulação térmica em três profundidades — sem incisão. Cada ponto é um sinal para a pele reagir: contrair, regenerar, produzir colágeno novo.
+            </p>
+            <p class="font-sans text-base text-ink/60 mt-12 max-w-xl mx-auto reveal-node" style="--delay: 2">
+                A geração MPT (Micro Pulsed Technology) entrega a energia em pulsos micro-focados — significativamente mais confortável e preciso que as primeiras gerações de HIFU.
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. Tecnologia em camadas — diagrama -->
+    <section class="py-24 md:py-40 px-4 md:px-8 bg-ink text-paper relative bg-noise overflow-hidden">
+        <div class="max-w-[1480px] mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <div class="lg:col-span-4 reveal-node">
+                    <div class="eyebrow eyebrow-light mb-8">Três camadas, uma sessão</div>
+                    <h2 class="editorial-display text-4xl md:text-5xl mb-6 text-paper">Anatomia de um disparo.</h2>
+                    <p class="font-sans text-paper/70 max-w-sm">
+                        O equipamento usa transdutores diferentes para cada profundidade. A mesma sessão trabalha derme, camada subdérmica e SMAS — em pontos pré-marcados, controlados em milímetros.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-8 reveal-node" style="--delay: 1">
+                    <!-- Diagrama SVG das 3 camadas -->
+                    <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto" role="img" aria-label="Diagrama das três profundidades de aplicação do Ultraformer MPT na pele">
+                        <defs>
+                            <pattern id="grain" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+                                <circle cx="1" cy="1" r="0.3" fill="rgba(245,240,234,0.04)" />
+                            </pattern>
+                        </defs>
+
+                        <!-- Pele surface line -->
+                        <line x1="60" y1="60" x2="740" y2="60" stroke="#F5F0EA" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
+                        <text x="60" y="48" font-family="JetBrains Mono" font-size="10" fill="#F5F0EA" opacity="0.6" letter-spacing="2">SUPERFÍCIE — 0.0 MM</text>
+
+                        <!-- Layer 1: Derme (1.5mm) -->
+                        <rect x="60" y="80" width="680" height="90" fill="#A86469" opacity="0.12" />
+                        <rect x="60" y="80" width="680" height="90" fill="url(#grain)" />
+                        <line x1="60" y1="170" x2="740" y2="170" stroke="#B89968" stroke-width="1" opacity="0.4"/>
+                        <circle cx="180" cy="125" r="3" fill="#B89968"/>
+                        <circle cx="320" cy="125" r="3" fill="#B89968"/>
+                        <circle cx="460" cy="125" r="3" fill="#B89968"/>
+                        <circle cx="600" cy="125" r="3" fill="#B89968"/>
+                        <text x="60" y="115" font-family="Fraunces" font-weight="300" font-size="32" fill="#F5F0EA">01</text>
+                        <text x="60" y="150" font-family="JetBrains Mono" font-size="10" fill="#F5F0EA" letter-spacing="2">DERME · 1.5 MM</text>
+                        <text x="660" y="115" font-family="DM Sans" font-size="11" fill="#F5F0EA" opacity="0.7" text-anchor="end">qualidade dérmica</text>
+
+                        <!-- Layer 2: Subdermal (3mm) -->
+                        <rect x="60" y="190" width="680" height="100" fill="#A86469" opacity="0.22" />
+                        <rect x="60" y="190" width="680" height="100" fill="url(#grain)" />
+                        <line x1="60" y1="290" x2="740" y2="290" stroke="#B89968" stroke-width="1" opacity="0.4"/>
+                        <circle cx="180" cy="240" r="4" fill="#B89968"/>
+                        <circle cx="320" cy="240" r="4" fill="#B89968"/>
+                        <circle cx="460" cy="240" r="4" fill="#B89968"/>
+                        <circle cx="600" cy="240" r="4" fill="#B89968"/>
+                        <text x="60" y="230" font-family="Fraunces" font-weight="300" font-size="32" fill="#F5F0EA">02</text>
+                        <text x="60" y="270" font-family="JetBrains Mono" font-size="10" fill="#F5F0EA" letter-spacing="2">SUBDÉRMICO · 3.0 MM</text>
+                        <text x="660" y="230" font-family="DM Sans" font-size="11" fill="#F5F0EA" opacity="0.7" text-anchor="end">colágeno novo</text>
+
+                        <!-- Layer 3: SMAS (4.5mm) -->
+                        <rect x="60" y="310" width="680" height="140" fill="#A86469" opacity="0.38" />
+                        <rect x="60" y="310" width="680" height="140" fill="url(#grain)" />
+                        <circle cx="180" cy="385" r="5" fill="#B89968"/>
+                        <circle cx="320" cy="385" r="5" fill="#B89968"/>
+                        <circle cx="460" cy="385" r="5" fill="#B89968"/>
+                        <circle cx="600" cy="385" r="5" fill="#B89968"/>
+                        <text x="60" y="355" font-family="Fraunces" font-weight="300" font-size="32" fill="#F5F0EA">03</text>
+                        <text x="60" y="385" font-family="JetBrains Mono" font-size="10" fill="#F5F0EA" letter-spacing="2">SMAS · 4.5 MM</text>
+                        <text x="60" y="420" font-family="DM Sans" font-size="11" fill="#F5F0EA" opacity="0.7">camada de tração — vetores de lifting</text>
+                        <text x="660" y="355" font-family="DM Sans" font-size="11" fill="#F5F0EA" opacity="0.7" text-anchor="end">a mesma camada manipulada em cirurgia</text>
+
+                        <!-- Reference arrow on the side -->
+                        <line x1="40" y1="60" x2="40" y2="450" stroke="#B89968" stroke-width="1" opacity="0.6"/>
+                        <polygon points="40,455 36,447 44,447" fill="#B89968" opacity="0.6"/>
+                        <text x="22" y="260" font-family="JetBrains Mono" font-size="10" fill="#F5F0EA" opacity="0.5" letter-spacing="2" transform="rotate(-90 22 260)">PROFUNDIDADE</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Indicações — lista numerada editorial -->
+    <section class="py-24 md:py-40 px-4 md:px-8 bg-paper">
+        <div class="max-w-[1240px] mx-auto">
+            <div class="mb-16 reveal-node">
+                <div class="eyebrow mb-6">Indicações</div>
+                <h2 class="editorial-display text-5xl md:text-7xl text-ink">Para quem é.</h2>
+            </div>
+            <ol class="border-t divider-ink">
+                <li class="border-b divider-ink py-10 md:py-14 grid grid-cols-12 gap-6 items-baseline reveal-node">
+                    <span class="col-span-2 md:col-span-1 font-mono text-xs text-brass tracking-widest">01</span>
+                    <div class="col-span-10 md:col-span-7">
+                        <h3 class="editorial-display text-2xl md:text-[28px] mb-2">Flacidez de leve a moderada</h3>
+                        <p class="font-sans text-ink/60 max-w-md">Terço médio, mandíbula, papada e pescoço.</p>
+                    </div>
+                    <span class="hidden md:block md:col-span-4 font-mono text-[10px] uppercase tracking-widest text-ink/40 text-right">terço médio · mandíbula · pescoço</span>
+                </li>
+                <li class="border-b divider-ink py-10 md:py-14 grid grid-cols-12 gap-6 items-baseline reveal-node" style="--delay: 1">
+                    <span class="col-span-2 md:col-span-1 font-mono text-xs text-brass tracking-widest">02</span>
+                    <div class="col-span-10 md:col-span-7">
+                        <h3 class="editorial-display text-2xl md:text-[28px] mb-2">Contorno facial perdido</h3>
+                        <p class="font-sans text-ink/60 max-w-md">Linha mandibular menos definida, "bigode chinês" e bochechas com queda.</p>
+                    </div>
+                    <span class="hidden md:block md:col-span-4 font-mono text-[10px] uppercase tracking-widest text-ink/40 text-right">contorno · linha mandibular</span>
+                </li>
+                <li class="border-b divider-ink py-10 md:py-14 grid grid-cols-12 gap-6 items-baseline reveal-node" style="--delay: 2">
+                    <span class="col-span-2 md:col-span-1 font-mono text-xs text-brass tracking-widest">03</span>
+                    <div class="col-span-10 md:col-span-7">
+                        <h3 class="editorial-display text-2xl md:text-[28px] mb-2">Prevenção a partir dos 30</h3>
+                        <p class="font-sans text-ink/60 max-w-md">Estímulo de colágeno antes da flacidez se estabelecer.</p>
+                    </div>
+                    <span class="hidden md:block md:col-span-4 font-mono text-[10px] uppercase tracking-widest text-ink/40 text-right">colágeno preventivo</span>
+                </li>
+                <li class="border-b divider-ink py-10 md:py-14 grid grid-cols-12 gap-6 items-baseline reveal-node" style="--delay: 3">
+                    <span class="col-span-2 md:col-span-1 font-mono text-xs text-brass tracking-widest">04</span>
+                    <div class="col-span-10 md:col-span-7">
+                        <h3 class="editorial-display text-2xl md:text-[28px] mb-2">Pós-emagrecimento</h3>
+                        <p class="font-sans text-ink/60 max-w-md">Recuperar firmeza após perda significativa de peso.</p>
+                    </div>
+                    <span class="hidden md:block md:col-span-4 font-mono text-[10px] uppercase tracking-widest text-ink/40 text-right">recuperação tecidual</span>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- 5. Protocolo Face Doctor — scroll horizontal -->
+    <section class="py-24 md:py-32 bg-paper border-t divider-ink overflow-hidden">
+        <div class="max-w-[1480px] mx-auto px-4 md:px-8 mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6 reveal-node">
+            <div>
+                <div class="eyebrow mb-6">Protocolo Face Doctor</div>
+                <h2 class="editorial-display text-5xl md:text-7xl">Quatro etapas. Uma sessão.</h2>
+            </div>
+            <div class="font-mono text-[11px] uppercase tracking-widest text-ink/40 flex items-center gap-2">
+                <span>arraste lateralmente</span>
+                <span class="text-brass">→</span>
+            </div>
+        </div>
+        <div class="protocol-scroll flex gap-0">
+            <article class="protocol-card flex-shrink-0 w-[88vw] md:w-[80vw] px-4 md:px-16 py-16 md:py-24 border-r divider-ink reveal-node">
+                <span class="font-serif font-light text-brass text-[clamp(6rem,16vw,12rem)] block leading-none mb-12 opacity-30">01</span>
+                <div class="eyebrow mb-6">Etapa 01</div>
+                <h3 class="editorial-display text-4xl md:text-6xl mb-6">Avaliação clínica</h3>
+                <p class="font-sans text-ink/70 max-w-md leading-relaxed">
+                    Análise facial individualizada com a equipe para mapear áreas de flacidez e definir o plano de aplicação. Cada milímetro é decidido aqui.
+                </p>
+            </article>
+            <article class="protocol-card flex-shrink-0 w-[88vw] md:w-[80vw] px-4 md:px-16 py-16 md:py-24 border-r divider-ink bg-paperhover reveal-node">
+                <span class="font-serif font-light text-brass text-[clamp(6rem,16vw,12rem)] block leading-none mb-12 opacity-30">02</span>
+                <div class="eyebrow mb-6">Etapa 02</div>
+                <h3 class="editorial-display text-4xl md:text-6xl mb-6">Preparo</h3>
+                <p class="font-sans text-ink/70 max-w-md leading-relaxed">
+                    Higienização da pele, aplicação de anestésico tópico e marcação dos pontos de tratamento. A marcação é o que separa precisão de aproximação.
+                </p>
+            </article>
+            <article class="protocol-card flex-shrink-0 w-[88vw] md:w-[80vw] px-4 md:px-16 py-16 md:py-24 border-r divider-ink reveal-node">
+                <span class="font-serif font-light text-brass text-[clamp(6rem,16vw,12rem)] block leading-none mb-12 opacity-30">03</span>
+                <div class="eyebrow mb-6">Etapa 03</div>
+                <h3 class="editorial-display text-4xl md:text-6xl mb-6">Aplicação</h3>
+                <p class="font-sans text-ink/70 max-w-md leading-relaxed">
+                    Cerca de 60 minutos. Pulsos microfocados distribuídos nas três camadas planejadas, conferidos um a um. Você sente calor pontual, não dor.
+                </p>
+            </article>
+            <article class="protocol-card flex-shrink-0 w-[88vw] md:w-[80vw] px-4 md:px-16 py-16 md:py-24 bg-paperhover reveal-node">
+                <span class="font-serif font-light text-brass text-[clamp(6rem,16vw,12rem)] block leading-none mb-12 opacity-30">04</span>
+                <div class="eyebrow mb-6">Etapa 04</div>
+                <h3 class="editorial-display text-4xl md:text-6xl mb-6">Acompanhamento</h3>
+                <p class="font-sans text-ink/70 max-w-md leading-relaxed">
+                    Retorno em 30 e 90 dias para avaliar resposta e potencializar o resultado com cuidados complementares. A neocolagênese segue por até 6 meses.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <!-- 6. Antes & Depois — slider drag-to-reveal -->
+    <section class="py-24 md:py-40 px-4 md:px-8 bg-paper border-t divider-ink">
+        <div class="max-w-[1240px] mx-auto">
+            <div class="mb-12 reveal-node">
+                <div class="eyebrow mb-6">Resultado</div>
+                <h2 class="editorial-display text-5xl md:text-7xl">Veja por baixo.</h2>
+                <p class="font-sans text-ink/60 max-w-md mt-6">Caso real, autorizado. Arraste para comparar.</p>
+            </div>
+            <!-- TODO[asset]: substituir por caso real autorizado da unidade (§8.1) -->
+            <div class="ba-slider reveal-node" id="ba-slider" data-pos="50">
+                <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?auto=format&fit=crop&q=80&w=1600" alt="Antes — flacidez visível em terço médio e mandíbula" />
+                <img class="ba-after" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&q=80&w=1600" alt="Depois de 90 dias — firmeza recuperada" />
+                <span class="ba-label" style="left: 1rem;">Antes</span>
+                <span class="ba-label" style="right: 1rem;">90 dias</span>
+                <div class="ba-handle"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FAQ editorial -->
+    <section class="py-24 md:py-40 px-4 md:px-8 bg-paper border-t divider-ink">
+        <div class="max-w-[840px] mx-auto">
+            <div class="mb-16 reveal-node">
+                <div class="eyebrow mb-6">Dúvidas frequentes</div>
+                <h2 class="editorial-display text-4xl md:text-6xl">O que perguntam<br>antes de marcar.</h2>
+            </div>
+            <div class="reveal-node" style="--delay: 1">
+                <details class="faq-item">
+                    <summary><span class="faq-q">O Ultraformer MPT dói?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">O desconforto é mínimo. Aplicamos anestésico tópico antes da sessão e a tecnologia MPT é significativamente mais confortável que as gerações anteriores de HIFU. A maioria das pacientes descreve a sensação como "calor" pontual.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Quando vejo o resultado?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Há um efeito imediato de firmeza ao final da sessão. O resultado evolui progressivamente entre 30 e 90 dias, com pico aos 180 dias, conforme a neocolagênese acontece.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Quanto tempo dura o efeito?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Em média de 12 a 18 meses, dependendo de idade, qualidade da pele e estilo de vida. Sessões de manutenção mantêm o resultado a longo prazo.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Quem não pode fazer?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Gestantes, lactantes, pessoas com marcapasso, próteses metálicas na área tratada, infecções ativas na pele ou doenças autoimunes em fase aguda. Tudo é avaliado na consulta inicial.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Quantas sessões são necessárias?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Na maioria dos casos, uma sessão por ano é suficiente. Em casos de flacidez mais avançada, podemos combinar com bioestimuladores ou outro protocolo personalizado.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Qual o custo na unidade Perdizes?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">O valor depende do número de linhas aplicadas e da área tratada. Você recebe um orçamento individualizado durante a avaliação gratuita. Trabalhamos com formas de pagamento flexíveis.</div></div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. CTA full-bleed dark -->
+    <section class="bg-ink text-paper py-32 md:py-64 px-4 text-center border-t border-paper/10 bg-noise">
+        <div class="max-w-[1000px] mx-auto flex flex-col items-center">
+            <div class="eyebrow eyebrow-light mb-12 justify-center reveal-node">Avaliação gratuita</div>
+            <h2 class="editorial-display text-[clamp(3rem,8vw,6rem)] leading-[0.9] mb-12 reveal-node" style="--delay: 1">
+                Lifting acontece<br>sob a pele.
+            </h2>
+            <p class="font-sans text-lg text-paper/60 mb-12 max-w-md reveal-node" style="--delay: 2">
+                Agenda restrita para garantir tempo e detalhamento em cada plano de tratamento.
+            </p>
+            <div class="reveal-node" style="--delay: 3">
+                <a href="https://wa.me/5511940625771?text=Ol%C3%A1%21+Quero+agendar+uma+avalia%C3%A7%C3%A3o+de+Ultraformer+MPT." target="_blank" rel="noopener" class="btn-pill bg-paper text-ink hover:bg-brass hover:text-ink min-w-[240px]">Agendar avaliação</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (mesmo da Home) -->
+    <footer class="bg-ink text-paper border-t border-paper/10 pt-24 pb-8 px-4 md:px-8">
+        <div class="max-w-[1480px] mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 font-mono text-xs uppercase tracking-widest mb-32 text-paper/50">
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Unidade</span>
+                    <a href="index.html#contato" class="hover:text-paper transition-colors">Perdizes · SP</a>
+                    <a href="https://www.google.com/maps?q=R.+Piracuama,+138+-+Perdizes,+S%C3%A3o+Paulo+-+SP,+05017-040" target="_blank" rel="noopener" class="hover:text-paper transition-colors">Como chegar</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Tratamentos</span>
+                    <a href="ultraformer-mpt.html" class="hover:text-paper transition-colors">Ultraformer MPT</a>
+                    <a href="bioestimulador.html" class="hover:text-paper transition-colors">Bioestimuladores</a>
+                    <a href="botox.html" class="hover:text-paper transition-colors">Botox</a>
+                    <a href="index.html#lista" class="hover:text-paper transition-colors">Menu completo</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Contato</span>
+                    <a href="https://wa.me/5511940625771" target="_blank" rel="noopener" class="hover:text-paper transition-colors">WhatsApp</a>
+                    <a href="https://www.instagram.com/facedoctor.perdizes" target="_blank" rel="noopener" class="hover:text-paper transition-colors">Instagram</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Institucional</span>
+                    <a href="https://facedoctor.com.br" target="_blank" rel="noopener" class="hover:text-paper transition-colors">Rede Face Doctor</a>
+                </div>
+            </div>
+            <div class="w-full text-center overflow-hidden border-b border-paper/10 pb-8 mb-8">
+                <h2 class="editorial-display text-[15vw] leading-[0.75] tracking-[-0.05em] text-paper opacity-90 select-none whitespace-nowrap">FACE DOCTOR</h2>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center font-mono text-[10px] text-paper/40 tracking-widest gap-2">
+                <span>© 2026 Face Doctor Perdizes · Todos os direitos reservados</span>
+                <span>Unidade autorizada da rede Face Doctor</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+            document.querySelectorAll('.reveal-node').forEach(node => revealObserver.observe(node));
+
+            if (!prefersReducedMotion) {
+                const parallaxImages = document.querySelectorAll('.img-parallax');
+                const updateParallax = () => {
+                    const windowHeight = window.innerHeight;
+                    parallaxImages.forEach(img => {
+                        const rect = img.parentElement.getBoundingClientRect();
+                        if (rect.top < windowHeight && rect.bottom > 0) {
+                            const elementCenter = rect.top + rect.height / 2;
+                            const screenCenter = windowHeight / 2;
+                            const distance = (elementCenter - screenCenter) * 0.1;
+                            img.style.transform = `translateY(calc(-10% + ${distance}px)) scale(1.05)`;
+                        }
+                    });
+                    requestAnimationFrame(updateParallax);
+                };
+                updateParallax();
+            }
+
+            // Before/After slider
+            const slider = document.getElementById('ba-slider');
+            if (slider) {
+                const after = slider.querySelector('.ba-after');
+                const handle = slider.querySelector('.ba-handle');
+                let dragging = false;
+
+                const setPos = (pct) => {
+                    const v = Math.max(0, Math.min(100, pct));
+                    after.style.clipPath = `inset(0 0 0 ${v}%)`;
+                    handle.style.left = `${v}%`;
+                };
+                setPos(50);
+
+                const updateFromEvent = (e) => {
+                    const rect = slider.getBoundingClientRect();
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    setPos(((clientX - rect.left) / rect.width) * 100);
+                };
+
+                slider.addEventListener('mousedown', e => { dragging = true; updateFromEvent(e); });
+                slider.addEventListener('touchstart', e => { dragging = true; updateFromEvent(e); }, { passive: true });
+                window.addEventListener('mousemove', e => { if (dragging) updateFromEvent(e); });
+                window.addEventListener('touchmove', e => { if (dragging) updateFromEvent(e); }, { passive: true });
+                window.addEventListener('mouseup', () => { dragging = false; });
+                window.addEventListener('touchend', () => { dragging = false; });
+            }
+        });
+    </script>
+</body>
+</html>

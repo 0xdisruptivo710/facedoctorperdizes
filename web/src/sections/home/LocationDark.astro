@@ -1,0 +1,138 @@
+---
+/**
+ * Localização com mapa escuro de fundo + painel à direita com endereço/horário.
+ * DESIGN.md §6.1 step 9.
+ * TODO[map]: substituir img placeholder por Mapbox GL JS dark style (§9.1).
+ */
+import Eyebrow from '../../components/Eyebrow.astro';
+import Button from '../../components/Button.astro';
+import { CLINIC } from '../../lib/clinic';
+---
+
+<section id="contato" class="location" aria-labelledby="loc-heading">
+  <div class="location__bg" aria-hidden="true">
+    <img
+      src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=2000"
+      alt=""
+      loading="lazy"
+    />
+    <div class="location__veil"></div>
+  </div>
+
+  <div class="container container--wide location__grid">
+    <div class="location__panel reveal">
+      <Eyebrow tone="light">Localização</Eyebrow>
+      <h3 id="loc-heading" class="display location__addr">{CLINIC.address.street}</h3>
+      <p class="location__sub">
+        {CLINIC.address.neighborhood} · {CLINIC.address.city} — {CLINIC.address.state}<br />
+        {CLINIC.address.postalCode}
+      </p>
+
+      <dl class="location__facts">
+        <div>
+          <dt class="mono">Horário</dt>
+          <dd>{CLINIC.hours.fullLine}</dd>
+        </div>
+        <div>
+          <dt class="mono">Telefone / WhatsApp</dt>
+          <dd>{CLINIC.phone}</dd>
+        </div>
+        <div>
+          <dt class="mono">Atendimento</dt>
+          <dd>Avaliação inicial gratuita · agendamento por WhatsApp</dd>
+        </div>
+      </dl>
+
+      <Button href={CLINIC.mapLink} variant="primary" tone="light" external fullWidth>
+        Como chegar
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .location {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+  .location__bg {
+    position: absolute;
+    inset: 0;
+  }
+  .location__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1);
+    opacity: 0.3;
+    mix-blend-mode: luminosity;
+  }
+  .location__veil {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(26, 22, 20, 0.7);
+  }
+  .location__grid {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--space-9);
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 900px) {
+    .location__grid {
+      grid-template-columns: repeat(12, 1fr);
+    }
+  }
+  .location__panel {
+    background-color: var(--ink);
+    border: 1px solid var(--border-paper);
+    padding: var(--space-7) var(--space-7);
+    color: var(--paper);
+  }
+  @media (min-width: 768px) {
+    .location__panel {
+      padding: var(--space-8) var(--space-9);
+    }
+  }
+  @media (min-width: 900px) {
+    .location__panel {
+      grid-column: 8 / -1;
+    }
+  }
+
+  .location__panel :global(.eyebrow) {
+    margin-block-end: var(--space-7);
+  }
+  .location__addr {
+    font-size: clamp(2rem, 3vw + 0.5rem, 2.5rem);
+    margin-block-end: var(--space-4);
+  }
+  .location__sub {
+    color: rgba(245, 240, 234, 0.7);
+    margin-block-end: var(--space-7);
+    max-width: 30ch;
+  }
+
+  .location__facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    margin-block-end: var(--space-9);
+  }
+  .location__facts > div {
+    padding-block-end: var(--space-4);
+    border-block-end: 1px solid var(--border-paper);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .location__facts dt {
+    color: rgba(245, 240, 234, 0.5);
+    font-size: 10px;
+  }
+</style>

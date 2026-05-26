@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="antialiased scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Bioestimuladores em Perdizes — Sculptra, Radiesse, Ellansé | Face Doctor</title>
+    <meta name="description" content="Bioestimuladores de colágeno na Face Doctor Perdizes: Sculptra, Radiesse e Ellansé com aplicação por equipe especializada. Densidade, firmeza e juventude.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Fraunces:opsz,wght@9..144,300;9..144,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paper: '#F5F0EA', paperhover: '#EAE1D6',
+                        ink: '#1A1614', brass: '#B89968',
+                        marsala: '#A86469', deepmarsala: '#7A3F44',
+                    },
+                    fontFamily: {
+                        serif: ['Fraunces', 'serif'],
+                        sans: ['DM Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    letterSpacing: { tightest: '-0.04em', widest: '0.18em' },
+                    lineHeight: { 'editorial': '0.95' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root { --curve-editorial: cubic-bezier(0.16, 1, 0.3, 1); }
+        body { background-color: theme('colors.paper'); color: theme('colors.ink'); overflow-x: hidden; }
+        .text-clamp-hero { font-size: clamp(3rem, 7vw, 7rem); }
+        .editorial-display {
+            font-family: theme('fontFamily.serif'); font-weight: 300;
+            line-height: theme('lineHeight.editorial'); letter-spacing: theme('letterSpacing.tightest');
+        }
+        .editorial-body {
+            font-family: theme('fontFamily.sans'); font-weight: 400;
+            line-height: 1.55; max-width: 62ch;
+        }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 1rem;
+            font-family: theme('fontFamily.mono');
+            font-size: 11px; letter-spacing: theme('letterSpacing.widest');
+            text-transform: uppercase; color: theme('colors.ink');
+        }
+        .eyebrow::before {
+            content: ""; display: inline-block; width: 24px; height: 2px; background-color: theme('colors.brass');
+        }
+        .eyebrow-light { color: theme('colors.paper'); }
+        .eyebrow-light::before { background-color: theme('colors.brass'); }
+        .btn-pill {
+            display: inline-flex; align-items: center; justify-content: center;
+            background-color: theme('colors.ink'); color: theme('colors.paper');
+            border-radius: 999px; padding: 1.125rem 2.25rem;
+            font-family: theme('fontFamily.mono');
+            font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+            transition: transform 0.4s var(--curve-editorial), background-color 0.4s ease;
+            user-select: none; white-space: nowrap;
+        }
+        .btn-pill:hover { transform: translateY(-2px); background-color: theme('colors.deepmarsala'); }
+        .btn-pill:active { transform: scale(0.97); }
+        .link-editorial {
+            position: relative; display: inline-flex;
+            font-family: theme('fontFamily.mono');
+            font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; padding-bottom: 4px;
+        }
+        .link-editorial::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 100%; height: 1px; background-color: currentColor;
+            transform-origin: right; transform: scaleX(1);
+            transition: transform 0.6s var(--curve-editorial);
+        }
+        .link-editorial:hover::after { transform-origin: left; transform: scaleX(0); }
+        .reveal-node {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 1.2s var(--curve-editorial), transform 1.2s var(--curve-editorial);
+            transition-delay: calc(var(--delay, 0) * 0.08s);
+        }
+        .reveal-node.is-visible { opacity: 1; transform: translateY(0); }
+        .img-wrap { overflow: hidden; }
+        .img-parallax {
+            height: 120%; width: 100%; object-fit: cover;
+            transform: translateY(-10%);
+            transition: transform 0.1s linear; will-change: transform;
+        }
+        .divider-ink { border-color: rgba(26, 22, 20, 0.1); }
+        .divider-paper { border-color: rgba(245, 240, 234, 0.12); }
+        .bg-noise { position: relative; }
+        .bg-noise::after {
+            content: ""; position: absolute; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 10;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: theme('colors.paper'); }
+        ::-webkit-scrollbar-thumb { background: theme('colors.ink'); border-radius: 4px; }
+
+        /* Editorial comparison table */
+        .comp-table {
+            display: grid;
+            grid-template-columns: minmax(7rem, 0.8fr) repeat(3, minmax(0, 1fr));
+            row-gap: 0;
+        }
+        .comp-row { display: contents; }
+        .comp-cell {
+            padding: 1.5rem 1rem;
+            border-top: 1px solid rgba(245, 240, 234, 0.12);
+            transition: background-color 0.5s var(--curve-editorial);
+        }
+        .comp-row:hover .comp-cell { background-color: rgba(184, 153, 104, 0.06); }
+        .comp-row.comp-head .comp-cell { border-top: none; padding-bottom: 1.5rem; padding-top: 0; }
+        .comp-label {
+            font-family: theme('fontFamily.mono');
+            font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em;
+            color: rgba(245, 240, 234, 0.5);
+            align-self: center;
+        }
+        .comp-name {
+            font-family: theme('fontFamily.serif'); font-weight: 300;
+            font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;
+            color: theme('colors.paper');
+            line-height: 1;
+        }
+        .comp-value {
+            font-family: theme('fontFamily.serif'); font-weight: 300;
+            font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+            color: theme('colors.paper'); line-height: 1.3; letter-spacing: -0.01em;
+        }
+        .comp-value-sub {
+            font-family: theme('fontFamily.sans');
+            font-size: 0.75rem;
+            color: rgba(245, 240, 234, 0.5);
+            margin-top: 0.35rem;
+        }
+
+        /* Editorial faq accordion */
+        .faq-item { border-top: 1px solid rgba(26, 22, 20, 0.1); }
+        .faq-item:last-child { border-bottom: 1px solid rgba(26, 22, 20, 0.1); }
+        .faq-item summary {
+            list-style: none; cursor: pointer; padding: 2rem 0;
+            display: flex; justify-content: space-between; align-items: center; gap: 2rem;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item .faq-q {
+            font-family: theme('fontFamily.serif'); font-weight: 400;
+            font-size: clamp(1.25rem, 1.5vw, 1.5rem); letter-spacing: -0.01em;
+        }
+        .faq-item .faq-sign {
+            font-family: theme('fontFamily.serif'); font-weight: 300;
+            color: theme('colors.brass'); font-size: 2rem; line-height: 1;
+            transition: transform 0.6s var(--curve-editorial); flex-shrink: 0;
+        }
+        .faq-item[open] .faq-sign { transform: rotate(45deg); }
+        .faq-item .faq-a {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.6s var(--curve-editorial);
+        }
+        .faq-item[open] .faq-a { max-height: 600px; }
+        .faq-item .faq-a-inner {
+            padding-bottom: 2rem; max-width: 56ch;
+            font-family: theme('fontFamily.sans'); font-size: 1rem;
+            line-height: 1.65; color: rgba(26, 22, 20, 0.7);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-node { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .img-parallax { transform: none !important; }
+        }
+    </style>
+</head>
+<body class="selection:bg-brass selection:text-paper">
+
+    <a href="https://wa.me/5511940625771?text=Ol%C3%A1%21+Quero+saber+sobre+bioestimuladores+na+unidade+Perdizes." target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-ink rounded-full flex items-center justify-center text-paper hover:bg-brass transition-colors duration-500 transform hover:scale-105 active:scale-95" aria-label="Falar no WhatsApp">
+        <i class="ph ph-whatsapp-logo text-2xl"></i>
+    </a>
+
+    <nav class="fixed top-0 left-0 w-full z-40 px-4 md:px-8 py-6 mix-blend-difference text-paper pointer-events-none">
+        <div class="max-w-[1480px] mx-auto flex justify-between items-center pointer-events-auto">
+            <a href="index.html" class="font-serif text-xl tracking-tight leading-none">
+                Face Doctor<br><span class="font-sans text-xs tracking-widest uppercase opacity-70">Perdizes</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 font-mono text-xs uppercase tracking-widest">
+                <a href="ultraformer-mpt.html" class="hover:opacity-60 transition-opacity">Ultraformer</a>
+                <a href="bioestimulador.html" class="opacity-100">Bioestimulador</a>
+                <a href="botox.html" class="hover:opacity-60 transition-opacity">Botox</a>
+            </div>
+            <a href="https://wa.me/5511940625771?text=Ol%C3%A1%21+Quero+agendar+avalia%C3%A7%C3%A3o+de+bioestimulador." target="_blank" rel="noopener" class="link-editorial text-paper hidden sm:inline-flex">Agendar →</a>
+        </div>
+    </nav>
+
+    <!-- 1. Sub-hero asymmetric -->
+    <section class="min-h-[100dvh] pt-32 pb-16 px-4 md:px-8 flex items-center bg-noise">
+        <div class="max-w-[1480px] mx-auto w-full">
+            <nav aria-label="Breadcrumb" class="font-mono text-[10px] uppercase tracking-widest text-ink/40 mb-12 reveal-node">
+                <a href="index.html" class="hover:text-ink transition-colors">Início</a>
+                <span class="mx-2">·</span>
+                <span>Bioestimuladores</span>
+            </nav>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end">
+                <div class="lg:col-span-7 relative z-10">
+                    <div class="eyebrow mb-8 reveal-node">Sculptra · Radiesse · Ellansé</div>
+                    <h1 class="editorial-display text-clamp-hero text-ink reveal-node" style="--delay: 1">
+                        Não preenchemos seu rosto.<br>Reativamos o que ele produzia.
+                    </h1>
+                    <p class="editorial-body text-ink/70 text-lg mt-10 reveal-node" style="--delay: 3">
+                        Injetáveis que estimulam seus próprios fibroblastos a produzir colágeno novo. O volume vem de dentro, em camadas — não é emprestado.
+                    </p>
+                    <div class="mt-10 flex flex-wrap items-center gap-6 reveal-node" style="--delay: 4">
+                        <a href="https://wa.me/5511940625771?text=Ol%C3%A1%21+Quero+agendar+avalia%C3%A7%C3%A3o+de+bioestimulador." target="_blank" rel="noopener" class="btn-pill">Agendar avaliação</a>
+                        <a href="#comparativo" class="link-editorial text-ink">Comparar produtos →</a>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 reveal-node" style="--delay: 2">
+                    <div class="w-full aspect-[4/5] img-wrap bg-ink/5">
+                        <!-- TODO[asset]: foto editorial bioestimulador (§8.1) -->
+                        <img class="img-parallax" src="https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?auto=format&fit=crop&q=80&w=1200" alt="Aplicação editorial de bioestimulador injetável" />
+                    </div>
+                    <div class="mt-6 flex justify-between font-mono text-[10px] uppercase text-ink/40 tracking-widest">
+                        <span>Fig. 03 — Estímulo biológico</span>
+                        <span>Colágeno I + III</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Definição editorial -->
+    <section class="py-32 md:py-48 px-4 border-t divider-ink bg-paper">
+        <div class="max-w-[840px] mx-auto text-center">
+            <div class="eyebrow mb-12 reveal-node justify-center">O que é</div>
+            <p class="editorial-display text-3xl md:text-[40px] leading-[1.1] tracking-tight text-ink reveal-node" style="--delay: 1">
+                Diferente do preenchimento com ácido hialurônico — que ocupa volume mecanicamente — bioestimulador é um gatilho biológico. Suas próprias células recebem o sinal para fabricar colágeno tipo I e III. O resultado nasce dentro da pele.
+            </p>
+            <p class="font-sans text-base text-ink/60 mt-12 max-w-xl mx-auto reveal-node" style="--delay: 2">
+                Aparece em semanas. Evolui por meses. A pele recupera densidade, firmeza e contorno — sem o "rosto inflado" típico do exagero.
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. Tabela editorial comparativa — destaque da página -->
+    <section id="comparativo" class="py-24 md:py-40 px-4 md:px-8 bg-ink text-paper relative bg-noise">
+        <div class="max-w-[1480px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end mb-16 md:mb-24 reveal-node">
+                <div>
+                    <div class="eyebrow eyebrow-light mb-6">Comparativo</div>
+                    <h2 class="editorial-display text-5xl md:text-7xl text-paper">Três tecnologias.<br>Uma decisão.</h2>
+                </div>
+                <p class="font-sans text-paper/60 max-w-md md:justify-self-end md:text-right">
+                    A indicação certa depende do objetivo, idade e qualidade da pele. Mapeamos isso na avaliação.
+                </p>
+            </div>
+
+            <div class="comp-table reveal-node overflow-x-auto" style="--delay: 1">
+                <!-- Header -->
+                <div class="comp-row comp-head">
+                    <div class="comp-cell"></div>
+                    <div class="comp-cell">
+                        <span class="comp-name">Sculptra</span>
+                        <div class="font-mono text-[10px] uppercase tracking-widest text-paper/40 mt-3">Galderma</div>
+                    </div>
+                    <div class="comp-cell">
+                        <span class="comp-name">Radiesse</span>
+                        <div class="font-mono text-[10px] uppercase tracking-widest text-paper/40 mt-3">Merz Aesthetics</div>
+                    </div>
+                    <div class="comp-cell">
+                        <span class="comp-name">Ellansé</span>
+                        <div class="font-mono text-[10px] uppercase tracking-widest text-paper/40 mt-3">Sinclair · M/S/L</div>
+                    </div>
+                </div>
+                <!-- Row: tecnologia -->
+                <div class="comp-row">
+                    <div class="comp-cell comp-label">Tecnologia</div>
+                    <div class="comp-cell"><span class="comp-value">Ácido poli-L-láctico</span><div class="comp-value-sub">PLLA</div></div>
+                    <div class="comp-cell"><span class="comp-value">Hidroxiapatita de cálcio</span><div class="comp-value-sub">CaHA</div></div>
+                    <div class="comp-cell"><span class="comp-value">Policaprolactona</span><div class="comp-value-sub">PCL · 3 versões</div></div>
+                </div>
+                <!-- Row: duração -->
+                <div class="comp-row">
+                    <div class="comp-cell comp-label">Duração</div>
+                    <div class="comp-cell"><span class="comp-value">Até 24 meses</span></div>
+                    <div class="comp-cell"><span class="comp-value">12 a 18 meses</span></div>
+                    <div class="comp-cell"><span class="comp-value">1 a 4 anos</span><div class="comp-value-sub">conforme versão</div></div>
+                </div>
+                <!-- Row: indicação principal -->
+                <div class="comp-row">
+                    <div class="comp-cell comp-label">Indicação principal</div>
+                    <div class="comp-cell"><span class="comp-value">Qualidade da pele e volume gradual</span></div>
+                    <div class="comp-cell"><span class="comp-value">Contorno e firmeza imediata</span></div>
+                    <div class="comp-cell"><span class="comp-value">Definição e ângulos</span></div>
+                </div>
+                <!-- Row: resultado -->
+                <div class="comp-row">
+                    <div class="comp-cell comp-label">Início do resultado</div>
+                    <div class="comp-cell"><span class="comp-value">30 a 90 dias</span><div class="comp-value-sub">gradual</div></div>
+                    <div class="comp-cell"><span class="comp-value">Imediato</span><div class="comp-value-sub">+ evolução</div></div>
+                    <div class="comp-cell"><span class="comp-value">Desde a aplicação</span><div class="comp-value-sub">+ aumento gradual</div></div>
+                </div>
+                <!-- Row: sessões -->
+                <div class="comp-row">
+                    <div class="comp-cell comp-label">Sessões</div>
+                    <div class="comp-cell"><span class="comp-value">2 a 3</span><div class="comp-value-sub">intervalo mensal</div></div>
+                    <div class="comp-cell"><span class="comp-value">1</span><div class="comp-value-sub">retoque opcional</div></div>
+                    <div class="comp-cell"><span class="comp-value">1</span><div class="comp-value-sub">retoque opcional</div></div>
+                </div>
+            </div>
+
+            <p class="font-mono text-[10px] uppercase tracking-widest text-paper/40 mt-12 max-w-md reveal-node" style="--delay: 2">
+                Tabela técnica. A indicação real depende de avaliação presencial.
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. Indicações — lista editorial -->
+    <section class="py-24 md:py-40 px-4 md:px-8 bg-paper">
+        <div class="max-w-[1240px] mx-auto">
+            <div class="mb-16 reveal-node">
+                <div class="eyebrow mb-6">Indicações</div>
+                <h2 class="editorial-display text-5xl md:text-7xl text-ink">Para quem é.</h2>
+            </div>
+            <ol class="border-t divider-ink">
+                <li class="border-b divider-ink py-10 md:py-14 grid grid-cols-12 gap-6 items-baseline reveal-node">
+                    <span class="col-span-2 md:col-span-1 font-mono text-xs text-brass tracking-widest">01</span>
+                    <div class="col-span-10 md:col-span-7">
+                        <h3 class="editorial-display text-2xl md:text-[28px] mb-2">Perda de volume facial</h3>
+                        <p class="font-sans text-ink/60 max-w-md">Têmporas, malar, terço médio e papada.</p>
+                    </div>
+                    <span class="hidden md:block md:col-span-4 font-mono text-[10px] uppercase tracking-widest text-ink/40 text-right">Sculptra · Radiesse</span>
+                </li>
+                <li class="border-b divider-ink py-10 md:py-14 grid grid-cols-12 gap-6 items-baseline reveal-node" style="--delay: 1">
+                    <span class="col-span-2 md:col-span-1 font-mono text-xs text-brass tracking-widest">02</span>
+                    <div class="col-span-10 md:col-span-7">
+                        <h3 class="editorial-display text-2xl md:text-[28px] mb-2">Pele fina e flácida</h3>
+                        <p class="font-sans text-ink/60 max-w-md">Restaura densidade e qualidade dérmica.</p>
+                    </div>
+                    <span class="hidden md:block md:col-span-4 font-mono text-[10px] uppercase tracking-widest text-ink/40 text-right">Sculptra</span>
+                </li>
+                <li class="border-b divider-ink py-10 md:py-14 grid grid-cols-12 gap-6 items-baseline reveal-node" style="--delay: 2">
+                    <span class="col-span-2 md:col-span-1 font-mono text-xs text-brass tracking-widest">03</span>
+                    <div class="col-span-10 md:col-span-7">
+                        <h3 class="editorial-display text-2xl md:text-[28px] mb-2">Contorno indefinido</h3>
+                        <p class="font-sans text-ink/60 max-w-md">Mandíbula, queixo e ângulo cervical.</p>
+                    </div>
+                    <span class="hidden md:block md:col-span-4 font-mono text-[10px] uppercase tracking-widest text-ink/40 text-right">Radiesse · Ellansé</span>
+                </li>
+                <li class="border-b divider-ink py-10 md:py-14 grid grid-cols-12 gap-6 items-baseline reveal-node" style="--delay: 3">
+                    <span class="col-span-2 md:col-span-1 font-mono text-xs text-brass tracking-widest">04</span>
+                    <div class="col-span-10 md:col-span-7">
+                        <h3 class="editorial-display text-2xl md:text-[28px] mb-2">Prevenção a partir dos 30</h3>
+                        <p class="font-sans text-ink/60 max-w-md">Manter colágeno em alta antes da queda visível.</p>
+                    </div>
+                    <span class="hidden md:block md:col-span-4 font-mono text-[10px] uppercase tracking-widest text-ink/40 text-right">protocolo preventivo</span>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- 5. Protocolo -->
+    <section class="py-24 md:py-40 px-4 md:px-8 bg-paper border-t divider-ink">
+        <div class="max-w-[1240px] mx-auto">
+            <div class="mb-16 reveal-node">
+                <div class="eyebrow mb-6">Protocolo Face Doctor</div>
+                <h2 class="editorial-display text-5xl md:text-7xl">A jornada.</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+                <article class="reveal-node">
+                    <span class="font-mono text-xs text-brass tracking-widest">Etapa 01</span>
+                    <h3 class="editorial-display text-3xl md:text-4xl mt-4 mb-4">Avaliação facial</h3>
+                    <p class="editorial-body text-ink/60">Análise completa de perda de volume, qualidade da pele e definição do produto e protocolo ideais.</p>
+                </article>
+                <article class="reveal-node" style="--delay: 1">
+                    <span class="font-mono text-xs text-brass tracking-widest">Etapa 02</span>
+                    <h3 class="editorial-display text-3xl md:text-4xl mt-4 mb-4">Aplicação</h3>
+                    <p class="editorial-body text-ink/60">Procedimento ambulatorial com anestesia local. Cerca de 45 minutos por sessão.</p>
+                </article>
+                <article class="reveal-node" style="--delay: 2">
+                    <span class="font-mono text-xs text-brass tracking-widest">Etapa 03</span>
+                    <h3 class="editorial-display text-3xl md:text-4xl mt-4 mb-4">Pós-aplicação</h3>
+                    <p class="editorial-body text-ink/60">Massagens diárias pelos primeiros 5 dias e cuidados orientados para potencializar o resultado.</p>
+                </article>
+                <article class="reveal-node" style="--delay: 3">
+                    <span class="font-mono text-xs text-brass tracking-widest">Etapa 04</span>
+                    <h3 class="editorial-display text-3xl md:text-4xl mt-4 mb-4">Evolução</h3>
+                    <p class="editorial-body text-ink/60">Acompanhamento aos 30, 60 e 90 dias. Sessões complementares quando indicadas.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FAQ -->
+    <section class="py-24 md:py-40 px-4 md:px-8 bg-paper border-t divider-ink">
+        <div class="max-w-[840px] mx-auto">
+            <div class="mb-16 reveal-node">
+                <div class="eyebrow mb-6">Dúvidas frequentes</div>
+                <h2 class="editorial-display text-4xl md:text-6xl">Antes de marcar.</h2>
+            </div>
+            <div class="reveal-node" style="--delay: 1">
+                <details class="faq-item">
+                    <summary><span class="faq-q">Bioestimulador é a mesma coisa que preenchimento?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Não. Preenchimento adiciona volume mecanicamente (geralmente com ácido hialurônico). Bioestimulador induz seu corpo a produzir colágeno novo — o volume vem de dentro, de forma natural.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Em quanto tempo aparece o resultado?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Sculptra: gradual entre 30 e 90 dias. Radiesse: imediato + evolução nos meses seguintes. Ellansé: efeito visível desde a aplicação, com aumento gradual.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Posso combinar com Ultraformer MPT ou Botox?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Sim — e essa combinação é muito comum, potencializa resultados. Definimos a sequência ideal durante a avaliação.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Tem efeito colateral?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Pode haver leve inchaço, pequenos hematomas ou nódulos transitórios — esperados e temporários. As complicações são raras quando o tratamento é feito por equipe especializada.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Quantas sessões preciso fazer?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">Sculptra costuma exigir 2 a 3 sessões com intervalo mensal. Radiesse e Ellansé, geralmente 1 sessão única com retoque opcional. Tudo é individualizado.</div></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-q">Quanto custa na unidade Perdizes?</span><span class="faq-sign" aria-hidden="true">+</span></summary>
+                    <div class="faq-a"><div class="faq-a-inner">O valor varia conforme o produto escolhido, o número de frascos e a complexidade do plano. Orçamento personalizado na avaliação inicial — gratuita.</div></div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CTA dark -->
+    <section class="bg-ink text-paper py-32 md:py-64 px-4 text-center border-t border-paper/10 bg-noise">
+        <div class="max-w-[1000px] mx-auto flex flex-col items-center">
+            <div class="eyebrow eyebrow-light mb-12 justify-center reveal-node">Avaliação gratuita</div>
+            <h2 class="editorial-display text-[clamp(3rem,8vw,6rem)] leading-[0.9] mb-12 reveal-node" style="--delay: 1">
+                Colágeno<br>que volta a nascer.
+            </h2>
+            <p class="font-sans text-lg text-paper/60 mb-12 max-w-md reveal-node" style="--delay: 2">
+                Conversamos sobre seus objetivos e indicamos o produto certo — sem compromisso, sem pressão de venda.
+            </p>
+            <div class="reveal-node" style="--delay: 3">
+                <a href="https://wa.me/5511940625771?text=Ol%C3%A1%21+Quero+agendar+avalia%C3%A7%C3%A3o+de+bioestimulador." target="_blank" rel="noopener" class="btn-pill bg-paper text-ink hover:bg-brass hover:text-ink min-w-[240px]">Agendar avaliação</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-ink text-paper border-t border-paper/10 pt-24 pb-8 px-4 md:px-8">
+        <div class="max-w-[1480px] mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 font-mono text-xs uppercase tracking-widest mb-32 text-paper/50">
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Unidade</span>
+                    <a href="index.html#contato" class="hover:text-paper transition-colors">Perdizes · SP</a>
+                    <a href="https://www.google.com/maps?q=R.+Piracuama,+138+-+Perdizes,+S%C3%A3o+Paulo+-+SP,+05017-040" target="_blank" rel="noopener" class="hover:text-paper transition-colors">Como chegar</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Tratamentos</span>
+                    <a href="ultraformer-mpt.html" class="hover:text-paper transition-colors">Ultraformer MPT</a>
+                    <a href="bioestimulador.html" class="hover:text-paper transition-colors">Bioestimuladores</a>
+                    <a href="botox.html" class="hover:text-paper transition-colors">Botox</a>
+                    <a href="index.html#lista" class="hover:text-paper transition-colors">Menu completo</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Contato</span>
+                    <a href="https://wa.me/5511940625771" target="_blank" rel="noopener" class="hover:text-paper transition-colors">WhatsApp</a>
+                    <a href="https://www.instagram.com/facedoctor.perdizes" target="_blank" rel="noopener" class="hover:text-paper transition-colors">Instagram</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-paper mb-4">Institucional</span>
+                    <a href="https://facedoctor.com.br" target="_blank" rel="noopener" class="hover:text-paper transition-colors">Rede Face Doctor</a>
+                </div>
+            </div>
+            <div class="w-full text-center overflow-hidden border-b border-paper/10 pb-8 mb-8">
+                <h2 class="editorial-display text-[15vw] leading-[0.75] tracking-[-0.05em] text-paper opacity-90 select-none whitespace-nowrap">FACE DOCTOR</h2>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center font-mono text-[10px] text-paper/40 tracking-widest gap-2">
+                <span>© 2026 Face Doctor Perdizes · Todos os direitos reservados</span>
+                <span>Unidade autorizada da rede Face Doctor</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+            document.querySelectorAll('.reveal-node').forEach(node => revealObserver.observe(node));
+
+            if (!prefersReducedMotion) {
+                const parallaxImages = document.querySelectorAll('.img-parallax');
+                const updateParallax = () => {
+                    const windowHeight = window.innerHeight;
+                    parallaxImages.forEach(img => {
+                        const rect = img.parentElement.getBoundingClientRect();
+                        if (rect.top < windowHeight && rect.bottom > 0) {
+                            const elementCenter = rect.top + rect.height / 2;
+                            const screenCenter = windowHeight / 2;
+                            const distance = (elementCenter - screenCenter) * 0.1;
+                            img.style.transform = `translateY(calc(-10% + ${distance}px)) scale(1.05)`;
+                        }
+                    });
+                    requestAnimationFrame(updateParallax);
+                };
+                updateParallax();
+            }
+        });
+    </script>
+</body>
+</html>

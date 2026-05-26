@@ -1,0 +1,177 @@
+---
+/**
+ * Tabela editorial comparativa Sculptra / Radiesse / Ellansé.
+ * Tipografia pura, sem cards. DESIGN.md §6.3.
+ */
+import Eyebrow from '../../components/Eyebrow.astro';
+
+interface Cell { value: string; sub?: string; }
+interface Row   { label: string; sculptra: Cell; radiesse: Cell; ellanse: Cell; }
+
+const rows: Row[] = [
+  {
+    label: 'Tecnologia',
+    sculptra: { value: 'Ácido poli-L-láctico', sub: 'PLLA' },
+    radiesse: { value: 'Hidroxiapatita de cálcio', sub: 'CaHA' },
+    ellanse:  { value: 'Policaprolactona', sub: 'PCL · 3 versões' },
+  },
+  {
+    label: 'Duração',
+    sculptra: { value: 'Até 24 meses' },
+    radiesse: { value: '12 a 18 meses' },
+    ellanse:  { value: '1 a 4 anos', sub: 'conforme versão' },
+  },
+  {
+    label: 'Indicação principal',
+    sculptra: { value: 'Qualidade da pele e volume gradual' },
+    radiesse: { value: 'Contorno e firmeza imediata' },
+    ellanse:  { value: 'Definição e ângulos' },
+  },
+  {
+    label: 'Início do resultado',
+    sculptra: { value: '30 a 90 dias', sub: 'gradual' },
+    radiesse: { value: 'Imediato', sub: '+ evolução' },
+    ellanse:  { value: 'Desde a aplicação', sub: '+ aumento gradual' },
+  },
+  {
+    label: 'Sessões',
+    sculptra: { value: '2 a 3', sub: 'intervalo mensal' },
+    radiesse: { value: '1', sub: 'retoque opcional' },
+    ellanse:  { value: '1', sub: 'retoque opcional' },
+  },
+];
+---
+
+<section id="comparativo" class="section section--dark section--divided comp bg-noise">
+  <div class="container container--wide">
+    <header class="comp__head reveal">
+      <div>
+        <Eyebrow tone="light">Comparativo</Eyebrow>
+        <h2 class="display comp__title">Três tecnologias.<br />Uma decisão.</h2>
+      </div>
+      <p class="body comp__lead">
+        A indicação certa depende do objetivo, idade e qualidade da pele. Mapeamos isso na avaliação.
+      </p>
+    </header>
+
+    <div class="comp__table reveal" style="--reveal-delay: 1" role="table" aria-label="Comparativo entre Sculptra, Radiesse e Ellansé">
+      <div class="comp__row comp__row--head" role="row">
+        <div class="comp__cell comp__cell--label" role="columnheader"></div>
+        <div class="comp__cell" role="columnheader">
+          <span class="comp__name">Sculptra</span>
+          <span class="mono comp__brand">Galderma</span>
+        </div>
+        <div class="comp__cell" role="columnheader">
+          <span class="comp__name">Radiesse</span>
+          <span class="mono comp__brand">Merz Aesthetics</span>
+        </div>
+        <div class="comp__cell" role="columnheader">
+          <span class="comp__name">Ellansé</span>
+          <span class="mono comp__brand">Sinclair · M/S/L</span>
+        </div>
+      </div>
+
+      {rows.map((row) => (
+        <div class="comp__row" role="row">
+          <div class="comp__cell comp__cell--label mono" role="rowheader">{row.label}</div>
+          {[row.sculptra, row.radiesse, row.ellanse].map((cell) => (
+            <div class="comp__cell" role="cell">
+              <span class="comp__value">{cell.value}</span>
+              {cell.sub && <span class="comp__sub">{cell.sub}</span>}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+
+    <p class="mono comp__foot reveal" style="--reveal-delay: 2">
+      Tabela técnica. A indicação real depende de avaliação presencial.
+    </p>
+  </div>
+</section>
+
+<style>
+  .comp__head {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+    align-items: end;
+    margin-block-end: var(--space-10);
+  }
+  @media (min-width: 768px) {
+    .comp__head {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .comp__head :global(.eyebrow) { margin-block-end: var(--space-5); }
+  .comp__title {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    color: var(--paper);
+  }
+  .comp__lead {
+    color: rgba(245, 240, 234, 0.6);
+    max-width: 36ch;
+    justify-self: end;
+    text-align: end;
+  }
+  @media (max-width: 767px) {
+    .comp__lead { justify-self: start; text-align: start; }
+  }
+
+  .comp__table {
+    display: grid;
+    grid-template-columns: minmax(7rem, 0.8fr) repeat(3, minmax(0, 1fr));
+    overflow-x: auto;
+  }
+  .comp__row {
+    display: contents;
+  }
+  .comp__cell {
+    padding: var(--space-5) var(--space-4);
+    border-block-start: 1px solid var(--border-paper);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    transition: background-color var(--dur-slow) var(--ease-out);
+  }
+  .comp__row:hover .comp__cell {
+    background-color: rgba(184, 153, 104, 0.06);
+  }
+  .comp__row--head .comp__cell {
+    border-block-start: none;
+    padding-block-start: 0;
+    padding-block-end: var(--space-5);
+  }
+  .comp__cell--label {
+    align-self: center;
+    color: rgba(245, 240, 234, 0.5);
+  }
+  .comp__name {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.75rem, 3vw + 0.5rem, 2.75rem);
+    letter-spacing: var(--track-h2);
+    line-height: 1;
+    color: var(--paper);
+  }
+  .comp__brand {
+    color: rgba(245, 240, 234, 0.4);
+    margin-block-start: var(--space-3);
+  }
+  .comp__value {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);
+    line-height: 1.25;
+    color: var(--paper);
+  }
+  .comp__sub {
+    font-size: 12px;
+    color: rgba(245, 240, 234, 0.5);
+  }
+  .comp__foot {
+    color: rgba(245, 240, 234, 0.4);
+    margin-block-start: var(--space-7);
+    max-width: 50ch;
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+/**
+ * Depoimentos editoriais — 3 quotes em colunas com hairlines.
+ * Sem avatares, sem cards. DESIGN.md §5.5, §6.1 step 8.
+ * TODO[copy]: substituir por quotes reais autorizados de pacientes.
+ */
+
+interface Quote {
+  text: string;
+  name: string;
+  meta: string;
+}
+
+const quotes: Quote[] = [
+  {
+    text: 'Continuo a mesma pessoa. Só com a pele que eu tinha há dez anos.',
+    name: 'Paciente A.',
+    meta: 'Ultraformer MPT + Bioestimulador',
+  },
+  {
+    text: 'Elas dizem "não" para o que você não precisa. Isso, pra mim, é o luxo.',
+    name: 'Paciente M.',
+    meta: 'Acompanhamento anual',
+  },
+  {
+    text: 'Minha queixa era cansaço. Saí sem volume falso, só firmeza.',
+    name: 'Paciente E.',
+    meta: 'Protocolo integrado',
+  },
+];
+---
+
+<section class="section section--divided testimonials">
+  <div class="container container--wide">
+    <div class="testimonials__grid">
+      {quotes.map((q, i) => (
+        <article class="testimonials__quote reveal" style={`--reveal-delay: ${i}`}>
+          <span class="testimonials__mark" aria-hidden="true">&ldquo;</span>
+          <p class="display testimonials__text">{q.text}</p>
+          <div class="testimonials__rule" aria-hidden="true"></div>
+          <div class="mono testimonials__attr">{q.name}<br />{q.meta}</div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-9);
+  }
+  @media (min-width: 900px) {
+    .testimonials__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+  }
+
+  .testimonials__quote {
+    position: relative;
+    padding-block: var(--space-7);
+    border-block-end: 1px solid var(--border);
+  }
+  @media (min-width: 900px) {
+    .testimonials__quote {
+      padding-block: 0;
+      padding-inline: var(--space-7);
+      border-block-end: none;
+      border-inline-start: 1px solid var(--border);
+    }
+    .testimonials__quote:first-child {
+      border-inline-start: none;
+      padding-inline-start: 0;
+    }
+    .testimonials__quote:last-child {
+      padding-inline-end: 0;
+    }
+  }
+
+  .testimonials__mark {
+    position: absolute;
+    inset-block-start: -1.5rem;
+    inset-inline-start: -0.5rem;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 140px;
+    line-height: 1;
+    color: var(--brass);
+    opacity: 0.15;
+    user-select: none;
+  }
+  .testimonials__text {
+    position: relative;
+    z-index: 1;
+    font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.5rem);
+    line-height: 1.15;
+    margin-block-end: var(--space-6);
+  }
+  .testimonials__rule {
+    width: 48px;
+    height: 1px;
+    background-color: rgba(26, 22, 20, 0.2);
+    margin-block-end: var(--space-4);
+  }
+  .testimonials__attr {
+    color: var(--ink-soft);
+  }
+</style>

@@ -1,0 +1,113 @@
+---
+/**
+ * ProtocolGrid v3.1 — Grid editorial dos passos do protocolo (fundo dark luxury).
+ */
+interface Step {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  headline: string;
+  steps: Step[];
+}
+
+const { headline, steps } = Astro.props;
+---
+
+<section class="protocol-v3">
+  <div class="container container--wide protocol-v3__inner">
+    <header class="protocol-v3__head">
+      <p class="protocol-v3__eyebrow">O Protocolo</p>
+      <h2 class="protocol-v3__title">{headline}</h2>
+    </header>
+
+    <ol class="protocol-v3__grid">
+      {steps.map((step, i) => (
+        <li class="protocol-v3__step reveal" style={`--reveal-delay: ${i}`}>
+          <span class="protocol-v3__step-num">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="protocol-v3__step-title">{step.title}</h3>
+          <p class="protocol-v3__step-body">{step.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .protocol-v3 {
+    background-color: var(--brand-dark);
+    color: var(--brand-light);
+    padding-block: clamp(5rem, 10vh, 8rem);
+  }
+
+  .protocol-v3__head {
+    margin-block-end: var(--space-9);
+    border-block-end: 1px solid rgba(168, 100, 105, 0.3);
+    padding-block-end: var(--space-6);
+  }
+
+  .protocol-v3__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-gold);
+    margin-block-end: var(--space-3);
+  }
+
+  .protocol-v3__title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    letter-spacing: var(--track-tight);
+    line-height: 1;
+    color: var(--brand-light);
+  }
+
+  .protocol-v3__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  @media (min-width: 700px) {
+    .protocol-v3__grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-9) var(--space-7); }
+  }
+  @media (min-width: 1100px) {
+    .protocol-v3__grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .protocol-v3__step {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    border-block-start: 1px solid var(--border-dark);
+    padding-block-start: var(--space-5);
+  }
+
+  .protocol-v3__step-num {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: transparent;
+    -webkit-text-stroke: 1px var(--brand-gold);
+    line-height: 1;
+    margin-block-end: var(--space-2);
+  }
+
+  .protocol-v3__step-title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    line-height: 1.15;
+    color: var(--brand-light);
+  }
+
+  .protocol-v3__step-body {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-sm);
+    color: rgba(250, 248, 247, 0.7);
+    line-height: var(--leading-body);
+  }
+</style>

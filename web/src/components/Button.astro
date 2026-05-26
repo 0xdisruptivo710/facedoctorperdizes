@@ -1,0 +1,134 @@
+---
+/**
+ * Button — pill primário, ghost outline, ou link mono.
+ * DESIGN.md §5.2
+ */
+type Variant = 'primary' | 'ghost' | 'link';
+type Tone    = 'dark' | 'light';
+
+interface Props {
+  href?: string;
+  variant?: Variant;
+  tone?: Tone;
+  external?: boolean;
+  fullWidth?: boolean;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  tone = 'dark',
+  external = false,
+  fullWidth = false,
+  ariaLabel,
+  class: className = '',
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+const rel = external ? 'noopener noreferrer' : undefined;
+const target = external ? '_blank' : undefined;
+
+const classes = [
+  'btn',
+  `btn--${variant}`,
+  `btn--${tone}`,
+  fullWidth ? 'btn--full' : '',
+  className,
+].filter(Boolean).join(' ');
+---
+
+<Tag
+  class={classes}
+  href={href}
+  rel={rel}
+  target={target}
+  aria-label={ariaLabel}
+>
+  <slot />
+</Tag>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-button);
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    transition:
+      transform var(--dur-base) var(--ease-snap),
+      background-color var(--dur-base) var(--ease-out),
+      color var(--dur-base) var(--ease-out),
+      border-color var(--dur-base) var(--ease-out);
+  }
+
+  .btn:active { transform: scale(0.98); }
+
+  /* Primary — pill ink */
+  .btn--primary {
+    padding: 18px 36px;
+    border-radius: var(--radius-pill);
+  }
+  .btn--primary.btn--dark {
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+  .btn--primary.btn--dark:hover {
+    background-color: var(--rose-deep);
+  }
+  .btn--primary.btn--light {
+    background-color: var(--paper);
+    color: var(--ink);
+  }
+  .btn--primary.btn--light:hover {
+    background-color: var(--brass);
+    color: var(--ink);
+  }
+
+  /* Ghost — borda fina */
+  .btn--ghost {
+    padding: 17px 35px;
+    border-radius: var(--radius-pill);
+    border: 1px solid currentColor;
+    background-color: transparent;
+  }
+  .btn--ghost.btn--dark    { color: var(--ink); }
+  .btn--ghost.btn--dark:hover  { background-color: var(--ink); color: var(--paper); }
+  .btn--ghost.btn--light   { color: var(--paper); }
+  .btn--ghost.btn--light:hover { background-color: var(--paper); color: var(--ink); }
+
+  /* Link mono — underline animado da direita pra esquerda no hover */
+  .btn--link {
+    position: relative;
+    padding: 4px 0;
+    background-color: transparent;
+    border: 0;
+  }
+  .btn--link.btn--dark  { color: var(--ink); }
+  .btn--link.btn--light { color: var(--paper); }
+  .btn--link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: currentColor;
+    transform-origin: right center;
+    transform: scaleX(1);
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+  .btn--link:hover::after {
+    transform-origin: left center;
+    transform: scaleX(0);
+  }
+
+  .btn--full { width: 100%; }
+</style>

@@ -1,0 +1,198 @@
+---
+/**
+ * Hero v3.1 — Soft feminine, retrato editorial + headline serif.
+ */
+import { whatsappUrl, WA_MESSAGES } from '../../lib/clinic';
+
+const wa = whatsappUrl(WA_MESSAGES.general);
+---
+
+<section class="hero-v3">
+  <div class="hero-v3__media">
+    <video
+      class="hero-v3__video"
+      src="/video/hero.mp4"
+      poster="/video/hero-poster.jpg"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      aria-hidden="true"
+    ></video>
+    <div class="hero-v3__scrim"></div>
+  </div>
+
+  <div class="hero-v3__content container container--wide">
+    <div class="hero-v3__lead reveal" style="--reveal-delay: 0">
+      <p class="hero-v3__eyebrow">Estética Avançada</p>
+      <h1 class="hero-v3__title">
+        O tempo,<br />
+        <em>a seu favor.</em>
+      </h1>
+      <div class="hero-v3__actions">
+        <a href="#protocolos" class="btn btn--primary">Explorar Protocolos</a>
+        <a href={wa} target="_blank" rel="noopener noreferrer" class="hero-v3__alt-link link-edit">
+          Agendar Avaliação
+        </a>
+      </div>
+    </div>
+
+    <aside class="hero-v3__meta reveal" style="--reveal-delay: 4">
+      <p class="hero-v3__meta-text">Design de naturalidade e gerenciamento do tempo.</p>
+      <div class="hero-v3__scroll-hint" aria-hidden="true">
+        <span class="hero-v3__scroll-fill"></span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .hero-v3 {
+    position: relative;
+    min-height: 100svh;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--brand-sand);
+    display: flex;
+    align-items: flex-end;
+    padding-block-end: clamp(6rem, 12vh, 10rem);
+  }
+
+  .hero-v3__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-v3__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    filter: contrast(1.05) saturate(0.92) brightness(0.95);
+    opacity: 0.95;
+    background-color: var(--brand-dark);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-v3__video { display: none; }
+    .hero-v3__media { background-image: url('/video/hero-poster.jpg'); background-size: cover; background-position: center 25%; }
+  }
+  .hero-v3__scrim {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+      to top,
+      rgba(31, 27, 28, 0.9) 0%,
+      rgba(31, 27, 28, 0.3) 50%,
+      rgba(31, 27, 28, 0.05) 100%
+    );
+  }
+
+  .hero-v3__content {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-7);
+    justify-content: space-between;
+    width: 100%;
+  }
+  @media (min-width: 1024px) {
+    .hero-v3__content {
+      flex-direction: row;
+      align-items: flex-end;
+    }
+  }
+
+  .hero-v3__lead {
+    max-width: 42rem;
+  }
+
+  .hero-v3__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono-wide);
+    color: var(--brand-gold);
+    margin-block-end: var(--space-5);
+    position: relative;
+    padding-inline-start: 2.5rem;
+  }
+  .hero-v3__eyebrow::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 50%;
+    width: 1.5rem;
+    height: 1px;
+    background-color: var(--brand-gold);
+  }
+
+  .hero-v3__title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(3rem, 8vw, 8rem);
+    letter-spacing: var(--track-tight);
+    line-height: 0.9;
+    color: #fff;
+    margin-block-end: var(--space-7);
+  }
+  .hero-v3__title em {
+    font-style: italic;
+    color: rgba(250, 248, 247, 0.85);
+  }
+
+  .hero-v3__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+    align-items: center;
+  }
+  .hero-v3__alt-link { color: rgba(255, 255, 255, 0.85); }
+
+  .hero-v3__meta {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-7);
+    color: rgba(255, 255, 255, 0.6);
+    text-align: end;
+  }
+  @media (min-width: 1024px) {
+    .hero-v3__meta { display: flex; }
+  }
+  .hero-v3__meta-text {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    max-width: 12rem;
+    line-height: 1.5;
+  }
+
+  .hero-v3__scroll-hint {
+    position: relative;
+    width: 1px;
+    height: 6rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+  }
+  .hero-v3__scroll-fill {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #fff;
+    animation: heroScroll 2s ease-in-out infinite;
+  }
+  @keyframes heroScroll {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(200%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-v3__scroll-fill { animation: none; transform: translateY(0); }
+  }
+</style>

@@ -1,0 +1,124 @@
+---
+/**
+ * FAQ Editorial v3.1 — perguntas em accordion editorial sem ícone genérico.
+ */
+interface Item {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  headline: string;
+  items: Item[];
+}
+
+const { headline, items } = Astro.props;
+---
+
+<section class="faq-v3">
+  <div class="container container--default faq-v3__inner">
+    <header class="faq-v3__head">
+      <p class="faq-v3__eyebrow">FAQ</p>
+      <h2 class="faq-v3__title" set:html={headline} />
+    </header>
+
+    <ul class="faq-v3__list">
+      {items.map((item) => (
+        <li class="faq-v3__item">
+          <details class="faq-v3__details">
+            <summary class="faq-v3__summary">
+              <span class="faq-v3__q">{item.q}</span>
+              <span class="faq-v3__icon" aria-hidden="true"></span>
+            </summary>
+            <p class="faq-v3__a">{item.a}</p>
+          </details>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .faq-v3 {
+    background-color: var(--brand-light);
+    color: var(--brand-dark);
+    padding-block: clamp(5rem, 10vh, 8rem);
+  }
+
+  .faq-v3__head {
+    margin-block-end: var(--space-9);
+    border-block-end: 1px solid var(--border-faint);
+    padding-block-end: var(--space-6);
+  }
+
+  .faq-v3__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-gold);
+    margin-block-end: var(--space-3);
+  }
+
+  .faq-v3__title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    letter-spacing: var(--track-tight);
+    line-height: 1.05;
+    color: var(--brand-dark);
+  }
+
+  .faq-v3__list { display: flex; flex-direction: column; }
+
+  .faq-v3__item { border-block-end: 1px solid var(--border-faint); }
+
+  .faq-v3__details { padding-block: var(--space-5); }
+
+  .faq-v3__summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-5);
+    color: var(--brand-dark);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .faq-v3__summary::-webkit-details-marker { display: none; }
+  .faq-v3__summary:hover { color: var(--brand-primary); }
+
+  .faq-v3__q {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+    line-height: 1.25;
+  }
+
+  .faq-v3__icon {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  .faq-v3__icon::before,
+  .faq-v3__icon::after {
+    content: "";
+    position: absolute;
+    background-color: currentColor;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+  .faq-v3__icon::before { inset: 50% 0 auto 0; height: 1px; transform: translateY(-50%); }
+  .faq-v3__icon::after  { inset: 0 50% 0 auto; width: 1px; transform: translateX(50%); }
+  .faq-v3__details[open] .faq-v3__icon::after { transform: translateX(50%) rotate(90deg); }
+
+  .faq-v3__a {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-base);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    max-width: 56rem;
+    margin-block-start: var(--space-4);
+  }
+</style>

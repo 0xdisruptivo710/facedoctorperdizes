@@ -1,0 +1,113 @@
+---
+/**
+ * Linha de procedimento-bandeira (Home).
+ * Imagem 3:4 alternando esquerda/direita; número brass gigante; body editorial.
+ * DESIGN.md §6.1 step 4.
+ */
+import Eyebrow from '../../components/Eyebrow.astro';
+import Button from '../../components/Button.astro';
+
+interface Props {
+  number: string;
+  eyebrow: string;
+  title: string;
+  body: string;
+  href: string;
+  ctaLabel?: string;
+  image: { src: string; alt: string };
+  reverse?: boolean;
+  bordered?: boolean;
+}
+
+const {
+  number,
+  eyebrow,
+  title,
+  body,
+  href,
+  ctaLabel = 'Conhecer protocolo →',
+  image,
+  reverse = false,
+  bordered = true,
+} = Astro.props;
+---
+
+<article class={`proc-row${reverse ? ' proc-row--reverse' : ''}${bordered ? ' proc-row--bordered' : ''}`}>
+  <div class="container container--wide proc-row__grid">
+    <div class="proc-row__copy reveal">
+      <span class="proc-row__num display" aria-hidden="true">{number}</span>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 class="display proc-row__title">{title}</h2>
+      <p class="body proc-row__body">{body}</p>
+      <Button href={href} variant="link">{ctaLabel}</Button>
+    </div>
+    <div class="proc-row__media reveal" style="--reveal-delay: 1">
+      <div class="img-frame img-frame--portrait-3x4">
+        <!-- TODO[asset]: foto editorial própria (§8.1) -->
+        <img class="img-parallax" src={image.src} alt={image.alt} loading="lazy" />
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+  .proc-row {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding-block: var(--space-9);
+  }
+  .proc-row--bordered { border-block-end: 1px solid var(--border); }
+
+  .proc-row__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: center;
+    width: 100%;
+  }
+  @media (min-width: 900px) {
+    .proc-row__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+    }
+  }
+  .proc-row__copy { order: 2; position: relative; }
+  .proc-row__media { order: 1; }
+  @media (min-width: 900px) {
+    .proc-row--reverse .proc-row__copy { order: 1; }
+    .proc-row--reverse .proc-row__media { order: 2; }
+    .proc-row:not(.proc-row--reverse) .proc-row__copy { order: 2; }
+    .proc-row:not(.proc-row--reverse) .proc-row__media { order: 1; }
+  }
+
+  .proc-row__num {
+    position: absolute;
+    inset-block-start: -3rem;
+    inset-inline-start: -1rem;
+    font-size: clamp(5rem, 12vw, 10rem);
+    line-height: 1;
+    color: var(--brass);
+    opacity: 0.2;
+    user-select: none;
+    pointer-events: none;
+    z-index: -1;
+  }
+  @media (min-width: 900px) {
+    .proc-row__num { inset-inline-start: -4rem; }
+  }
+  .proc-row__copy :global(.eyebrow) {
+    margin-block-end: var(--space-7);
+  }
+  .proc-row__title {
+    font-size: clamp(2rem, 4vw + 0.5rem, 3.5rem);
+    line-height: 1.05;
+    margin-block-end: var(--space-6);
+  }
+  .proc-row__body {
+    color: var(--ink-soft);
+    font-size: var(--text-lg);
+    margin-block-end: var(--space-7);
+    max-width: 42ch;
+  }
+</style>

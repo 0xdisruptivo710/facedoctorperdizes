@@ -1,0 +1,222 @@
+---
+/**
+ * Site Footer v3.1 — fundo cream warm, wordmark gigante editorial.
+ */
+import { CLINIC, whatsappUrl, WA_MESSAGES } from '../lib/clinic';
+---
+
+<footer class="site-footer">
+  <div class="container container--wide site-footer__inner">
+    <div class="site-footer__cols">
+      <section>
+        <h4 class="site-footer__heading">Unidade</h4>
+        <ul>
+          <li>{CLINIC.address.street}</li>
+          <li>{CLINIC.address.neighborhood}, {CLINIC.address.city}</li>
+          <li>{CLINIC.address.postalCode}</li>
+          <li>
+            <a href={CLINIC.mapLink} target="_blank" rel="noopener noreferrer">Como chegar</a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h4 class="site-footer__heading">Tratamentos</h4>
+        <ul>
+          <li><a href="/ultraformer-mpt">Ultraformer MPT</a></li>
+          <li><a href="/bioestimulador">Bioestimuladores</a></li>
+          <li><a href="/botox">Toxina Botulínica</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h4 class="site-footer__heading">Contato</h4>
+        <ul>
+          <li>
+            <a href={whatsappUrl(WA_MESSAGES.general)} target="_blank" rel="noopener noreferrer">
+              WhatsApp · {CLINIC.phone}
+            </a>
+          </li>
+          <li>
+            <a href={CLINIC.social.instagram} target="_blank" rel="noopener noreferrer">
+              Instagram
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h4 class="site-footer__heading">Institucional</h4>
+        <ul>
+          <li>
+            <a href={CLINIC.social.network} target="_blank" rel="noopener noreferrer">
+              Rede Face Doctor
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="site-footer__wordmark" aria-hidden="true">
+      <span>Face Doctor</span>
+      <span class="site-footer__wordmark-italic">Perdizes</span>
+    </div>
+
+    <div class="site-footer__legal">
+      <span class="site-footer__brand">
+        <img src="/brand/logo.svg" alt="Face Doctor" class="site-footer__brand-logo" />
+        <span class="site-footer__brand-italic">Perdizes</span>
+      </span>
+      <div class="site-footer__legal-links">
+        <a href={CLINIC.social.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href={CLINIC.mapLink} target="_blank" rel="noopener noreferrer">Endereço</a>
+        <a href={CLINIC.social.network} target="_blank" rel="noopener noreferrer">Políticas</a>
+      </div>
+      <span class="site-footer__copy">© {new Date().getFullYear()} {CLINIC.name}. Todos os direitos reservados.</span>
+    </div>
+
+    <div class="site-footer__credit">
+      <span>Design</span>
+      <img src="/brand/mouk.png" alt="MOUK" class="site-footer__credit-logo" />
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--brand-cream);
+    color: var(--brand-dark);
+    padding-block: var(--space-10) var(--space-5);
+  }
+
+  .site-footer__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-9);
+  }
+
+  .site-footer__cols {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-7);
+  }
+  @media (min-width: 768px) {
+    .site-footer__cols {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .site-footer__heading {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-accent);
+    margin-block-end: var(--space-4);
+    font-weight: var(--weight-regular);
+  }
+
+  .site-footer__cols ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .site-footer__cols li,
+  .site-footer__cols a {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: var(--weight-light);
+    color: var(--text-muted);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .site-footer__cols a:hover { color: var(--brand-primary); }
+
+  .site-footer__wordmark {
+    text-align: center;
+    overflow: hidden;
+    border-block-end: 1px solid var(--border-faint);
+    padding-block-end: var(--space-7);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: 1vw;
+    line-height: 0.85;
+  }
+  .site-footer__wordmark span {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(3rem, 10vw, 9rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    color: var(--brand-dark);
+    white-space: nowrap;
+  }
+  .site-footer__wordmark-italic {
+    font-style: italic;
+    color: var(--brand-primary) !important;
+  }
+
+  .site-footer__legal {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: center;
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 11px;
+    font-family: var(--font-sans);
+  }
+  @media (min-width: 768px) {
+    .site-footer__legal {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: start;
+    }
+  }
+
+  .site-footer__brand {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .site-footer__brand-logo {
+    height: 14px;
+    width: auto;
+    display: block;
+  }
+  .site-footer__brand-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--brand-accent);
+    font-size: 13px;
+  }
+
+  .site-footer__legal-links {
+    display: flex;
+    gap: var(--space-5);
+  }
+  .site-footer__legal-links a {
+    color: var(--text-muted);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .site-footer__legal-links a:hover { color: var(--brand-primary); }
+
+  /* Credit */
+  .site-footer__credit {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    align-self: center;
+    margin-block-start: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--text-soft);
+  }
+  .site-footer__credit-logo {
+    height: 14px;
+    width: auto;
+  }
+</style>

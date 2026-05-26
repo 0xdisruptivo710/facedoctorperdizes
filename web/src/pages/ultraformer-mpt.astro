@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsappFloat from '../components/WhatsappFloat.astro';
+
+import SubHero from '../sections/SubHero.astro';
+import Definition from '../sections/Definition.astro';
+import IndicationsList from '../sections/IndicationsList.astro';
+import ProtocolGrid from '../sections/ProtocolGrid.astro';
+import FaqEditorial from '../sections/FaqEditorial.astro';
+import CtaCine from '../sections/CtaCine.astro';
+import ResultsCarousel from '../sections/ResultsCarousel.astro';
+
+import { whatsappUrl, WA_MESSAGES } from '../lib/clinic';
+
+const title = 'Ultraformer MPT em Perdizes — Lifting Facial sem Cirurgia | Face Doctor';
+const description =
+  'Ultraformer MPT na Face Doctor Perdizes: lifting facial com ultrassom microfocado, estímulo profundo de colágeno e contorno definido. Agende avaliação.';
+
+const procedureSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalProcedure',
+  name: 'Ultraformer MPT',
+  procedureType: 'Non-invasive',
+  bodyLocation: 'Face',
+  description:
+    'Ultrassom microfocado (HIFU) que atinge três profundidades — incluindo o SMAS — para promover lifting facial sem cirurgia.',
+};
+
+const wa = whatsappUrl(WA_MESSAGES.ultraformer);
+
+const indications = [
+  { title: 'Flacidez de leve a moderada', body: 'Terço médio, mandíbula, papada e pescoço.',                                tag: 'terço médio · mandíbula · pescoço' },
+  { title: 'Contorno facial perdido',     body: 'Linha mandibular menos definida, "bigode chinês" e bochechas com queda.', tag: 'contorno · linha mandibular' },
+  { title: 'Prevenção a partir dos 30',   body: 'Estímulo de colágeno antes da flacidez se estabelecer.',                  tag: 'colágeno preventivo' },
+  { title: 'Pós-emagrecimento',           body: 'Recuperar firmeza após perda significativa de peso.',                     tag: 'recuperação tecidual' },
+];
+
+const protocol = [
+  { title: 'Avaliação',         body: 'Mapeamento facial completo, definição de linhas e profundidades. Conversa franca sobre expectativas.' },
+  { title: 'Aplicação',         body: 'Sessão única de cerca de 60 a 90 minutos. Anestésico tópico antes; sensação de calor pontual durante.' },
+  { title: 'Efeito imediato',   body: 'Firmeza perceptível ao final da sessão. Sem tempo de recuperação — você volta à rotina no mesmo dia.' },
+  { title: 'Evolução em meses', body: 'A neocolagênese se completa entre 30 e 180 dias. Pico de resultado aos 6 meses.' },
+];
+
+const results = [
+  {
+    src: '/results/ultraformer-sculptra-botox-1.jpg',
+    alt: 'Antes e depois de protocolo Ultraformer MPT + Sculptra + Botox no rosto inteiro',
+    procedure: 'Ultraformer + Sculptra + Botox',
+    caption: 'Lifting facial completo combinado a estímulo de colágeno e suavização dinâmica.',
+    layout: 'horizontal' as const,
+  },
+  {
+    src: '/results/ultraformer-sculptra-botox-2.jpg',
+    alt: 'Antes e depois de protocolo Ultraformer MPT + Sculptra + Botox — segunda paciente',
+    procedure: 'Full Face · Protocolo Premium',
+    caption: 'Contorno mandibular redesenhado e firmeza recuperada sem cirurgia.',
+    layout: 'horizontal' as const,
+  },
+  {
+    src: '/results/bioestimulador-textura-facial.jpg',
+    alt: 'Antes e depois de protocolo facial com bioestimulador e Ultraformer',
+    procedure: 'Ultraformer + Bio Combo',
+    caption: 'Textura e firmeza após uma sessão completa de protocolo combinado.',
+    layout: 'horizontal' as const,
+  },
+];
+
+const faq = [
+  { q: 'O Ultraformer MPT dói?',           a: 'O desconforto é mínimo. Aplicamos anestésico tópico antes da sessão e a tecnologia MPT é significativamente mais confortável que as gerações anteriores de HIFU. A maioria das pacientes descreve a sensação como "calor" pontual.' },
+  { q: 'Quando vejo o resultado?',         a: 'Há um efeito imediato de firmeza ao final da sessão. O resultado evolui progressivamente entre 30 e 90 dias, com pico aos 180 dias, conforme a neocolagênese acontece.' },
+  { q: 'Quanto tempo dura o efeito?',      a: 'Em média de 12 a 18 meses, dependendo de idade, qualidade da pele e estilo de vida. Sessões de manutenção mantêm o resultado a longo prazo.' },
+  { q: 'Quem não pode fazer?',             a: 'Gestantes, lactantes, pessoas com marcapasso, próteses metálicas na área tratada, infecções ativas na pele ou doenças autoimunes em fase aguda. Tudo é avaliado na consulta inicial.' },
+  { q: 'Quantas sessões são necessárias?', a: 'Na maioria dos casos, uma sessão por ano é suficiente. Em casos de flacidez mais avançada, podemos combinar com bioestimuladores ou outro protocolo personalizado.' },
+  { q: 'Qual o custo na unidade Perdizes?', a: 'O valor depende do número de linhas aplicadas e da área tratada. Você recebe um orçamento individualizado durante a avaliação gratuita. Trabalhamos com formas de pagamento flexíveis.' },
+];
+---
+
+<BaseLayout title={title} description={description} procedureSchema={procedureSchema}>
+  <SiteHeader slot="header" active="ultraformer" />
+
+  <SubHero
+    crumbs={[{ label: 'Início', href: '/' }, { label: 'Ultraformer MPT' }]}
+    eyebrow="Tecnologia HIFU · Camadas profundas"
+    headline="Lifting acontece sob a pele.<br />Nós tratamos exatamente lá."
+    lead="Ultraformer MPT é ultrassom microfocado de alta intensidade. Atinge três níveis precisos da pele, incluindo o SMAS — a mesma camada que um cirurgião manipula em um lifting."
+    primaryHref={wa}
+    secondaryHref="#indicacoes"
+    secondaryLabel="Para quem é"
+    image={{
+      src: '/modelos/modelo-ultraformer.png',
+      alt: 'Aplicação de Ultraformer MPT — contorno facial firme',
+      figLabel: 'Fig. 02 — SMAS profundo',
+      figTag: '4.5mm',
+    }}
+  />
+
+  <Definition
+    eyebrow="O que é"
+    lead="Pulsos de ultrassom microfocado criam milhares de pontos de coagulação térmica em três profundidades, sem incisão. Cada ponto é um sinal para a pele reagir: contrair, regenerar, produzir colágeno novo."
+    footnote="A geração MPT (Micro Pulsed Technology) entrega a energia em pulsos micro-focados — significativamente mais confortável e precisa que as primeiras gerações de HIFU."
+  />
+
+  <div id="indicacoes">
+    <IndicationsList headline="Para quem é." items={indications} />
+  </div>
+
+  <ProtocolGrid headline="A sessão." steps={protocol} />
+
+  <ResultsCarousel
+    headline="Lifting acontece sob a pele — e aparece aqui."
+    eyebrow="Antes & Depois"
+    items={results}
+    variant="light"
+  />
+
+  <FaqEditorial headline="O que perguntam<br />antes de marcar." items={faq} />
+
+  <CtaCine
+    headline="Lifting acontece<br /><em>sob a pele.</em>"
+    lead="Agenda restrita para garantir tempo e detalhamento em cada plano de tratamento."
+    ctaHref={wa}
+  />
+
+  <SiteFooter slot="footer" />
+  <WhatsappFloat slot="floats" message={WA_MESSAGES.ultraformer} />
+</BaseLayout>

@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsappFloat from '../components/WhatsappFloat.astro';
+
+import SubHero from '../sections/SubHero.astro';
+import Definition from '../sections/Definition.astro';
+import IndicationsList from '../sections/IndicationsList.astro';
+import ProtocolGrid from '../sections/ProtocolGrid.astro';
+import FaqEditorial from '../sections/FaqEditorial.astro';
+import CtaCine from '../sections/CtaCine.astro';
+import ResultsCarousel from '../sections/ResultsCarousel.astro';
+
+import { whatsappUrl, WA_MESSAGES } from '../lib/clinic';
+
+const title = 'Bioestimuladores em Perdizes — Sculptra, Radiesse, Ellansé | Face Doctor';
+const description =
+  'Bioestimuladores de colágeno na Face Doctor Perdizes: Sculptra, Radiesse e Ellansé aplicados por equipe especializada. Densidade, firmeza e resultado natural.';
+
+const procedureSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalProcedure',
+  name: 'Bioestimuladores de Colágeno',
+  procedureType: 'Minimally Invasive',
+  bodyLocation: 'Face',
+  description:
+    'Injetáveis que estimulam a produção natural de colágeno tipo I e III: Sculptra (PLLA), Radiesse (CaHA) e Ellansé (PCL).',
+};
+
+const wa = whatsappUrl(WA_MESSAGES.bioestimulador);
+
+const indications = [
+  { title: 'Perda de volume facial',     body: 'Têmporas, malar, terço médio e papada.',                       tag: 'Sculptra · Radiesse' },
+  { title: 'Pele fina e flácida',        body: 'Restaura densidade e qualidade dérmica.',                      tag: 'Sculptra' },
+  { title: 'Contorno indefinido',        body: 'Mandíbula, queixo e ângulo cervical.',                          tag: 'Radiesse · Ellansé' },
+  { title: 'Prevenção a partir dos 30',  body: 'Manter colágeno em alta antes da queda visível.',               tag: 'protocolo preventivo' },
+];
+
+const protocol = [
+  { title: 'Avaliação facial', body: 'Análise completa de perda de volume, qualidade da pele e definição do produto e protocolo ideais.' },
+  { title: 'Aplicação',        body: 'Procedimento ambulatorial com anestesia local. Cerca de 45 minutos por sessão.' },
+  { title: 'Pós-aplicação',    body: 'Massagens diárias pelos primeiros 5 dias e cuidados orientados para potencializar o resultado.' },
+  { title: 'Evolução',         body: 'Acompanhamento aos 30, 60 e 90 dias. Sessões complementares quando indicadas.' },
+];
+
+const results = [
+  {
+    src: '/results/bioestimulador-textura-facial.jpg',
+    alt: 'Antes e depois de bioestimulador — textura e firmeza facial restauradas',
+    procedure: 'Bioestimulador Facial',
+    caption: 'Densidade dérmica e contorno recuperados após protocolo completo.',
+    layout: 'horizontal' as const,
+  },
+  {
+    src: '/results/preenchimento-marionete-bigode-chines.jpg',
+    alt: 'Antes e depois de preenchimento em linha de marionete e bigode chinês',
+    procedure: 'Preenchimento + Bioestímulo',
+    caption: 'Sulcos do bigode chinês e linhas de marionete suavizados com volume natural.',
+    layout: 'horizontal' as const,
+  },
+  {
+    src: '/results/skinbooster-1.jpg',
+    alt: 'Antes e depois de Skinbooster — hidratação dérmica profunda',
+    procedure: 'Skinbooster · Pele',
+    caption: 'Hidratação dérmica profunda e melhora visível da qualidade da pele.',
+    layout: 'horizontal' as const,
+  },
+];
+
+const faq = [
+  { q: 'Bioestimulador é a mesma coisa que preenchimento?', a: 'Não. Preenchimento adiciona volume mecanicamente (geralmente com ácido hialurônico). Bioestimulador induz seu corpo a produzir colágeno novo — o volume vem de dentro, de forma natural.' },
+  { q: 'Em quanto tempo aparece o resultado?',              a: 'Sculptra: gradual entre 30 e 90 dias. Radiesse: imediato + evolução nos meses seguintes. Ellansé: efeito visível desde a aplicação, com aumento gradual.' },
+  { q: 'Posso combinar com Ultraformer MPT ou Botox?',      a: 'Sim — e essa combinação é muito comum, potencializa resultados. Definimos a sequência ideal durante a avaliação.' },
+  { q: 'Tem efeito colateral?',                              a: 'Pode haver leve inchaço, pequenos hematomas ou nódulos transitórios — esperados e temporários. As complicações são raras quando o tratamento é feito por equipe especializada.' },
+  { q: 'Quantas sessões preciso fazer?',                     a: 'Sculptra costuma exigir 2 a 3 sessões com intervalo mensal. Radiesse e Ellansé, geralmente 1 sessão única com retoque opcional. Tudo é individualizado.' },
+  { q: 'Quanto custa na unidade Perdizes?',                  a: 'O valor varia conforme o produto escolhido, o número de frascos e a complexidade do plano. Orçamento personalizado na avaliação inicial — gratuita.' },
+];
+---
+
+<BaseLayout title={title} description={description} procedureSchema={procedureSchema}>
+  <SiteHeader slot="header" active="bioestimulador" />
+
+  <SubHero
+    crumbs={[{ label: 'Início', href: '/' }, { label: 'Bioestimuladores' }]}
+    eyebrow="Sculptra · Radiesse · Ellansé"
+    headline="Não preenchemos seu rosto.<br />Reativamos o que ele produzia."
+    lead="Injetáveis que estimulam seus próprios fibroblastos a produzir colágeno novo. O volume vem de dentro, em camadas — não é emprestado."
+    primaryHref={wa}
+    secondaryHref="#indicacoes"
+    secondaryLabel="Para quem é"
+    image={{
+      src: '/modelos/modelo-4.png',
+      alt: 'Retrato editorial — colágeno preservado e firmeza dérmica',
+      figLabel: 'Fig. 03 — Estímulo biológico',
+      figTag: 'Colágeno I + III',
+    }}
+  />
+
+  <Definition
+    eyebrow="O que é"
+    lead="Diferente do preenchimento com ácido hialurônico, que ocupa volume mecanicamente, bioestimulador é um gatilho biológico. Suas próprias células recebem o sinal para fabricar colágeno tipo I e III. O resultado nasce dentro da pele."
+    footnote="Aparece em semanas. Evolui por meses. A pele recupera densidade, firmeza e contorno — sem o rosto inflado típico do exagero."
+  />
+
+  <div id="indicacoes">
+    <IndicationsList headline="Para quem é." items={indications} />
+  </div>
+
+  <ProtocolGrid headline="A jornada." steps={protocol} />
+
+  <ResultsCarousel
+    headline="O colágeno volta a aparecer."
+    eyebrow="Antes & Depois"
+    items={results}
+    variant="light"
+  />
+
+  <FaqEditorial headline="Antes de marcar." items={faq} />
+
+  <CtaCine
+    headline="Colágeno<br /><em>que volta a nascer.</em>"
+    lead="Conversamos sobre seus objetivos e indicamos o produto certo — sem compromisso, sem pressão de venda."
+    ctaHref={wa}
+  />
+
+  <SiteFooter slot="footer" />
+  <WhatsappFloat slot="floats" message={WA_MESSAGES.bioestimulador} />
+</BaseLayout>

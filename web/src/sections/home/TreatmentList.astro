@@ -1,0 +1,89 @@
+---
+/**
+ * Lista tipográfica de tratamentos em 2 colunas.
+ * DESIGN.md §6.1 step 7.
+ */
+import Eyebrow from '../../components/Eyebrow.astro';
+
+export interface TreatmentRow {
+  name: string;
+  tagline: string;
+  href: string;
+}
+
+interface Props {
+  items: TreatmentRow[];
+}
+const { items } = Astro.props;
+
+const half = Math.ceil(items.length / 2);
+const col1 = items.slice(0, half);
+const col2 = items.slice(half);
+---
+
+<section id="menu" class="section treatment-list">
+  <div class="container container--default">
+    <Eyebrow class="reveal">Menu de tratamentos</Eyebrow>
+    <div class="treatment-list__cols">
+      {[col1, col2].map((col, ci) => (
+        <ul class="treatment-list__col reveal" style={`--reveal-delay: ${ci * 2}`}>
+          {col.map((row) => (
+            <li class="treatment-list__item">
+              <a href={row.href} class="treatment-list__row">
+                <span class="display treatment-list__name">{row.name}</span>
+                <span class="micro treatment-list__tag">{row.tagline}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .treatment-list :global(.eyebrow) {
+    margin-block-end: var(--space-9);
+  }
+  .treatment-list__cols {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: var(--space-10);
+  }
+  @media (min-width: 768px) {
+    .treatment-list__cols {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .treatment-list__col {
+    border-block-start: 1px solid var(--border);
+  }
+  .treatment-list__item {
+    border-block-end: 1px solid var(--border);
+    transition: background-color var(--dur-base) var(--ease-out);
+  }
+  .treatment-list__item:hover {
+    background-color: var(--paper-warm);
+  }
+  .treatment-list__row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-6) var(--space-3);
+    color: inherit;
+  }
+  @media (min-width: 768px) {
+    .treatment-list__row {
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-5);
+    }
+  }
+  .treatment-list__name {
+    font-size: clamp(1.5rem, 2vw + 0.5rem, 1.875rem);
+  }
+  .treatment-list__tag {
+    color: var(--ink-soft);
+  }
+</style>

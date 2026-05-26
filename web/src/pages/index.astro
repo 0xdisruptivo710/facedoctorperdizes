@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsappFloat from '../components/WhatsappFloat.astro';
+
+import HeroV3 from '../sections/home/HeroV3.astro';
+import PhilosophyV3 from '../sections/home/PhilosophyV3.astro';
+import ProtocolsV3 from '../sections/home/ProtocolsV3.astro';
+import ResultsCarousel from '../sections/ResultsCarousel.astro';
+import ClinicV3 from '../sections/home/ClinicV3.astro';
+import CtaV3 from '../sections/home/CtaV3.astro';
+
+const title = 'Face Doctor Perdizes — Estética Facial Avançada em São Paulo';
+const description =
+  'Unidade Face Doctor em Perdizes/SP. Ultraformer MPT, bioestimuladores e toxina botulínica com equipe especializada. Agende sua avaliação inicial.';
+
+const homeResults = [
+  {
+    src: '/results/ultraformer-sculptra-botox-1.jpg',
+    alt: 'Resultado de protocolo combinado Ultraformer MPT + Sculptra + Botox no rosto inteiro',
+    procedure: 'Ultraformer + Sculptra + Botox',
+    caption: 'Protocolo combinado full face: lifting microfocado, estímulo de colágeno e suavização dinâmica.',
+    layout: 'horizontal' as const,
+  },
+  {
+    src: '/results/botox-glabela.jpg',
+    alt: 'Antes e depois de aplicação de Botox na glabela — rugas do "11" suavizadas',
+    procedure: 'Toxina Botulínica · Glabela',
+    caption: 'Suavização das linhas de expressão entre as sobrancelhas, preservando o movimento natural.',
+    layout: 'vertical' as const,
+  },
+  {
+    src: '/results/bioestimulador-textura-facial.jpg',
+    alt: 'Antes e depois de bioestimulador — textura e firmeza facial',
+    procedure: 'Bioestimulador',
+    caption: 'Densidade e qualidade dérmica restauradas. O volume nasce de dentro, em camadas.',
+    layout: 'horizontal' as const,
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteHeader slot="header" active="home" />
+
+  <HeroV3 />
+  <PhilosophyV3 />
+  <ProtocolsV3 />
+  <ResultsCarousel
+    headline="Resultados que falam por si."
+    eyebrow="04 — Antes & Depois"
+    items={homeResults}
+    variant="light"
+  />
+  <ClinicV3 />
+  <CtaV3 />
+
+  <SiteFooter slot="footer" />
+  <WhatsappFloat slot="floats" />
+</BaseLayout>

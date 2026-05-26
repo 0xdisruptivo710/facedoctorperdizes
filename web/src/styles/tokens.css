@@ -1,0 +1,151 @@
+/*
+ * Face Doctor Perdizes — tokens.css · v3.1
+ * Reset completo do sistema. Direção: soft feminine + bold editorial + dark luxury.
+ * Referência: facedoctor.com.br (paleta mauve/rose) + linguagem editorial Lemaire/Aesop/Augustinus Bader.
+ */
+
+:root {
+  /* ─────────────────────────────────────────────────────────────
+   * 1. PALETA v3.1
+   * Mauve/rose (DNA Face Doctor) + warm dark + dourado micro.
+   * ───────────────────────────────────────────────────────────── */
+
+  /* Rosa marsala — primário e acentos */
+  --brand-primary: #C5767F;        /* mauve principal */
+  --brand-accent:  #A86469;        /* mauve profundo · hovers/bordas */
+  --brand-secondary: #CC3366;      /* pink high-contrast · uso escasso */
+
+  /* Light · paper warm */
+  --brand-light:   #FAF8F7;        /* off-white skin-tone · fundo principal */
+  --brand-cream:   #EAE2DC;        /* cream warm · seção CTA final */
+  --brand-sand:    #D8CCC1;        /* areia · fundo hero */
+
+  /* Dark · luxury black */
+  --brand-dark:    #1F1B1C;        /* warm black · seção protocolos + texto */
+  --brand-dark-2:  #2C2627;        /* dark gradient end */
+
+  /* Dourado micro-accent */
+  --brand-gold:    #BBA072;        /* dourado discreto · eyebrows + traços */
+
+  /* Sistema */
+  --text-muted:    #6B6664;        /* corpo secundário */
+  --text-soft:     #908A87;        /* meta */
+  --border-faint:  rgba(31, 27, 28, 0.10);
+  --border-dark:   rgba(250, 248, 247, 0.15);
+
+  /* ─────────────────────────────────────────────────────────────
+   * 2. TIPOGRAFIA
+   * ───────────────────────────────────────────────────────────── */
+
+  --font-serif: 'Playfair Display', 'PP Editorial New', 'Tiempos Headline', Georgia, serif;
+  --font-sans:  'Roboto', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:  'Roboto Mono', 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Escala fluida (mobile-first) */
+  --text-xs:    clamp(0.72rem, 0.7rem + 0.1vw, 0.78rem);
+  --text-sm:    clamp(0.85rem, 0.83rem + 0.1vw, 0.92rem);
+  --text-base:  clamp(1rem, 0.97rem + 0.15vw, 1.07rem);
+  --text-lg:    clamp(1.15rem, 1.1rem + 0.25vw, 1.3rem);
+  --text-xl:    clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  --text-2xl:   clamp(2rem, 1.6rem + 2vw, 3rem);
+  --text-3xl:   clamp(2.8rem, 2rem + 4vw, 4.5rem);
+  --text-4xl:   clamp(3.5rem, 2.5rem + 6vw, 7rem);
+  --text-hero:  clamp(3rem, 2rem + 7vw, 8rem);
+  --text-outline-num: clamp(5rem, 4rem + 8vw, 11.25rem);
+
+  /* Pesos */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-bold:     700;
+
+  /* Tracking */
+  --track-tight:   -0.04em;
+  --track-h2:      -0.02em;
+  --track-body:    0;
+  --track-mono:    0.18em;
+  --track-mono-wide: 0.3em;
+  --track-button:  0.1em;
+
+  /* Line height */
+  --leading-display: 0.9;
+  --leading-h2:      1.05;
+  --leading-body:    1.65;
+  --leading-mono:    1.4;
+
+  --measure: 62ch;
+
+  /* ─────────────────────────────────────────────────────────────
+   * 3. GRID & SPACING
+   * ───────────────────────────────────────────────────────────── */
+
+  --container-narrow:  840px;
+  --container-default: 1240px;
+  --container-wide:    1480px;
+
+  --gutter-x:    clamp(1.5rem, 3vw, 3rem);
+  --gutter-y-sm: 6rem;
+  --gutter-y-md: 10rem;
+  --gutter-y-lg: 14rem;
+  --gutter-y-xl: 18rem;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --space-11: 192px;
+  --space-12: 256px;
+
+  /* ─────────────────────────────────────────────────────────────
+   * 4. RADIUS · SHADOW · BORDAS
+   * ───────────────────────────────────────────────────────────── */
+
+  --radius-none: 0;
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-pill: 999px;
+  --radius-full: 50%;
+
+  --shadow-soft:  0 1px 2px rgba(31, 27, 28, 0.05);
+  --shadow-lift:  0 30px 60px -20px rgba(31, 27, 28, 0.18);
+  --shadow-deep:  0 40px 80px -30px rgba(31, 27, 28, 0.35);
+
+  /* ─────────────────────────────────────────────────────────────
+   * 5. MOTION
+   * ───────────────────────────────────────────────────────────── */
+
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-snap:    cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-soft:    cubic-bezier(0.4, 0, 0.2, 1);
+
+  --dur-instant: 100ms;
+  --dur-fast:    240ms;
+  --dur-base:    480ms;
+  --dur-slow:    900ms;
+  --dur-cine:    1400ms;
+
+  /* ─────────────────────────────────────────────────────────────
+   * 6. Z-INDEX
+   * ───────────────────────────────────────────────────────────── */
+  --z-nav:        40;
+  --z-whatsapp:   50;
+  --z-overlay:    60;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast:    0ms;
+    --dur-base:    0ms;
+    --dur-slow:    0ms;
+    --dur-cine:    0ms;
+  }
+}

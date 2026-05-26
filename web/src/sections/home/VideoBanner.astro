@@ -1,0 +1,82 @@
+---
+/**
+ * Vídeo banner full-width 16:9 — placeholder até o vídeo institucional ser entregue.
+ * DESIGN.md §6.1 step 6.
+ */
+---
+
+<section class="video-banner" aria-label="Vídeo institucional da unidade">
+  <!-- TODO[asset]: substituir poster e adicionar <source> com vídeo real (§8.2) -->
+  <img
+    class="video-banner__poster"
+    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=2000"
+    alt=""
+    loading="lazy"
+    aria-hidden="true"
+  />
+  <div class="video-banner__veil"></div>
+  <div class="video-banner__center reveal">
+    <button type="button" class="video-banner__play" aria-label="Reproduzir vídeo institucional">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+    <span class="mono video-banner__label">Conheça a unidade em vídeo</span>
+  </div>
+</section>
+
+<style>
+  .video-banner {
+    position: relative;
+    overflow: hidden;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (min-width: 768px) {
+    .video-banner { height: 90vh; }
+  }
+  .video-banner__poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1);
+    opacity: 0.6;
+  }
+  .video-banner__veil {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(26, 22, 20, 0.4);
+  }
+  .video-banner__center {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+  }
+  .video-banner__play {
+    width: 96px;
+    height: 96px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(245, 240, 234, 0.3);
+    color: var(--paper);
+    backdrop-filter: blur(8px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--dur-base) var(--ease-out),
+                color var(--dur-base) var(--ease-out),
+                transform var(--dur-base) var(--ease-snap);
+  }
+  .video-banner__play:hover {
+    background-color: var(--paper);
+    color: var(--ink);
+  }
+  .video-banner__play:active { transform: scale(0.96); }
+  .video-banner__label { color: rgba(245, 240, 234, 0.8); }
+</style>

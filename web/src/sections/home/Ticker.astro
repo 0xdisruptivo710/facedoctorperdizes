@@ -1,0 +1,68 @@
+---
+/**
+ * Marquee horizontal cinematic.
+ * DESIGN.md §6.1 step 3.
+ */
+const items = ['Ultraformer MPT', 'Bioestimuladores', 'Toxina botulínica', 'Lavieen', 'Fios de PDO'];
+---
+
+<section class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    {[0, 1].map(() => (
+      <div class="ticker__row">
+        {items.map((item) => (
+          <span class="ticker__item">
+            <span>{item}</span>
+            <span class="ticker__sep">·</span>
+          </span>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .ticker {
+    background-color: var(--ink);
+    color: var(--paper);
+    padding-block: var(--space-7);
+    overflow: hidden;
+    border-block: 1px solid var(--ink);
+  }
+  .ticker__track {
+    display: flex;
+    width: max-content;
+    animation: marquee 50s linear infinite;
+    will-change: transform;
+  }
+  .ticker__row {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    letter-spacing: var(--track-h2);
+    line-height: 1;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+  .ticker__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-5);
+    padding-inline: var(--space-5);
+    white-space: nowrap;
+  }
+  .ticker__sep {
+    color: var(--brass);
+    font-weight: 400;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker__track { animation: none; }
+  }
+</style>

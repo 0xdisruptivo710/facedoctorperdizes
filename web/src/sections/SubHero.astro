@@ -1,0 +1,200 @@
+---
+/**
+ * SubHero v3.1 — Hero secundário para páginas de tratamento.
+ * Estética soft feminine: imagem editorial + headline serif + crumbs mono.
+ */
+interface Crumb { label: string; href?: string; }
+interface ImageProps {
+  src: string;
+  alt: string;
+  figLabel?: string;
+  figTag?: string;
+}
+
+interface Props {
+  crumbs: Crumb[];
+  eyebrow: string;
+  headline: string;
+  lead: string;
+  primaryHref: string;
+  primaryLabel?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  image: ImageProps;
+}
+
+const {
+  crumbs,
+  eyebrow,
+  headline,
+  lead,
+  primaryHref,
+  primaryLabel = 'Agendar Avaliação',
+  secondaryHref,
+  secondaryLabel,
+  image,
+} = Astro.props;
+---
+
+<section class="sub-hero">
+  <div class="container container--wide sub-hero__inner">
+    <div class="sub-hero__body reveal">
+      <nav class="sub-hero__crumbs" aria-label="Breadcrumb">
+        {crumbs.map((c, i) => (
+          <span class="sub-hero__crumb">
+            {c.href ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}
+            {i < crumbs.length - 1 && <span class="sub-hero__crumb-sep" aria-hidden="true">/</span>}
+          </span>
+        ))}
+      </nav>
+
+      <p class="sub-hero__eyebrow">{eyebrow}</p>
+
+      <h1 class="sub-hero__title" set:html={headline} />
+
+      <p class="sub-hero__lead">{lead}</p>
+
+      <div class="sub-hero__actions">
+        <a href={primaryHref} target="_blank" rel="noopener noreferrer" class="btn btn--dark">
+          {primaryLabel}
+        </a>
+        {secondaryHref && (
+          <a href={secondaryHref} class="sub-hero__link link-edit">
+            {secondaryLabel} →
+          </a>
+        )}
+      </div>
+    </div>
+
+    <figure class="sub-hero__media reveal" style="--reveal-delay: 2">
+      <img src={image.src} alt={image.alt} loading="eager" fetchpriority="high" />
+      {image.figLabel && (
+        <figcaption class="sub-hero__caption">
+          <span class="sub-hero__caption-label">{image.figLabel}</span>
+          {image.figTag && <span class="sub-hero__caption-tag">{image.figTag}</span>}
+        </figcaption>
+      )}
+    </figure>
+  </div>
+</section>
+
+<style>
+  .sub-hero {
+    background-color: var(--brand-light);
+    color: var(--brand-dark);
+    padding-block: clamp(7rem, 14vh, 10rem) clamp(5rem, 10vh, 8rem);
+    position: relative;
+  }
+
+  .sub-hero__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-9);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .sub-hero__inner {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+    }
+  }
+
+  .sub-hero__body { max-width: 36rem; }
+
+  .sub-hero__crumbs {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+    margin-block-end: var(--space-7);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--text-soft);
+  }
+  .sub-hero__crumb a {
+    color: var(--brand-accent);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .sub-hero__crumb a:hover { color: var(--brand-primary); }
+  .sub-hero__crumb-sep { color: var(--brand-gold); }
+
+  .sub-hero__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono-wide);
+    color: var(--brand-gold);
+    margin-block-end: var(--space-6);
+    position: relative;
+    padding-inline-start: 2.5rem;
+  }
+  .sub-hero__eyebrow::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 50%;
+    width: 1.5rem;
+    height: 1px;
+    background-color: var(--brand-gold);
+  }
+
+  .sub-hero__title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    letter-spacing: var(--track-tight);
+    line-height: 1;
+    color: var(--brand-dark);
+    margin-block-end: var(--space-6);
+  }
+
+  .sub-hero__lead {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin-block-end: var(--space-7);
+    max-width: 34rem;
+  }
+
+  .sub-hero__actions {
+    display: flex;
+    gap: var(--space-5);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .sub-hero__link { color: var(--brand-accent); }
+
+  .sub-hero__media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    box-shadow: var(--shadow-lift);
+  }
+  .sub-hero__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.05) saturate(0.9) brightness(0.95);
+  }
+
+  .sub-hero__caption {
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4) var(--space-5);
+    background-image: linear-gradient(to top, rgba(31, 27, 28, 0.85), transparent);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+  }
+  .sub-hero__caption-tag { color: var(--brand-gold); }
+</style>
