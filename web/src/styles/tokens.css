@@ -1,5 +1,5 @@
 /*
- * Face Doctor Perdizes — tokens.css · v3.1
+ * Face Doctor Perdizes - tokens.css · v3.1
  * Reset completo do sistema. Direção: soft feminine + bold editorial + dark luxury.
  * Referência: facedoctor.com.br (paleta mauve/rose) + linguagem editorial Lemaire/Aesop/Augustinus Bader.
  */
@@ -10,7 +10,7 @@
    * Mauve/rose (DNA Face Doctor) + warm dark + dourado micro.
    * ───────────────────────────────────────────────────────────── */
 
-  /* Rosa marsala — primário e acentos */
+  /* Rosa marsala - primário e acentos */
   --brand-primary: #C5767F;        /* mauve principal */
   --brand-accent:  #A86469;        /* mauve profundo · hovers/bordas */
   --brand-secondary: #CC3366;      /* pink high-contrast · uso escasso */

@@ -1,6 +1,6 @@
 /**
  * Constantes da unidade Face Doctor Perdizes.
- * Fonte única — não duplicar em components.
+ * Fonte única - não duplicar em components.
  */
 
 export const CLINIC = {
@@ -17,12 +17,12 @@ export const CLINIC = {
     city: 'São Paulo',
     state: 'SP',
     postalCode: '05017-040',
-    fullLine: 'R. Piracuama, 138 — Perdizes, São Paulo · SP · 05017-040',
+    fullLine: 'R. Piracuama, 138 - Perdizes, São Paulo · SP · 05017-040',
   },
   hours: {
     weekdays: 'Segunda a sábado',
     closing: '20:00',
-    fullLine: 'Segunda a sábado — fecha às 20:00',
+    fullLine: 'Segunda a sábado - fecha às 20:00',
   },
   social: {
     instagram: 'https://www.instagram.com/facedoctor.perdizes',

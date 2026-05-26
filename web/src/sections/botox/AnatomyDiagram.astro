@@ -1,6 +1,6 @@
 ---
 /**
- * Diagrama anatômico SVG interativo — 12 áreas tratadas com Botox.
+ * Diagrama anatômico SVG interativo - 12 áreas tratadas com Botox.
  * Clique no hotspot OU na lista → painel lateral detalha.
  * Acessível por teclado (Enter/Espaço/Setas).
  * DESIGN.md §6.4.
@@ -103,7 +103,7 @@ const AREAS: Area[] = [
 
       <div class="anatomy__side">
         <div class="anatomy__detail reveal" style="--reveal-delay: 2" aria-live="polite">
-          <div class="mono anatomy__detail-num">— Área</div>
+          <div class="mono anatomy__detail-num">- Área</div>
           <h3 class="display anatomy__detail-name">Selecione um ponto</h3>
           <p class="body anatomy__detail-desc">
             Toque em um ponto no diagrama para conhecer onde e como a toxina botulínica é aplicada nessa região.
@@ -137,7 +137,7 @@ const AREAS: Area[] = [
     if (!area || !detailNum || !detailName || !detailDesc) return;
     hots.forEach((h) => h.classList.toggle('is-active', h.dataset.id === id));
     items.forEach((i) => i.classList.toggle('is-active', i.dataset.id === id));
-    detailNum.textContent  = `— Área ${area.num}`;
+    detailNum.textContent  = `- Área ${area.num}`;
     detailName.textContent = area.name;
     detailDesc.textContent = area.desc;
   };
