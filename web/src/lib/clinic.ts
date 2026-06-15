@@ -47,5 +47,5 @@ export const WA_MESSAGES = {
   general: 'Olá, gostaria de agendar uma avaliação na Face Doctor Perdizes.',
   ultraformer: 'Olá! Quero agendar uma avaliação de Ultraformer MPT.',
   bioestimulador: 'Olá! Quero agendar avaliação de bioestimulador.',
-  botox: 'Olá! Quero agendar aplicação de Botox.',
+  botox: 'Olá! Quero agendar aplicação de Etherea.',
 } as const;

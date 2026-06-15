@@ -14,18 +14,18 @@ import ResultsCarousel from '../sections/ResultsCarousel.astro';
 
 import { whatsappUrl, WA_MESSAGES } from '../lib/clinic';
 
-const title = 'Botox em Perdizes - Toxina Botulínica com Equipe Especializada | Face Doctor';
+const title = 'Etherea em Perdizes - Equipe Especializada | Face Doctor';
 const description =
-  'Aplicação de Botox (toxina botulínica) na Face Doctor Perdizes. Áreas tratadas, segurança e equipe especializada. Agende sua avaliação inicial.';
+  'Aplicação de Etherea na Face Doctor Perdizes. Áreas tratadas, segurança e equipe especializada. Agende sua avaliação inicial.';
 
 const procedureSchema = {
   '@context': 'https://schema.org',
   '@type': 'MedicalProcedure',
-  name: 'Toxina Botulínica',
+  name: 'Etherea',
   procedureType: 'Minimally Invasive',
   bodyLocation: 'Face',
   description:
-    'Aplicação de toxina botulínica tipo A para suavizar linhas dinâmicas, bruxismo, lip flip, hiperidrose e outras indicações.',
+    'Aplicação de Etherea para suavizar linhas dinâmicas, bruxismo, lip flip, hiperidrose e outras indicações.',
 };
 
 const wa = whatsappUrl(WA_MESSAGES.botox);
@@ -47,22 +47,22 @@ const protocol = [
 const results = [
   {
     src: '/results/botox-1.jpg',
-    alt: 'Antes e depois de toxina botulínica - linhas de expressão suavizadas',
-    procedure: 'Toxina Botulínica',
+    alt: 'Antes e depois de Etherea - linhas de expressão suavizadas',
+    procedure: 'Etherea',
     caption: 'Suavização das linhas dinâmicas preservando a expressão natural.',
     layout: 'vertical' as const,
   },
   {
     src: '/results/botox-2.jpg',
-    alt: 'Antes e depois de toxina botulínica na região perioral e contorno labial',
-    procedure: 'Toxina Botulínica · Perioral',
+    alt: 'Antes e depois de Etherea na região perioral e contorno labial',
+    procedure: 'Etherea · Perioral',
     caption: 'Suavização das linhas periorais e harmonização do contorno labial.',
     layout: 'vertical' as const,
   },
   {
     src: '/results/botox-3.jpg',
-    alt: 'Antes e depois real de paciente da unidade Perdizes - toxina botulínica',
-    procedure: 'Toxina Botulínica',
+    alt: 'Antes e depois real de paciente da unidade Perdizes - Etherea',
+    procedure: 'Etherea',
     caption: 'Antes e depois real de paciente da unidade Perdizes.',
     layout: 'horizontal' as const,
   },
@@ -73,9 +73,9 @@ const faq = [
   { q: 'Em quanto tempo aparece o efeito?',                  a: 'Os primeiros sinais aparecem entre o 3º e o 7º dia. O resultado final estabiliza por volta do 15º dia. Por isso fazemos o retorno após essa janela.' },
   { q: 'Quanto tempo dura?',                                 a: 'Em média de 4 a 6 meses. Varia conforme metabolismo, musculatura tratada e dose. Com aplicações regulares, a musculatura se reeduca e a duração tende a aumentar.' },
   { q: 'Dói?',                                                a: 'Muito pouco. Agulhas extrafinas, desconforto comparável a uma picada de mosquito. Não é necessária anestesia local.' },
-  { q: 'Posso combinar com Ultraformer ou bioestimulador?', a: 'Sim. Botox trata a parte dinâmica (musculatura); Ultraformer e bioestimuladores tratam estrutura (firmeza e colágeno). A combinação potencializa resultados.' },
-  { q: 'Tem risco de ficar viciada?',                        a: 'Mito. O Botox tem efeito temporário, quando para de aplicar, a musculatura volta ao funcionamento normal.' },
-  { q: 'Qual o custo na unidade Perdizes?',                  a: 'Depende do número de áreas e da marca da toxina (Botox Allergan, Dysport, Xeomin etc). Orçamento individualizado durante a avaliação inicial gratuita.' },
+  { q: 'Posso combinar com Ultraformer ou bioestimulador?', a: 'Sim. Etherea trata a parte dinâmica (musculatura); Ultraformer e bioestimuladores tratam estrutura (firmeza e colágeno). A combinação potencializa resultados.' },
+  { q: 'Tem risco de ficar viciada?',                        a: 'Mito. A Etherea tem efeito temporário, quando para de aplicar, a musculatura volta ao funcionamento normal.' },
+  { q: 'Qual o custo na unidade Perdizes?',                  a: 'Depende do número de áreas e da marca utilizada (Allergan, Dysport, Xeomin etc). Orçamento individualizado durante a avaliação inicial gratuita.' },
 ];
 ---
 
@@ -83,10 +83,10 @@ const faq = [
   <SiteHeader slot="header" active="botox" />
 
   <SubHero
-    crumbs={[{ label: 'Início', href: '/' }, { label: 'Toxina Botulínica' }]}
-    eyebrow="Toxina botulínica · Marcas premium"
+    crumbs={[{ label: 'Início', href: '/' }, { label: 'Etherea' }]}
+    eyebrow="Etherea · Marcas premium"
     headline="Sutil quando a gente quer.<br />Visível só quando você quer."
-    lead="Botox pausa o músculo, não congela a face. Quando a dose é certa e a aplicação é precisa, expressões continuam - linhas dinâmicas desaparecem."
+    lead="Etherea pausa o músculo, não congela a face. Quando a dose é certa e a aplicação é precisa, expressões continuam - linhas dinâmicas desaparecem."
     primaryHref={wa}
     secondaryHref="#indicacoes"
     secondaryLabel="Para quem é"
@@ -100,7 +100,7 @@ const faq = [
 
   <Definition
     eyebrow="O que é"
-    lead="Toxina botulínica tipo A bloqueia temporariamente o sinal nervoso para o músculo aplicado. Sem o impulso de contração, a musculatura relaxa, e a pele acima dela deixa de se dobrar. É o que diferencia pausar de paralisar."
+    lead="Etherea bloqueia temporariamente o sinal nervoso para o músculo aplicado. Sem o impulso de contração, a musculatura relaxa, e a pele acima dela deixa de se dobrar. É o que diferencia pausar de paralisar."
     footnote="Trabalhamos com produtos originais de laboratórios líderes - Allergan, Galderma, Merz. A dose é individualizada por face, porque cada musculatura tem seu próprio mapa."
   />
 
