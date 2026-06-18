@@ -7,9 +7,9 @@ export const CLINIC = {
   name: 'Face Doctor Perdizes',
   shortName: 'Perdizes',
   network: 'Face Doctor',
-  phone: '(11) 94062-5771',
-  phoneE164: '+5511940625771',
-  whatsappNumber: '5511940625771',
+  phone: '(11) 94510-0448',
+  phoneE164: '+5511945100448',
+  whatsappNumber: '5511945100448',
   email: 'contato@facedoctorperdizes.com.br', // TODO: confirmar e-mail oficial
   address: {
     street: 'R. Piracuama, 138',
